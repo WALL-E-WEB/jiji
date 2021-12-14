@@ -1,5 +1,17 @@
+
+
 module.exports = {
+    head:[
+        [
+            'script',
+            {type:'text/javascript',src:'/js/side.js'}
+        ]
+    ],
+    plugin: [require('../utils/side')],
     themeConfig: {
+        sidebar: 'auto',
+        sidebarDepth: 5,
+        displayAllHeaders: false,
         nav: [
             { text: 'dd', link: '/home' }
         ],
@@ -10,9 +22,9 @@ module.exports = {
             {
                 text: '学习记',
                 children: [
-                    { text: '1.HTML', link: '/html' },
+                    { text: '1.HTML', link: '/study/html/html.md' },
                     { text: '2.CSS', link: '/css' },
-                    { text: '3.JS', link: '/js' },
+                    { text: '3.JS', link: '/study/js/javascript.md' },
                     { text: '4.ES6', link: '/es6' },
                     { text: '5.JQuery', link: '/jQuery' },
                     { text: '6.Ajax/Fetch', link: '/fetch' },
