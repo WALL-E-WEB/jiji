@@ -12,14 +12,14 @@ for (let index = 0; index < urlItem.length; index++) {
         if (element.classList.contains('isHied')) {
            element. classList.remove('isHied');
             var sibling = this.nextElementSibling;
-            console.log(element);
+         
                 sibling.style.display = 'block';
               
 
         } else {
             element. classList.add('isHied');
             var sibling = this.nextElementSibling;
-          console.log(element);
+     
             sibling.style.display = 'none';
 
         }
