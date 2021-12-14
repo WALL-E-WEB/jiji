@@ -7,7 +7,7 @@ module.exports = {
             {type:'text/javascript',src:'/js/side.js'}
         ]
     ],
-    plugin: [require('../utils/side')],
+    // plugin: [require('jquery')],
     themeConfig: {
         sidebar: 'auto',
         sidebarDepth: 5,

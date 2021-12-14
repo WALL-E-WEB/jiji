@@ -1,62 +1,28 @@
 
 
-    var urlItem = document.getElementsByClassName('sidebar-item');
-    console.log('dddd2')
-    console.log(urlItem);
-    for (let index = 0; index < urlItem.length; index++) {
-        var element = urlItem[index];
-      
-        element.addEventListener("click", function () {
-           alert('dd');
-            console.log('dddd')
+
+var urlItem = document.getElementsByClassName('sidebar-item');
+
+console.log('dddd2')
+console.log(urlItem);
+for (let index = 0; index < urlItem.length; index++) {
+    var element = urlItem[index];
+
+    element.addEventListener("click", function () {
+        if (element.classList.contains('isHied')) {
+           element. classList.remove('isHied');
             var sibling = this.nextElementSibling;
-            for (let index = 0; index < sibling.children.length; index++) {
-                const element2 = sibling.children[index];
-                element2.style.display = 'none';
-                
-            }
-        })
-    }
-  
- 
+            console.log(element);
+                sibling.style.display = 'block';
+              
 
-// module.exports = {
+        } else {
+            element. classList.add('isHied');
+            var sibling = this.nextElementSibling;
+          console.log(element);
+            sibling.style.display = 'none';
 
-//     ready() {
-//         console.log('ready')
-//         var urlItem = document.getElementsByClassName('sidebar-item');
-//         urlItem.click = function () {
-//             alert('d');
-//             console.log('dddd')
-//         }
-//         urlItem.addEventListener("click", function () {
-//             alert('d');
-//             console.log('dddd')
-//         })
-//     },
-//     updated() {
-//         console.log('updated')
-//         var urlItem = document.getElementsByTagName('div');
-//         urlItem.click = function () {
-//             alert('d2');
-//             console.log('dddd2')
-//         }
-//         urlItem.addEventListener("click", function () {
-//             alert('d');
-//             console.log('dddd')
-//         })
-//     },
-//     generated(pagePaths) {
-//         console.log('updated')
-//         var urlItem = document.getElementsByTagName('div');
-//         urlItem.click = function () {
-//             alert('d2');
-//             console.log('dddd2')
-//         }
-//         urlItem.addEventListener("click", function () {
-//             alert('d');
-//             console.log('dddd')
-//         })
-//     }
+        }
 
-// }
+    })
+}
