@@ -48,14 +48,25 @@ studyNav = studyNav.sort((a, b) => (+a.text.split('.')[0]) > (+b.text.split('.')
 
 console.log(studyNav);
 module.exports = {
+    base:'/jiji/',
+    plugin:[
+        // require('../utils/side.js'),
+        {
+            name: 'root-component-setup',
+            clientAppRootComponentFiles: path.resolve(__dirname, './RootComponent.vue'),
+          }
+    ],
+    // build: {
+    //     assetsPublicPath: './'
+    // },
     head: [
         [
             'link',
-            { type: 'text/css', rel: 'stylesheet', href: '/css/sidebar.css' }
+            { type: 'text/css', rel: 'stylesheet', href: '/jiji/css/sidebar.css' }
         ],
         [
             'script',
-            { type: 'text/javascript', src: '/js/side.js' }
+            { type: 'text/javascript', src: '/jiji/js/side.js' }
         ]
     ],
     // plugin: [require('jquery')],
@@ -77,10 +88,10 @@ module.exports = {
     },
     markdown: {
 
-        html:true,
-        xhtmlOut:true,
-        breaks:true,
-        breaks:true,
+        html: true,
+        xhtmlOut: true,
+        breaks: true,
+        breaks: true,
         lineNumbers: true,
         toc: {
             includeLevel: [1, 2, 3, 4]

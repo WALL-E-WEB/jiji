@@ -1,7 +1,17 @@
 
 
-
-window.onload = function () {
+  
+// window.onload = function () {
+    console.log('window.onload ',window);
+    // window.addEventListener('hashchange',function(event){
+    //     console.log('hashchange',event);
+    //    });
+    // window.addEventListener('pushState', function(e) {
+    //     console.log('change pushState');
+    //    });
+    //    window.addEventListener('replaceState', function(e) {
+    //     console.log('change replaceState');
+    //    });
     var urlItem = document.getElementsByClassName('sidebar-item');
     for (let index = 0; index < urlItem.length; index++) {
         var element = urlItem[index];
@@ -17,10 +27,12 @@ window.onload = function () {
             if (element.classList.contains('isHied')) {
                 element.classList.remove('isHied');
                 var sibling = this.nextElementSibling;
+                if(!sibling)return;
                 sibling.style.display = 'block';
             } else {
                 element.classList.add('isHied');
                 var sibling = this.nextElementSibling;
+                if(!sibling)return;
                 sibling.style.display = 'none';
             }
         })
@@ -35,4 +47,4 @@ window.onload = function () {
         var span = document.createElement("span");
         frist.appendChild(span);
     }
-};
+// };
