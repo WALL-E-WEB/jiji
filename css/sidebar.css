@@ -1,0 +1,14 @@
+
+a.sidebar-item span{
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 6px solid #ccc;
+    vertical-align: middle;
+    margin-top: -1px;
+    margin-left: 0.4rem;
+    display: inline-block;
+   
+}
+.sidebar-sub-items{
+    display: none;
+}
