@@ -9,33 +9,38 @@ var studyNav = [];
 var rpath = path.resolve('docs/study');
 console.log(path.resolve('docs/study'));
 fs.readdirSync(path.resolve('docs/study')).forEach(file => {
-    var fullpath = rpath + "/" + file;
-    var nav = { text: file, link: '' };
-    var fileinfo = fs.lstatSync(fullpath);
-    if (fileinfo.isFile) {
-        nav.link = `/study/${file}`
-    }
-    if (fileinfo.isDirectory()) {
-        var fileList = fs.readdirSync(path.resolve('docs/study/' + file));
-        nav.link = `/study/${file}/${fileList[0]}` ;
-        if (fileList.length > 1) {
-            nav.children = [];
-            fileList.forEach(file2 => {
+    if (file != '.DS_Store') {
+        var fullpath = rpath + "/" + file;
+        var nav = { text: file, link: '' };
+        var fileinfo = fs.lstatSync(fullpath);
+        if (fileinfo.isFile) {
 
-                nav.children.push( { text: file2, link: `/study/${file}/${file2}`}); 
-    
-            });
-        }else{
-            fileList.forEach(file2 => {
-
-                nav.link = `/study/${file}/${file2}`;
-    
-            });
+            nav.link = `/study/${file}`
         }
-    
-       
+        if (fileinfo.isDirectory()) {
+            var fileList = fs.readdirSync(path.resolve('docs/study/' + file));
+            if (fileList[0] != '.DS_Store') {
+                nav.link = `/study/${file}/${fileList[0]}`;
+            }
+            if (fileList.length > 1) {
+                nav.children = [];
+                fileList.forEach(file2 => {
+                    if (file2 != '.DS_Store') {
+                        nav.children.push({ text: file2, link: `/study/${file}/${file2}` });
+                    }
+                });
+            } else {
+                fileList.forEach(file2 => {
+
+                    nav.link = `/study/${file}/${file2}`;
+
+                });
+            }
+
+
+        }
+        studyNav.push(nav);
     }
-    studyNav.push(nav);
 });
 
 
@@ -72,7 +77,10 @@ module.exports = {
     },
     markdown: {
 
-
+        html:true,
+        xhtmlOut:true,
+        breaks:true,
+        breaks:true,
         lineNumbers: true,
         toc: {
             includeLevel: [1, 2, 3, 4]

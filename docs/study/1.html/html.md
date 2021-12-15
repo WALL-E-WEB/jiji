@@ -71,7 +71,7 @@ user-scalable：用户是否可以手动缩放。
 
 ## HTML标签
 
-| 标签                        | 描述                                       |
+<!-- | 标签                        | 描述                                       |
 | --------------------------- | :----------------------------------------- |
 | <h1···h6> <h1···h6>         | 标题标签                                   |
 | <p> </p>                    | 段落标签                                   |
@@ -89,7 +89,7 @@ user-scalable：用户是否可以手动缩放。
 | <b></b> <strong></strong>   | 文字加粗                                   |
 | <i></i>  <em></em>          | 文字斜体                                   |
 | <s></s> <del></del>         | 加删除线                                   |
-| <u></u> <ins></ins>         | 加下划线                                   |
+| <u></u> <ins></ins>         | 加下划线                                   | -->
 
 ## **html标签-拓展**
 
@@ -149,13 +149,13 @@ user-scalable：用户是否可以手动缩放。
 |     title      |                             文字                             |                   鼠标悬停时，显示描述文本                   |
 |     width      |                            像素值                            |                        设置图片的宽度                        |
 |     height     |                            像素值                            |                        设置图片的高度                        |
-|     align      | bottom（默认）<br />middle<br />top<br />left 左浮动<br />right 右浮动 |                         图片对齐方式                         |
+|     align      | bottom（默认）middletopleft 左浮动right 右浮动 |                         图片对齐方式                         |
 |     border     |                            px、%                             |                           控制圆角                           |
-|   响应式图片   |                                                              |           {max-width：100%；<br />height：auto；}            |
+|   响应式图片   |                                                              |           {max-width：100%；height：auto；}            |
 |     filter     |                           ！待了解                           |                             滤镜                             |
-| vertical-align |                        文字与中线对齐                        | vertical-align:middle<br />默认vertical-align:baseline基线对齐 |
+| vertical-align |                        文字与中线对齐                        | vertical-align:middle默认vertical-align:baseline基线对齐 |
 
-问题：h标签中h>a>img;可能出现图片与a标签不能对齐；
+问题：h标签中h\>a\>img;可能出现图片与a标签不能对齐;
 
 原因：忘记给body加line-height：1；
 
