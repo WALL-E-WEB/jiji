@@ -1,10 +1,15 @@
 
 
+
 module.exports = {
-    head:[
+    head: [
+        [
+            'link',
+            { type: 'text/css',rel:'stylesheet', href: '/css/sidebar.css' }
+        ],
         [
             'script',
-            {type:'text/javascript',src:'/js/side.js'}
+            { type: 'text/javascript', src: '/js/side.js' }
         ]
     ],
     // plugin: [require('jquery')],
@@ -56,4 +61,17 @@ module.exports = {
             { text: '另辟蹊径记', link: '/money' },
         ],
     },
-}
+    markdown: {
+        
+
+        lineNumbers: true,
+
+        extractHeaders:{
+            level:[2,3,4,5]
+        },
+        
+        includeLevel: [1, 2, 3],
+
+        },
+        toc:false,
+    }
