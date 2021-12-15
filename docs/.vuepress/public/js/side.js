@@ -27,7 +27,6 @@ window.onload = function () {
     }
 
     var urlItem = document.getElementsByClassName('sidebar-sub-items');
-
     for (let index = 0; index < urlItem.length; index++) {
         var element = urlItem[index];
         var frist = element.parentElement.children[0];

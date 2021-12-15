@@ -1,11 +1,52 @@
+const fs = require("fs");
+const path = require("path");
+const rootpath = path.dirname(__dirname);
+
+/**
+* 文件助手: 主要用于读取当前文件下的所有目录和文件
+*/
+var studyNav = [];
+var rpath = path.resolve('docs/study');
+console.log(path.resolve('docs/study'));
+fs.readdirSync(path.resolve('docs/study')).forEach(file => {
+    var fullpath = rpath + "/" + file;
+    var nav = { text: file, link: '' };
+    var fileinfo = fs.lstatSync(fullpath);
+    if (fileinfo.isFile) {
+        nav.link = `/study/${file}`
+    }
+    if (fileinfo.isDirectory()) {
+        var fileList = fs.readdirSync(path.resolve('docs/study/' + file));
+        nav.link = `/study/${file}/${fileList[0]}` ;
+        if (fileList.length > 1) {
+            nav.children = [];
+            fileList.forEach(file2 => {
+
+                nav.children.push( { text: file2, link: `/study/${file}/${file2}`}); 
+    
+            });
+        }else{
+            fileList.forEach(file2 => {
+
+                nav.link = `/study/${file}/${file2}`;
+    
+            });
+        }
+    
+       
+    }
+    studyNav.push(nav);
+});
 
 
+studyNav = studyNav.sort((a, b) => (+a.text.split('.')[0]) > (+b.text.split('.')[0]) ? 1 : -1);
 
+console.log(studyNav);
 module.exports = {
     head: [
         [
             'link',
-            { type: 'text/css',rel:'stylesheet', href: '/css/sidebar.css' }
+            { type: 'text/css', rel: 'stylesheet', href: '/css/sidebar.css' }
         ],
         [
             'script',
@@ -21,40 +62,8 @@ module.exports = {
             { text: 'dd', link: '/home' }
         ],
         navbar: [
-            // NavbarItem
             { text: '首页', link: '/' },
-            // NavbarGroup
-            {
-                text: '学习记',
-                children: [
-                    { text: '1.HTML', link: '/study/html/html.md' },
-                    { text: '2.CSS', link: '/css' },
-                    { text: '3.JS', link: '/study/js/javascript.md' },
-                    { text: '4.ES6', link: '/es6' },
-                    { text: '5.JQuery', link: '/jQuery' },
-                    { text: '6.Ajax/Fetch', link: '/fetch' },
-                    { text: '7.Git', link: '/git' },
-                    { text: '8.Canvas', link: '/canvas' },
-                    { text: '9.Node', link: '/node' },
-                    {
-                        text: '10.Vue', children: [{ text: 'vue 2x', link: '/vue2' }, { text: 'vue 3x', link: '/vue3' },]
-                    },
-                    { text: '11.React', link: '/react' },
-                    { text: '12.Webpack', link: '/webpack' },
-                    { text: '13.TypeScript', link: '/typeScript' },
-
-                    { text: '14.设计模式', link: '/webpack' },
-                    { text: '15.移动端', link: '/webpack' },
-                    { text: '16.前端性能', link: '/webpack' },
-                    { text: '17.ESLint', link: '/flutter' },
-                    { text: '18.Jest', link: '/jest' },
-                    { text: '19.Dart/Flutter', link: '/flutter' },
-                    { text: '20.Android', link: '/android' },
-                    { text: '21.Ios', link: '/ios' },
-
-
-                ],
-            },
+            { text: '学习记', children: studyNav },
             { text: '项目记', link: '/prod' },
             { text: '读书记', link: '/book' },
             { text: '资源记', link: '/resource' },
@@ -62,16 +71,18 @@ module.exports = {
         ],
     },
     markdown: {
-        
+
 
         lineNumbers: true,
-
-        extractHeaders:{
-            level:[2,3,4,5]
+        toc: {
+            includeLevel: [1, 2, 3, 4]
         },
-        
+        extractHeaders: {
+            level: [2, 3, 4, 5]
+        },
+
         includeLevel: [1, 2, 3],
 
-        },
-        toc:false,
-    }
+    },
+    toc: false,
+}
