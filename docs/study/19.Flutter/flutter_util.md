@@ -3739,6 +3739,21 @@ defaultTargetPlatform == TargetPlatform.android
 
 
 
+# flutter默认字体
+
+```dart
+https://material.io/design/typography/the-type-system.html#type-scale
+
+默认在 iOS 上：
+中文字体：PingFang SC
+英文字体：.SF UI Text 、.SF UI Display
+
+
+默认在 Android 上：
+中文字体：Source Han Sans / Noto
+英文字体：Roboto
+```
+
 
 
 # 获取定位
@@ -5460,7 +5475,11 @@ public class MainActivity extends FlutterActivity {
   }
 ```
 
+# 在线代码
 
+```
+https://replit.com/languages/dart
+```
 
 
 
@@ -5502,7 +5521,21 @@ if (MediaQuery.of(context).viewInsets.bottom == 0) {
 }
 ```
 
-## http限制
+# 设计规范
+
+```dart
+https://material.io/design/typography/the-type-system.html#type-scale
+```
+
+## 动画
+
+```
+https://rive.app/
+```
+
+
+
+# http限制
 
 ```xml
 https://blog.csdn.net/weixin_44137575/article/details/109045633
