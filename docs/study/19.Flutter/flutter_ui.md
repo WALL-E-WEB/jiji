@@ -617,6 +617,86 @@ const ButtonBar({
 }) 
 ```
 
+# Text
+
+自定义绘制文本 https://zhuanlan.zhihu.com/p/144426357
+
+```
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Container(
+        color: Colors.lime,
+        alignment: Alignment.center,
+        child: Container(
+          alignment: Alignment.center,
+          child: Container(
+            height: 200,
+            width: 400,
+            color: Colors.purple,
+            child: CustomPaint(
+              painter: Text2Painter(),
+            ),
+          )
+
+        ),
+      ),
+    );
+  }
+  
+class Text2Painter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var baseLine = TextBaseline.alphabetic;
+    //var baseLine = TextBaseline.ideographic;
+
+    final textStyle =
+        TextStyle(color: Colors.white, fontSize: 100, textBaseline: baseLine);
+    final textSpan = TextSpan(
+      text: 'My文字',
+      style: textStyle,
+    );
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout(
+      minWidth: 0,
+      maxWidth: size.width,
+    );
+
+    final left = 0.0;
+    final top = 0.0;
+    final right = textPainter.width;
+    final bottom = textPainter.height;
+    final rect = Rect.fromLTRB(left, top, right, bottom);
+    final paint = Paint()
+      ..color = Colors.red
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1;
+    canvas.drawRect(rect, paint);
+
+    // draw the baseline
+    final distanceToBaseline =
+        textPainter.computeDistanceToActualBaseline(baseLine);
+
+    canvas.drawLine(
+      Offset(0, distanceToBaseline),
+      Offset(textPainter.width, distanceToBaseline),
+      paint..color = Colors.blue..strokeWidth = 5,
+    );
+
+    // draw the text
+    final offset = Offset(0, 0);
+    textPainter.paint(canvas, offset);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+```
+
 
 
 # Stack
