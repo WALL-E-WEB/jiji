@@ -1,6 +1,8 @@
 # Dart
 
-## 变量
+## 基本语法
+
+### 变量
 
 ```js
 var name = 1  //可重复赋值
@@ -13,7 +15,7 @@ final a = const [] //创建常量值端构造函数
 String name = '1' //指定类型
 ```
 
-## 数据类型
+### 数据类型
 
 ```dart
 Number 
@@ -129,7 +131,7 @@ Symbol
   
   
 
-## 数据转换
+### 数据转换
 
 ```dart
 String --> int
@@ -147,7 +149,7 @@ String piAsString = 3.14159.toStringAsFixed(2);
 assert(piAsString == '3.14');
 ```
 
-## 函数
+### 函数
 
 ```dart
 bool isNoble(int atomicNumber) {
@@ -195,7 +197,7 @@ bool isNoble(int atomicNumber) => _nobleGases[atomicNumber] != null;
 
   
 
-## String
+### String
 
 ```
 https://www.cnblogs.com/lxlx1798/p/11280106.html
@@ -203,7 +205,7 @@ https://www.cnblogs.com/lxlx1798/p/11280106.html
 
 
 
-## List
+### List
 
 ```
 https://api.dart.dev/stable/2.12.3/dart-core/List-class.html
@@ -250,7 +252,7 @@ forEach
 
 
 
-## Set
+### Set
 
 ```
 Set set = Set.from([1,2,3]);
@@ -292,7 +294,7 @@ for in
 set.toList().forEach()
 ```
 
-## Map
+### Map
 
 常用属性
 
@@ -323,7 +325,7 @@ for in
 
 
 
-## 枚举类型
+### 枚举类型
 
 - 枚举不能被子类化，混合或实现。
 - 枚举不能被显式实例化。
@@ -344,7 +346,7 @@ Color.red.index == 0
 
 ```
 
-## extension
+### extension
 
 实现类似 .sh 方法
 
@@ -362,6 +364,95 @@ extension ExtendedText on Widget {
 }
 
 使用 Text('Extended Text').addContainer();
+```
+
+### 生成器
+
+```dart
+Iterable<int> naturalsTo(int n) sync* {
+  int k = 0;
+  while (k < n) yield k++;
+}
+// 等同
+Iterable<int> genList2({int max = 10}) {
+  var list = <int>[];
+  var i = 0;
+  while (i < max) {
+    list.add(i);
+    i++;
+  }
+  return list.map((i) => i);
+}
+
+Stream<int> asynchronousnNaturalsTo(int n) async* {
+  int k = 0;
+  while (k < n) yield k++;
+}
+// 如果yield后面跟着的本身就是一个generator，那么需要使用y
+Iterable<int> naturalsDownFrom(int n) sync* {
+  if (n > 0) {
+    yield n;
+    yield* naturalsDownFrom(n - 1);
+  }
+}
+
+void main() async {
+  for (var v in naturalsTo(3)) {
+    print(v);
+  }
+   await for (var v in asynchronousnNaturalsTo(3)) {
+    print(v);
+  }
+}
+```
+
+#### 结合 sync*
+
+```dart
+main(List<String> arguments) {
+  var r = naturalsDownFrom(10);
+  print(r); //(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+
+  r = naturalsDownWithNormal(10);
+  print(r); //(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+}
+
+Iterable<int> naturalsDownFrom(int n) sync* {
+  if (n > 0) {
+    yield n;
+    yield* naturalsDownFrom(n - 1);
+  }
+}
+
+Iterable<int> naturalsDownWithNormal(int n) {
+  var list = <int>[];
+  if (n > 0) {
+    list.add(n);
+    var r = naturalsDownWithNormal(n - 1);
+    list.addAll(r);
+  }
+  return list.map((v) => v);
+}
+
+```
+
+#### 结合 async*
+
+```dart
+main(List<String> arguments){
+  naturalsStreamDownFrom(10).listen((data) {
+    print("data = $data");
+  });
+
+}
+
+Stream<int> naturalsStreamDownFrom(int n) async* {
+  if (n > 0) {
+    yield n;
+    yield* naturalsStreamDownFrom(n - 1);
+  }
+}
+
 ```
 
 
@@ -858,11 +949,11 @@ timeoutId = Timer.periodic(timeout, (timer) { //callback function
  }
 ```
 
-# 遍历
+## 遍历
 
 https://www.cnblogs.com/lxlx1798/p/11104618.html
 
-## for
+### for
 
 ```dart
  for (var i = 0; i < MyList.length; i++) {
@@ -870,7 +961,7 @@ https://www.cnblogs.com/lxlx1798/p/11104618.html
   }
 ```
 
-## for in
+### for in
 
 ```dart
   for (var item in MyList) {
@@ -878,7 +969,7 @@ https://www.cnblogs.com/lxlx1798/p/11104618.html
   }
 ```
 
-## forEach
+### forEach
 
 ```dart
  MyList.forEach((value) {
@@ -886,7 +977,7 @@ https://www.cnblogs.com/lxlx1798/p/11104618.html
   });
 ```
 
-## map
+### map
 
  // map主要用于修改原数组；对原数组进行一些操作(对原数组进行修改)
 
@@ -896,7 +987,7 @@ https://www.cnblogs.com/lxlx1798/p/11104618.html
   });
 ```
 
-## where
+### where
 
  // where查找符合条件的数组 (主要用于筛选)
 
@@ -908,7 +999,7 @@ List MyList = [1, 2, 4, 5, 7, 10];
   print(newList);//(7, 10)
 ```
 
-## whereType<String\>
+### whereType<String\>
 
 返回指定类型的项目
 
@@ -917,7 +1008,7 @@ List MyList = [1, 2, 4, 5, 7, 10];
   // （2）
 ```
 
-## firstWhere
+### firstWhere
 
 ```dart
 //满足条件的第一个元素
@@ -927,13 +1018,13 @@ var testFirstWhere = testList6.firstWhere((item) => checkExitHa(item),orElse: ge
 print("满足条件的第一个元素：$testFirstWhere");
 ```
 
-## lastIndexWhere
+### lastIndexWhere
 
 ```
 lastIndexWhere
 ```
 
-## singleWhere
+### singleWhere
 
 ```dart
 有条件的查询满足条件的元素是否只出现了一次
@@ -950,7 +1041,7 @@ var testSingleWhere = testList6.singleWhere((item) => item.toString().length == 
 print("\ntestSingleWhere ${testSingleWhere}, type is ${testSingleWhere.runtimeType} \n");
 ```
 
-## take
+### take
 
 ```
 //取出前面多少个元素放在新的list中
@@ -964,7 +1055,7 @@ print(testList6);
 var testTakeWhile = testList6.takeWhile((item) => item.toString().length == 3);
 ```
 
-## takeWhile
+### takeWhile
 
 发现不符合就会停止
 
@@ -976,7 +1067,7 @@ var testtake = testList6.takeWhile((item) => int.parse(item.toString()) > 2);
 
 
 
-## any
+### any
 
 // 判断数组中是否有满足条件的数据  返回的是布尔值
 
@@ -988,7 +1079,7 @@ var testtake = testList6.takeWhile((item) => int.parse(item.toString()) > 2);
   print(f); //true
 ```
 
-## every
+### every
 
   // 判断数组中是每一个值是否满足条件   返回的是布尔值 
 
@@ -998,17 +1089,17 @@ var testtake = testList6.takeWhile((item) => int.parse(item.toString()) > 2);
   print(f);
 ```
 
-# Future
-
 ## Future
 
-```
+### Future
 
 ```
 
+```
 
 
-## Completer
+
+### Completer
 
 ```dart
   Future<bool> create() {
@@ -1030,7 +1121,7 @@ var testtake = testList6.takeWhile((item) => int.parse(item.toString()) > 2);
 
 ```
 
-## compute
+### compute
 
 ```dart
 import 'package:flutter/foundation.dart';

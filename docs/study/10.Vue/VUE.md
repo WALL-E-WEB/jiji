@@ -1,14 +1,16 @@
 
 
-# 一、VUE-指令
+# VUE
+<!-- [[toc]] -->
 
+## 一、VUE-指令
 - vue提供给HTML标签新增的属性
 
 - 是带有v-前缀的特殊特性
 
     
 
-## 1. v-text
+### 1. v-text
 
 ```js
 
@@ -27,13 +29,13 @@
 		--数据可是arr,obj
 ```
 
-## 2. v-html
+### 2. v-html
 
 ```
 强制覆盖里面的内容
 ```
 
-## 3. v-bind
+### 3. v-bind
 
 #### 3.0 - 基本使用
 
@@ -151,7 +153,7 @@ style操作:
   这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。
   ```
 
-## 	4. v-on
+### 	4. v-on
 
 #### 	4.0 - 基本
 
@@ -221,7 +223,7 @@ this指向vue的实例;
 箭头函数:this指向的是window//参数指向的是window
 ```
 
-## 5. v-model
+### 5. v-model
 
 ```js
 用于input textarea select ,动态绑定,双向绑定
@@ -271,7 +273,7 @@ export default {
 
 
 
-## 6. v-for
+### 6. v-for
 
 作用：用于渲染列表；必须带key
 
@@ -421,7 +423,7 @@ export default {
 
   
 
-## 	v-if
+### 	v-if
 
 ```js
 v-if
@@ -431,7 +433,7 @@ v-else
 v-else 元素必须立即跟在 v-if 或 v-show 元素的后面——否则它不能被识别。
 ```
 
-## 	v-show
+### 	v-show
 
 ```js
 v-show='isshow=false'
@@ -442,7 +444,7 @@ data:{
 通过控制data的isshow,来控制v-show
 ```
 
-## v-cloak
+### v-cloak
 
 ```js
 防止暴露{{val}}语法
@@ -455,14 +457,14 @@ data:{
 </div>
 ```
 
-## v-once
+### v-once
 
 ```js
 只被渲染一次
 <p v-once>{{msg}}</p> 
 ```
 
-## v-pre
+### v-pre
 
 ```js
 不解析
@@ -473,7 +475,7 @@ data:{
 
 
 
-# 插槽slot
+## 插槽slot
 
 ```js
 父用子组件时标签内的内容不会被渲染;所以在子组件加入<slot></slot>插槽,接收父调用子组件标签内的内容.
@@ -580,9 +582,9 @@ mounted() {
 
 
 
-# 二、VUE-方法
+## 二、VUE-方法
 
-## filters-过滤器
+### filters-过滤器
 
 ```js
 html中使用：
@@ -641,7 +643,7 @@ filters中获取this的方法
 
 
 
-## computed-计算属性
+### computed-计算属性
 
 ```js
 用法：
@@ -696,7 +698,7 @@ isAll: {
     }
 ```
 
-## watch-侦听器
+### watch-侦听器
 
 ```js
 data: {
@@ -763,11 +765,11 @@ deep:true//深侦听
 
 
 
-# 三、生命周期
+## 三、生命周期
 
- ![Vue](/image/vue//lifecycle-1571713470849.png) 
+ ![Vue](../../.vuepress/public/images/vue/lifecycle-1571713470849.png) 
 
-![微信图片_20191113224515](/image/vue//%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191113224515.png)
+![微信图片_20191113224515](../../.vuepress/public/images/vue//%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191113224515.png)
 
 ```js
 beforeCreate 	组件实例刚被创建，组件属性计算之前，如data属性等
@@ -846,7 +848,7 @@ undate(){
 }
 ```
 
-# nextTick
+### nextTick
 
 原理：
 
@@ -922,7 +924,7 @@ inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，�
 update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
 ```
 
-![image-20191128104621304](/image/vue//image-20191128104621304.png)
+![image-20191128104621304](../../.vuepress/public/images/vue//image-20191128104621304.png)
 
 ```js
 异常处理            
@@ -3577,7 +3579,7 @@ const Foo = {
 
 ```
 
- ![img](/image/vue//20190616165857285-1574860714128.png) 
+ ![img](../../.vuepress/public/images/vue//20190616165857285-1574860714128.png) 
 
 1. 全局守卫
 
@@ -4281,9 +4283,9 @@ html引用:
 >
 >以下是一个表示“单向数据流”理念的简单示意：
 
-![1569118000473](/image/vue//1569118000473.png
+![1569118000473](../../.vuepress/public/images/vue//1569118000473.png
 
-![vuex](/image/vue//vuex.png)
+<!-- ![vuex](../../.vuepress/public/images/vue//vuex.png) -->
 
 ### 4.模块化结构-项目结构
 
@@ -4305,19 +4307,20 @@ html引用:
 >>import Vue from 'vue'
 >>import Vuex from 'vuex'
 >>import vuexModules from './modules'
->>
+>
 >>import state from './state'
 >>import mutations from './mutations'
 >>import actions from './actions'
->>
+>
 >>Vue.use(Vuex)
->>
+>
 >>export default new Vuex.Store({
->>    state,
->>    mutations,
->>    actions,
->>    modules: vuexModules
+>>state,
+>>mutations,
+>>actions,
+>>modules: vuexModules
 >>})
+>>
 >>```
 >
 >├──	state.js
@@ -4332,9 +4335,9 @@ html引用:
 >
 >```js
 >export default {
->    setLang(state, data){
+>   setLang(state, data){
 >
->    },
+>   },
 >}
 >```
 
@@ -4355,36 +4358,38 @@ html引用:
 >└── modules
 >
 >>├──m1文件夹
->>
+>
 >>>├──m1.js
->>>
+>
 >>>```js
 >>>const state = {
 >>>    cachePage: false,
 >>>}
->>>
+>
 >>>const mutations = {
 >>>    addTagNav(state, data){
 >>>    }
 >>>}
->>>
+>
 >>>export default {
->>>    namespaced: true,
->>>    state,
->>>    mutations
+>>>namespaced: true,
+>>>state,
+>>>mutations
 >>>}
+>>>
 >>>```
->>
+>
 >>index.js
->>
+>
 >>```js
 >>import user from './m1.js'
 >>import tagNav from './tagNav'
->>
+>
 >>export default {
->>    user: user,
->>    tagNav: tagNav
+>>user: user,
+>>tagNav: tagNav
 >>}
+>>
 >>```
 
 
@@ -5082,7 +5087,7 @@ axios.interceptors.request.use(function(config){
 
 ```
 
-![1568688836118](/image/vue//1568688836118.png)
+![1568688836118](../../.vuepress/public/images/vue//1568688836118.png)
 
 #### 2.响应拦截
 

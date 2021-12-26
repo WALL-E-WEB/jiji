@@ -56,8 +56,15 @@ module.exports = {
             clientAppRootComponentFiles: path.resolve(__dirname, './RootComponent.vue'),
           }
     ],
+    configureWebpack: {
+        resolve: {
+          alias: {
+            '@img': 'public/images'
+          }
+        }
+      },
     // build: {
-    //     assetsPublicPath: './'
+    //     assetsPublicPath: './jiji/'
     // },
     head: [
         [
@@ -73,6 +80,7 @@ module.exports = {
     themeConfig: {
         sidebar: 'auto',
         sidebarDepth: 5,
+        repo: 'https://github.com/WALL-E-WEB/everyday',
         displayAllHeaders: false,
         nav: [
             { text: 'dd', link: '/home' }
