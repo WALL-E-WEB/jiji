@@ -1,8 +1,8 @@
-# JS基础
+# JS
 
-学习方法
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
 
-​	代码量
+
 
 ## js书写位置
 
