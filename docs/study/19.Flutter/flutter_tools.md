@@ -250,6 +250,102 @@ class _SaleClueTabState extends State<ZjTabBlockScroll> {
 
 
 
+## 获取元素信息
+
+```dart
+Offset? getPositionFromKey(GlobalKey key) {
+  final RenderBox? box = key.currentContext?.findRenderObject() as RenderBox?;
+  return box?.localToGlobal(Offset.zero);
+}
+
+Size? getSizeFromKey(GlobalKey key) {
+  final RenderBox? box = key.currentContext?.findRenderObject() as RenderBox?;
+  return box?.size;
+}
+
+Offset getCenterOffsetFromKey(GlobalKey key) {
+  final size = getSizeFromKey(key);
+  final pos = getPositionFromKey(key);
+  if (pos != null && size != null)
+    return Offset(pos.dx + size.width / 2, pos.dy + size.height / 2);
+  else
+    return Offset.zero;
+}
+```
+
+## HslColor
+
+```dart
+class HslColor {
+  double h;
+  double s;
+  double l;
+  double a;
+
+  HslColor({required this.h, required this.s, required this.l, this.a = 0.0});
+
+  String toString() {
+    return "HSL(h: $h, s: $s, l: $l, a: $a)";
+  }
+}
+```
+
+## doubleFormatter
+
+```dart
+import 'package:flutter/services.dart';
+
+class RegExInputFormatter implements TextInputFormatter {
+  final RegExp _regExp;
+
+  RegExInputFormatter._(this._regExp);
+
+  factory RegExInputFormatter.withRegex(String regexString) {
+    try {
+      final regex = RegExp(regexString);
+      return RegExInputFormatter._(regex);
+    } catch (e) {
+      // Something not right with regex string.
+      assert(false, e.toString());
+      return RegExInputFormatter._(RegExp(''));
+    }
+  }
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final oldValueValid = _isValid(oldValue.text);
+    final newValueValid = _isValid(newValue.text);
+    if (oldValueValid && !newValueValid) {
+      return oldValue;
+    }
+    return newValue;
+  }
+
+  bool _isValid(String value) {
+    try {
+      final matches = _regExp.allMatches(value);
+      for (Match match in matches) {
+        if (match.start == 0 && match.end == value.length) {
+          return true;
+        }
+      }
+      return false;
+    } catch (e) {
+      // Invalid regex
+      assert(false, e.toString());
+      return true;
+    }
+  }
+}
+
+final doubleFormatter =
+    RegExInputFormatter.withRegex('^\$|^(0|([1-9][0-9]{0,}))(\\.[0-9]{0,})?\$');
+
+```
+
+
+
 ## 数据处理
 
 ### array 转 tree
