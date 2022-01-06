@@ -5569,3 +5569,10 @@ ios：xcode
 
 ```
 
+## 物理返回键问题
+
+```
+ // fix: Android 物理返回键，无法返回上一页问题 @https://github.com/flutter/flutter/issues/66349
+      // WillPopScope + onWillPop 就是解决这个问题的关键
+```
+
