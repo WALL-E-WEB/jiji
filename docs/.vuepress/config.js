@@ -6,8 +6,44 @@ const rootpath = path.dirname(__dirname);
 * 文件助手: 主要用于读取当前文件下的所有目录和文件
 */
 var studyNav = [];
+var resourcesNav = [];
+
+
+
+function getFileName(data, fileName) {
+    let _filePath = `docs/${fileName}`;
+    var rpath = path.resolve(_filePath);
+    fs.readdirSync(rpath).forEach(file => {
+        if (file != '.DS_Store') {
+            var fullpath = rpath + "/" + file;
+            var nav = { text: file.split('.')[0], link: '' };
+            var fileinfo = fs.lstatSync(fullpath);
+            if (fileinfo.isFile) {
+                nav.link = `/${fileName}/${file}`
+            }
+            if (fileinfo.isDirectory()) {
+                var fileList = fs.readdirSync(path.resolve(_filePath + file));
+                if (fileList[0] != '.DS_Store') {
+                    nav.link = `/${fileName}/${file}/${fileList[0]}`;
+                }
+                if (fileList.length > 1) {
+                    nav.children = [];
+                    fileList.forEach(file2 => {
+                        if (file2 != '.DS_Store') {
+                            nav.children.push({ text: file2.split('.')[0], link: `/${fileName}/${file}/${file2}` });
+                        }
+                    });
+                } else {
+                    fileList.forEach(file2 => {
+                        nav.link = `/${fileName}/${file}/${file2}`;
+                    });
+                }
+            }
+            data.push(nav);
+        }
+    });
+}
 var rpath = path.resolve('docs/study');
-console.log(path.resolve('docs/study'));
 fs.readdirSync(path.resolve('docs/study')).forEach(file => {
     if (file != '.DS_Store') {
         var fullpath = rpath + "/" + file;
@@ -26,7 +62,7 @@ fs.readdirSync(path.resolve('docs/study')).forEach(file => {
                 nav.children = [];
                 fileList.forEach(file2 => {
                     if (file2 != '.DS_Store') {
-                        nav.children.push({ text: file2, link: `/study/${file}/${file2}` });
+                        nav.children.push({ text: file2.split('.')[0], link: `/study/${file}/${file2}` });
                     }
                 });
             } else {
@@ -45,24 +81,41 @@ fs.readdirSync(path.resolve('docs/study')).forEach(file => {
 
 
 studyNav = studyNav.sort((a, b) => (+a.text.split('.')[0]) > (+b.text.split('.')[0]) ? 1 : -1);
-
 console.log(studyNav);
+
+function logATag(data) {
+    data.forEach((item, index) => {
+        console.log(`> + <a href=".${item.link}" target="_blank">${item.text}</a>`);
+        if (item.children) {
+            logATag(item.children);
+        }
+    })
+}
+
+// logATag(studyNav);
+
+
+getFileName(resourcesNav, 'resources');
+
 module.exports = {
-    base:'/jiji/',
-    plugin:[
+    title: 'Walle 记记',
+    description: 'walle ',
+    base: '/jiji/',
+    
+    plugin: [
         // require('../utils/side.js'),
         {
             name: 'root-component-setup',
             clientAppRootComponentFiles: path.resolve(__dirname, './RootComponent.vue'),
-          }
+        }
     ],
     configureWebpack: {
         resolve: {
-          alias: {
-            '@img': 'public/images'
-          }
+            alias: {
+                '@img': 'public/images'
+            }
         }
-      },
+    },
     // build: {
     //     assetsPublicPath: './jiji/'
     // },
@@ -78,19 +131,20 @@ module.exports = {
     ],
     // plugin: [require('jquery')],
     themeConfig: {
+        lastUpdated:true,
+        lastUpdatedText:'最后更新时间',
+        editLink:false,
+        contributors:false,
         sidebar: 'auto',
         sidebarDepth: 5,
-        repo: 'https://github.com/WALL-E-WEB/everyday',
-        displayAllHeaders: false,
-        nav: [
-            { text: 'dd', link: '/home' }
-        ],
+        repo: 'https://github.com/WALL-E-WEB',
+        displayAllHeaders: true,
         navbar: [
             { text: '首页', link: '/' },
             { text: '学习记', children: studyNav },
             { text: '项目记', link: '/prod' },
             { text: '读书记', link: '/book' },
-            { text: '资源记', link: '/resource' },
+            { text: '资源记', link: '/resource', children: resourcesNav },
             { text: '另辟蹊径记', link: '/money' },
         ],
     },
