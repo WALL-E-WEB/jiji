@@ -7,6 +7,7 @@ const rootpath = path.dirname(__dirname);
 */
 var studyNav = [];
 var resourcesNav = [];
+var projectNav = [];
 
 
 
@@ -96,12 +97,13 @@ function logATag(data) {
 
 
 getFileName(resourcesNav, 'resources');
+getFileName(projectNav, 'project');
 
 module.exports = {
     title: 'Walle 记记',
     description: 'walle ',
     base: '/jiji/',
-    
+
     plugin: [
         // require('../utils/side.js'),
         {
@@ -131,10 +133,10 @@ module.exports = {
     ],
     // plugin: [require('jquery')],
     themeConfig: {
-        lastUpdated:true,
-        lastUpdatedText:'最后更新时间',
-        editLink:false,
-        contributors:false,
+        lastUpdated: true,
+        lastUpdatedText: '最后更新时间',
+        editLink: false,
+        contributors: false,
         sidebar: 'auto',
         sidebarDepth: 5,
         repo: 'https://github.com/WALL-E-WEB',
@@ -142,7 +144,7 @@ module.exports = {
         navbar: [
             { text: '首页', link: '/' },
             { text: '学习记', children: studyNav },
-            { text: '项目记', link: '/prod' },
+            { text: '项目记', children: projectNav },
             { text: '读书记', link: '/book' },
             { text: '资源记', link: '/resource', children: resourcesNav },
             { text: '另辟蹊径记', link: '/money' },

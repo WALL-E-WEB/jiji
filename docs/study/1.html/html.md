@@ -617,6 +617,15 @@ rel：定义当前文档与被链接文档之间的关系，在这里需要指�
 在属性值后加.
 ```
 
+# link
+
+```html
+// 网络情况的不同而被不同程度地推迟
+<link rel="prerender" href="//sample.com/nextpage.html">
+// 浏览器会 立刻 进行预获取 资源的获取不会影响页面 parse 与 load 事件的触发
+<link rel="preload" href="./nextpage.js" as="script">
+```
+
 
 
 # 标签显示模式
