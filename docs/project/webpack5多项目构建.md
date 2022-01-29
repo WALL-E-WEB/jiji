@@ -42,7 +42,7 @@ Webpack4：https://github.com/WALL-E-WEB/webpack-multi-project
 
 Webpack5：https://gitee.com/wangchangran/webpack5-multiple
 
-# 一、开发环境配置-dev
+## 一、开发环境配置-dev
 
 ```js
 √ 跨域;
@@ -181,7 +181,7 @@ module.exports = (env) => {
 
 
 
-# 二、生产环境配置-prod
+## 二、生产环境配置-prod
 
 ```js
 √ css分包 压缩 补全;
@@ -194,9 +194,9 @@ module.exports = (env) => {
 
 
 
-## 1.基础配置
+### 1.基础配置
 
-## 	1.1命令行
+#### 	1.1命令行
 
 ```js
 package.json
@@ -259,7 +259,7 @@ return{
 module.exports = config;
 ```
 
-## 1.2 webpack.prod.conf.js
+#### 1.2 webpack.prod.conf.js
 
 ```js
 const webpack = require("webpack");
@@ -444,9 +444,9 @@ module.exports = smp.wrap(config);
 
 
 
-## 2.打包优化
+### 2.打包优化
 
-### 2.1 自带优化
+#### 2.1 自带优化
 
 mode为production模式时自带优化
 
@@ -455,9 +455,9 @@ mode为production模式时自带优化
 - 对代码进行压缩、混淆；
 - 
 
-### 2.2 CSS
+#### 2.2 CSS
 
-#### css补全
+##### css补全
 
 postcss-loader 和autoprefixer
 
@@ -502,7 +502,7 @@ module.exports = {
 };
 ```
 
-#### 	css分块
+##### 	css分块
 
 ```js
 npm i -D mini-css-extract-plugin`
@@ -547,7 +547,7 @@ npm i -D mini-css-extract-plugin`
 
 
 
-#### 	css压缩
+##### 	css压缩
 
 - 官方文档地址:`https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production`
 
@@ -600,7 +600,7 @@ npm i -D mini-css-extract-plugin`
 
   
 
-### 2.3 js分割``SplitChunksPlugin``
+#### 2.3 js分割``SplitChunksPlugin``
 
 ```js
 module.exports = {
@@ -633,11 +633,11 @@ module.exports = {
 
 
 
-### 2.4 持久缓存优化
+#### 2.4 持久缓存优化
 
 ​	**目标**:每次打包, 保证未改变内容的文件的hash保持不变;
 
-#### 	1、 hash、chunkhash、contenthash区别
+##### 	1、 hash、chunkhash、contenthash区别
 
 - hash
 
@@ -715,11 +715,11 @@ new webpack.NamedChunksPlugin(
 
 
 
-#### 2、 HashedModuleIdsPlugin 和 NamedChunksPlugin 区别
+##### 2、 HashedModuleIdsPlugin 和 NamedChunksPlugin 区别
 
 
 
-#### 3、runtimeChunk
+##### 3、runtimeChunk
 
 ```js
 作用:将包含chunks映射关系单独提出出来,避免main.js hash变动
@@ -731,9 +731,9 @@ optimization:{
 }
 ```
 
-# 三、babel7 配置
+## 三、babel7 配置
 
-## 1. babel/preset-env
+### 1. babel/preset-env
 
 - 安装:
 
@@ -743,7 +743,7 @@ optimization:{
 
   
 
-## 2.core-js@3
+### 2.core-js@3
 
 - 安装:
 
@@ -753,7 +753,7 @@ optimization:{
 
   
 
-## 3.babel/plugin-transform-runtime
+### 3.babel/plugin-transform-runtime
 
 - 安装:
 
@@ -763,7 +763,7 @@ optimization:{
 
   
 
-## 4.@babel/runtime
+### 4.@babel/runtime
 
 - 安装:https://babeljs.io/docs/en/babel-plugin-transform-runtime#docsNav
 
@@ -776,7 +776,7 @@ optimization:{
 
   
 
-## 5.webpack配置babel
+### 5.webpack配置babel
 
 ```js
 // webpack.prod.conf.js
@@ -825,9 +825,9 @@ module.exports = function(api) {
 
 
 
-# 插件说明:
+## 插件说明:
 
-## html
+### html
 
 - 作用:
 
@@ -859,7 +859,7 @@ module.exports = function(api) {
 
   
 
-## cross-env
+### cross-env
 
 - 作用:用于命令行中指定变量.多用于指定环境变量或文件名.
 
@@ -885,7 +885,7 @@ module.exports = function(api) {
 
   
 
-## webpack.definePlugin
+### webpack.definePlugin
 
 - 作用:	用于创建编译时 “配置的全局常量” 以方便进行 环境转换,或指定文件名.  用于把cross-env中的变量变成全局常量.
 
@@ -911,9 +911,9 @@ module.exports = function(api) {
 
   
 
-# loader说明:
+## loader说明:
 
-## file-loader 和url-loader
+### file-loader 和url-loader
 
 - 作用:	处理图片打包后路径url-loader可以把图片打包成base64
 
@@ -958,7 +958,7 @@ module.exports = function(api) {
 
   
 
-## vue-loader
+### vue-loader
 
 ```
 npm install -D vue-loader vue-template-compiler
@@ -966,7 +966,7 @@ npm install -D vue-loader vue-template-compiler
 
 
 
-## webpack-dev-server
+### webpack-dev-server
 
 - 作用:实时重新加载
 
@@ -986,7 +986,7 @@ npm install -D vue-loader vue-template-compiler
 
 
 
-# 打包分析
+## 打包分析
 
 ### 打包时间分析
 

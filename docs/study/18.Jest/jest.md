@@ -14,8 +14,6 @@ http://www.likecs.com/show-90674.html
 https://vue-test-utils.vuejs.org/zh/guides/#%E8%B5%B7%E6%AD%A5
 ```
 
-
-
 ```javascript
 加入:jest
 vue add @vue/cli-plugin-unit-jest 
@@ -26,8 +24,6 @@ vue add @vue/cli-plugin-unit-jest
 ```
 https://sinonjs.org/releases/v9.2.4/spies/
 ```
-
-
 
 ```js
 import sinon from 'sinon'
@@ -64,8 +60,6 @@ HTTP_Upload.mockReturnValueOnce(
     Promise.resolve({ return_data: 'value' })
 )
 ```
-
-
 
 # vue-test
 
