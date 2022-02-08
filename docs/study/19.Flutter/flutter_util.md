@@ -6,11 +6,7 @@ DoKit For Flutter
 
 
 
-
-
-
-
-# flutter
+## flutter
 
 https://www.raywenderlich.com/books/flutter-apprentice/v2.0/chapters/4-understanding-widgets
 
@@ -270,7 +266,7 @@ WidgetsBinding.instance.addPersistentFrameCallback((_){
 
 
 
-# InheritedWidget 
+## InheritedWidget 
 
 ## InheritedWidget
 
@@ -1806,7 +1802,7 @@ gradient:LinearGradient() //.渐变
 
   
 
-# form
+## form
 
 ```dart
 
@@ -2667,7 +2663,7 @@ class FormItemState<T> extends State<FormItem<T>> {
 
 
 
-# 数据刷新
+## 数据刷新
 
 ## setState
 
@@ -2782,7 +2778,7 @@ class _ValueListenableBuilderState<T> extends State<ValueListenableBuilder<T>> {
 
 
 
-# 点击事件
+## 点击事件
 
 ```dart
 InkWell,GestureDetector,RaisedButton。
@@ -2801,7 +2797,7 @@ behavior:
 
 
 
-# redux
+## redux
 
 ```dart
  redux: ^4.0.0+3
@@ -2908,7 +2904,7 @@ class MyApp extends StatelessWidget {
 
 
 
-# routes
+## routes
 
 ```
 https://www.it610.com/article/1228784957724397568.htm
@@ -3199,7 +3195,7 @@ var onGenerateRoute = (RouteSettings settings) {
 };
 ```
 
-## pushNamedAndRemoveUntil
+### pushNamedAndRemoveUntil
 
 ```dart
 //前进
@@ -3223,7 +3219,7 @@ Navigator.pushNamedAndRemoveUntil(
     ); 
 ```
 
-## pushReplacementNamed
+### pushReplacementNamed
 
 ```dart
 替换当前页面
@@ -3239,7 +3235,7 @@ Navigator.pushReplacementNamed(context, '/settings/brightness');
 百分
 ```
 
-# MediaQuery
+## MediaQuery
 
 ```dart
  final double height = MediaQuery.of(context).size.height
@@ -3247,7 +3243,7 @@ Navigator.pushReplacementNamed(context, '/settings/brightness');
 
 
 
-# bottomNavigationBar
+## bottomNavigationBar
 
 ```dart
 import 'package:flutter/material.dart';
@@ -3335,7 +3331,7 @@ class MyApp extends StatelessWidget {
 ```
 
 
-# 点击
+## 点击
 
 ```
 GestureDetector,InkResponse,InkWell
@@ -3343,7 +3339,7 @@ GestureDetector,InkResponse,InkWell
 
 
 
-# 国际化
+## 国际化
 
 ```
 dependencies:
@@ -3426,7 +3422,7 @@ class _MerchantState extends State<Merchant>
 
 ```
 
-# 框架
+## 框架
 
 ```
 Provider
@@ -3437,9 +3433,9 @@ bloc
 
 
 
-# builder
+## builder
 
-## FutureBuilder
+### FutureBuilder
 
 ```dart
  FutureBuilder(
@@ -3487,7 +3483,7 @@ bloc
 
 - 地方
 
-## ListView.builder
+### ListView.builder
 
 ```dart
 ListView.builder(
@@ -3499,7 +3495,7 @@ ListView.builder(
 	},
 ```
 
-# 水波纹
+## 水波纹
 
 1. **定义 NoSplashFactory**
 
@@ -3568,7 +3564,7 @@ class MyApp extends State<MyAppState> {
 如果需要局部启用，可以应用InkSplash.splashFactory到splashFactory上。
 ```
 
-# 去除滚动水波纹
+### 去除滚动水波纹
 
 ```dart
 class NoGlowScrollBehavior extends ScrollBehavior {
@@ -3594,7 +3590,7 @@ MaterialApp(
 
 
 
-# Dio
+## Dio
 
 ```dart
 {
@@ -3632,7 +3628,7 @@ response = await dio.post("/info", data: formData)
 
 
 
-# 网络配置
+## 网络配置
 
 ```
 1. android\app\src\main\res 目录下 新建 xml文件夹；
@@ -3679,7 +3675,7 @@ ios  info.plist 加入如下
 </dict>
 ```
 
-# 上传图片
+## 上传图片
 
 ```dart
 avatarUpload(file) async {
@@ -3701,20 +3697,20 @@ avatarUpload(file) async {
 
 
 
-# 屏幕适配
+## 屏幕适配
 
 ```
 https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md
 ```
 
-# 序列化工具
+## 序列化工具
 
 ```
 https://app.quicktype.io/
 https://flutter.dev/docs/development/data-and-backend/json
 ```
 
-# 平台判断
+## 平台判断
 
 ```dart
 import 'package:flutter/foundation.dart';
@@ -3724,7 +3720,7 @@ defaultTargetPlatform == TargetPlatform.android
   //ios
 ```
 
-# 获取元素位置
+## 获取元素位置
 
 ```dart
    var object = globalKey?.currentContext?.findRenderObject();
@@ -3739,7 +3735,7 @@ defaultTargetPlatform == TargetPlatform.android
 
 
 
-# flutter默认字体
+## flutter默认字体
 
 ```dart
 https://material.io/design/typography/the-type-system.html#type-scale
@@ -3756,7 +3752,7 @@ https://material.io/design/typography/the-type-system.html#type-scale
 
 
 
-# 获取定位
+## 获取定位
 
 1. 申请高德key；
 
@@ -3896,7 +3892,7 @@ android下的>src>main>profile>AndroidManifest.xml
 
 
 
-# 问题
+## 问题
 
 'getAppBarWidget' can't be assigned to the parameter type 'PreferredSizeWidget'.
 
@@ -4373,7 +4369,7 @@ void initState(){
 
 
 
-# flutter 插件
+## flutter 插件
 
 ### 国外论坛
 
@@ -4555,7 +4551,7 @@ https://github.com/GetuiLaboratory/getui-flutter-plugin
 
 
 
-# 安卓 cpu版本
+## 安卓 cpu版本
 
 ```
  flutter build apk --target-platform android-arm,android-arm64,android-x64 --split-per-abi
@@ -4569,7 +4565,7 @@ https://github.com/GetuiLaboratory/getui-flutter-plugin
 4. x86: 平板、模拟器用得比较多。
 5. x86_64: 64位的平板。
 
-# 启动页
+## 启动页
 
 生成
 
@@ -4647,7 +4643,7 @@ ios\Runner\Assets.xcassets\LaunchImage.imageset
 
 
 
-# 打包
+## 打包
 
 参考：https://www.jianshu.com/p/04eb531da438
 
@@ -4908,7 +4904,7 @@ flutter build apk --obfuscate --split-debug-info=/<project-name>/<directory> --t
 
 
 
-# 教程
+## 教程
 
 ```
 这个项目屌  收录了Flutter 300多个组件演示   https://github.com/toly1994328/FlutterUnit
@@ -4925,7 +4921,7 @@ http://laomengit.com/
 https://www.yuque.com/xytech/flutter/lgxv30
 ```
 
-# 开源项目
+## 开源项目
 
 ```
 git clone git@github.com:cnad666/flutter_use.git
@@ -4965,9 +4961,9 @@ https://material.io/design/typography/the-type-system.html#applying-the-type-sca
 
 
 
-# 常见问题
+## 常见问题
 
-## flutter 环境区分
+### flutter 环境区分
 
 ```dart
 const bool kReleaseMode = bool.fromEnvironment('dart.vm.product', defaultValue: false);
@@ -4981,7 +4977,7 @@ const double precisionErrorTolerance = 1e-10;
 const bool kIsWeb = identical(0, 0.0);
 ```
 
-## android 多渠道打包
+### android 多渠道打包
 
 ```dart
 flutter build apk  --dart-define="APP_CHANNEL=huawei"  --dart-define="ENV=prod" 
@@ -5172,268 +5168,7 @@ apply plugin: 'com.huawei.agconnect'
 
 ```
 
-
-
-## flutter 与 Android 通信
-
-```dart
- static const String methodName = 'zjAndroidPush';
-
-  static MethodChannel _methodChannel = MethodChannel(methodName);
-
-  /// flutter  invokeMethod to android
-  static void sendToAndroid() async {
-    var result = await _methodChannel.invokeMethod(methodName);
-    Map<String, dynamic> data = json.decode(result);
-  }
-
-  ///
-  /// android  invokeMethod callback
-  ///
-  static void _msglistenerCallbackInit() {
-    _methodChannel.setMethodCallHandler((call) {
-      if (call.method == 'msgCallback') {
-        _msgHandler(call);
-      }
-      return null;
-    });
-  }
-```
-
-android
-
-```dart
-package top.zhijia.zjmerchant;
-
-// import android.app.Activity;
-// import android.os.Bundle;
-// import android.text.TextUtils;
-// import android.util.Log;
-// import android.widget.TextView;
-
-import android.content.Intent;
-// import org.json.JSONException;
-// import org.json.JSONObject;
-import android.view.WindowManager;
-import android.app.Activity;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.flutter.embedding.android.FlutterActivity;
-import io.flutter.embedding.android.FlutterFragment;
-import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.plugins.util.GeneratedPluginRegister;
-import io.flutter.plugin.common.MethodChannel;
-
-import io.flutter.plugin.common.BinaryMessenger;
-
-/**
- * Created by jiguang on 17/7/5.
- */
-// Activity FlutterActivity
-public class MainActivity extends FlutterActivity {
-    private static final String TAG = "OpenClickActivity";
-    /**
-     * 消息Id
-     **/
-    private static final String KEY_MSGID = "msg_id";
-    /**
-     * 该通知的下发通道
-     **/
-    private static final String KEY_WHICH_PUSH_SDK = "rom_type";
-    /**
-     * 通知标题
-     **/
-    private static final String KEY_TITLE = "n_title";
-    /**
-     * 通知内容
-     **/
-    private static final String KEY_CONTENT = "n_content";
-    /**
-     * 通知附加字段
-     **/
-    private static final String KEY_EXTRAS = "n_extras";
-    /**
-     * 通知附加字段
-     **/
-    private static MethodChannel methodChannel;
-    /**
-     * 厂商通道 通知消息 的参数
-     **/
-    private static String pushExtras;
-    /**
-     * flutter 通信
-     **/
-    private static BinaryMessenger messenger;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "---onCreate---");
-    }
-
-    /**
-     * 二次点击 执行
-     **/
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        Log.d(TAG, "---onNewIntent---");
-        setIntent(intent);
-        if (messenger != null) {
-            msgHandler(messenger);
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "--onStart--");
-        if (messenger != null) {
-            msgHandler(messenger);
-        }
-
-    }
-
-    /**
-     * 二次点击
-     **/
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "--onResume--");
-    }
-
-    /**
-     * flutter 通信
-     **/
-    @Override
-    public void configureFlutterEngine(FlutterEngine flutterEngine) {
-        super.configureFlutterEngine(flutterEngine);
-        messenger = flutterEngine.getDartExecutor();
-        msgHandler(messenger);
-        Log.d(TAG, "-configureFlutterEngine");
-    }
-
-    /**
-     * flutter 消息处理
-     **/
-    public void msgHandler(BinaryMessenger messenger) {
-        // 与flutter 建立连接
-        if (methodChannel == null) {
-
-            methodChannel = new MethodChannel(messenger, "zjAndroidPush");
-        }
-
-        handleOpenClick(methodChannel);
-
-        methodChannel.setMethodCallHandler(
-                (call, result) -> {
-                    if (call.method.equals("zjAndroidPush")) {
-                        Log.d(TAG, "消息了了了了了了");
-                        //  触发 flutter 的方法
-                        methodChannel.invokeMethod("msgCallback", pushExtras);
-                        result.success(pushExtras);
-                    } else {
-                        result.notImplemented();
-                    }
-                });
-    }
-
-    private void handleOpenClick(MethodChannel methodChannel) {
-        Log.d(TAG, "用户点击打开了通知");
-        String data = null;
-        //获取华为平台附带的jpush信息
-        if (getIntent().getData() != null) {
-            data = getIntent().getData().toString();
-        }
-
-        //获取fcm、oppo、vivo、华硕、小米平台附带的jpush信息
-        if (TextUtils.isEmpty(data) && getIntent().getExtras() != null) {
-            data = getIntent().getExtras().getString("JMessageExtra");
-        }
-
-        Log.w(TAG, "msg content is " + String.valueOf(data));
-        if (TextUtils.isEmpty(data)) return;
-        try {
-            JSONObject jsonObject = new JSONObject(data);
-            String msgId = jsonObject.optString(KEY_MSGID);
-            byte whichPushSDK = (byte) jsonObject.optInt(KEY_WHICH_PUSH_SDK);
-            String title = jsonObject.optString(KEY_TITLE);
-            String content = jsonObject.optString(KEY_CONTENT);
-            String extras = jsonObject.optString(KEY_EXTRAS);
-            StringBuilder sb = new StringBuilder();
-            sb.append("msgId:");
-            sb.append(String.valueOf(msgId));
-            sb.append("\n");
-            sb.append("title:");
-            sb.append(String.valueOf(title));
-            sb.append("\n");
-            sb.append("content:");
-            sb.append(String.valueOf(content));
-            sb.append("\n");
-            sb.append("extras:");
-            sb.append(String.valueOf(extras));
-            sb.append("\n");
-            sb.append("platform:");
-            sb.append(getPushSDKName(whichPushSDK));
-            Log.w(TAG + "--2", sb.toString());
-            pushExtras = extras;
-            //上报点击事件
-            methodChannel.invokeMethod("msgCallback", extras);
-
-        } catch (JSONException e) {
-            Log.w(TAG, "parse notification error");
-        }
-    }
-
-    private String getPushSDKName(byte whichPushSDK) {
-        String name;
-        switch (whichPushSDK) {
-            case 0:
-                name = "jpush";
-                break;
-            case 1:
-                name = "xiaomi";
-                break;
-            case 2:
-                name = "huawei";
-                break;
-            case 3:
-                name = "meizu";
-                break;
-            case 4:
-                name = "oppo";
-                break;
-            case 5:
-                name = "vivo";
-                break;
-            case 6:
-                name = "asus";
-                break;
-            case 8:
-                name = "fcm";
-                break;
-            default:
-                name = "jpush";
-        }
-        return name;
-    }
-
-}
-
-
-```
-
-## 检测https 忽略握手
+### 检测https 忽略握手
 
 ```dart
  /// 检测https 忽略握手
@@ -5475,7 +5210,7 @@ public class MainActivity extends FlutterActivity {
   }
 ```
 
-# 在线代码
+## 在线代码
 
 ```
 https://replit.com/languages/dart
@@ -5483,7 +5218,7 @@ https://replit.com/languages/dart
 
 
 
-# 代码规范
+## 代码规范
 
  咸鱼推荐https://juejin.cn/post/7009148829366747173
 
@@ -5521,7 +5256,7 @@ if (MediaQuery.of(context).viewInsets.bottom == 0) {
 }
 ```
 
-# 设计规范
+## 设计规范
 
 ```dart
 https://material.io/design/typography/the-type-system.html#type-scale
@@ -5535,7 +5270,7 @@ https://rive.app/
 
 
 
-# http限制
+## http限制
 
 ```xml
 https://blog.csdn.net/weixin_44137575/article/details/109045633

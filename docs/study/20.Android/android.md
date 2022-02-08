@@ -16,7 +16,7 @@ Android中的Mashup
 
 ## Activity
 
-实际上相当于一个页面，但它是一个重量级的组件，内部持有一个`PhoneWindow`，主要作为显示页面的容器。安卓APP中必须有一个Activity。关于Activity的详细剖析，可参考我的博客[《Android 进阶之了解源码——Activity启动》](https://blog.csdn.net/yingshukun/article/details/79188368)
+实际上相当于一个页面，但它是一个重量级的组件，内部持有一个`PhoneWindow`，主要作为显示页面的容器。安卓APP中必须有一个Activity。关于Activity的详细剖析《Android 进阶之了解源码——Activity启动》](https://blog.csdn.net/yingshukun/article/details/79188368)
 
 ![img](https://gitee.com/arcticfox1919/ImageHosting/raw/master/img/20201727.jpg)
 
