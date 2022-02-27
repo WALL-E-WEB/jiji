@@ -369,7 +369,7 @@ package.json
     - ```js
         npm install --save-dev style-loader css-loader
         npm install --save-dev less-loader less
-npm install sass-loader node-sass webpack --save-dev
+        npm install sass-loader node-sass webpack --save-dev
         ```
     
     - webpack.config.js
@@ -381,7 +381,7 @@ npm install sass-loader node-sass webpack --save-dev
               {test: /\.less$/,use: ['style-loader','css-loader','less-loader']},
               {test: /\.s(a|c)ss$/,use: ['style-loader','css-loader','sass-loader']},
           ]
-    }
+        }
         ```
     
         
@@ -655,7 +655,7 @@ devtool:'cheap-module-eval-source-map'
     plugins: [
           new HtmlWebpackPlugin({
                 //title设置打包后的html标题
-                title: '测试',
+              title: '测试',
               filename: 'index.html', //打包后的文件名称
               template:'./src/index.html' //导入自己的html;
             })
