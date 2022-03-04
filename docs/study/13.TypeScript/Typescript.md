@@ -31,47 +31,20 @@ let octalLiteral: number = 0o744;
 
 ### 字符串
 
-JavaScript 程序的另一项基本操作是处理网页或服务器端的文本数据。 像其它语言里一样，我们使用`string`表示文本数据类型。 和 JavaScript 一样，可以使用双引号（`"`）或单引号（`'`）表示字符串。
-
 ```ts
 let name: string = "bob";
 name = "smith";
 ```
 
-你还可以使用*模版字符串*，它可以定义多行文本和内嵌表达式。 这种字符串是被反引号包围（```），并且以`${ expr }`这种形式嵌入表达式
-
-```ts
-let name: string = `Gene`;
-let age: number = 37;
-let sentence: string = `Hello, my name is ${name}.
-
-I'll be ${age + 1} years old next month.`;
-```
-
-这与下面定义`sentence`的方式效果相同：
-
-```ts
-let sentence: string =
-  "Hello, my name is " +
-  name +
-  ".\n\n" +
-  "I'll be " +
-  (age + 1) +
-  " years old next month.";
-```
-
 ### 数组
-
-TypeScript 像 JavaScript 一样可以操作数组元素。 有两种方式可以定义数组。 第一种，可以在元素类型后面接上`[]`，表示由此类型元素组成的一个数组：
 
 ```ts
 let list: number[] = [1, 2, 3];
 ```
 
-第二种方式是使用数组泛型，`Array<元素类型>`：
-
 ```ts
 let list: Array<number> = [1, 2, 3];
+let list: Array<Array<number>> = Array<Array<number>>(); // [[1,2],[1,2]]
 ```
 
 ### 元组 Tuple
@@ -399,13 +372,11 @@ Galloping...
 Tommy the Palomino moved 34m.
 ```
 
-### 公共，私有与受保护的修饰符
 
-#### 默认为`public`
 
-在上面的例子里，我们可以自由的访问程序里定义的成员。 如果你对其它语言中的类比较了解，就会注意到我们在之前的代码里并没有使用`public`来做修饰；例如，C#要求必须明确地使用`public`指定成员是可见的。 在 TypeScript 里，成员都默认为`public`。
+### public
 
-你也可以明确的将一个成员标记成`public`。 我们可以用下面的方式来重写上面的`Animal`类：
+ 在 TypeScript 里，成员都默认为`public`。
 
 ```ts
 class Animal {
@@ -419,7 +390,7 @@ class Animal {
 }
 ```
 
-#### 理解`private`
+### private
 
 当成员被标记成`private`时，它就不能在声明它的类的外部访问。比如：
 
@@ -434,7 +405,7 @@ class Animal {
 new Animal("Cat").name; // 错误: 'name' 是私有的.
 ```
 
-TypeScript 使用的是结构性类型系统。 当我们比较两种不同的类型时，并不在乎它们从何处而来，如果所有成员的类型都是兼容的，我们就认为它们的类型是兼容的。
+
 
 然而，当我们比较带有`private`或`protected`成员的类型的时候，情况就不同了。 如果其中一个类型里包含一个`private`成员，那么只有当另外一个类型中也存在这样一个`private`成员， 并且它们都是来自同一处声明时，我们才认为这两个类型是兼容的。 对于`protected`成员也使用这个规则。
 
@@ -471,7 +442,7 @@ animal = employee; // 错误: Animal 与 Employee 不兼容.
 
 这个例子中有`Animal`和`Rhino`两个类，`Rhino`是`Animal`类的子类。 还有一个`Employee`类，其类型看上去与`Animal`是相同的。 我们创建了几个这些类的实例，并相互赋值来看看会发生什么。 因为`Animal`和`Rhino`共享了来自`Animal`里的私有成员定义`private name: string`，因此它们是兼容的。 然而`Employee`却不是这样。当把`Employee`赋值给`Animal`的时候，得到一个错误，说它们的类型不兼容。 尽管`Employee`里也有一个私有成员`name`，但它明显不是`Animal`里面定义的那个。
 
-#### 理解`protected`
+### protected
 
 `protected`修饰符与`private`修饰符的行为很相似，但有一点不同，`protected`成员在派生类中仍然可以访问。例如：
 
@@ -547,7 +518,7 @@ let dad = new Octopus("Man with the 8 strong legs");
 dad.name = "Man with the 3-piece suit"; // 错误! name 是只读的.
 ```
 
-#### 参数属性
+### 参数属性
 
 在上面的例子中，我们不得不定义一个受保护的成员`name`和一个构造函数参数`theName`在`Person`类里，并且立刻将`theName`的值赋给`name`。 这种情况经常会遇到。*参数属性*可以方便地让我们在一个地方定义并初始化一个成员。 下面的例子是对之前`Animal`类的修改版，使用了参数属性：
 
@@ -566,9 +537,7 @@ class Animal {
 
 ###  存取器
 
-TypeScript 支持通过 getters/setters 来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。
-
-下面来看如何把一个简单的类改写成使用`get`和`set`。 首先，我们从一个没有使用存取器的例子开始。
+ getters/setters 来截取对对象成员的访问。
 
 ```ts
 class Employee {
@@ -612,34 +581,77 @@ if (employee.fullName) {
 }
 ```
 
-我们可以修改一下密码，来验证一下存取器是否是工作的。当密码不对时，会提示我们没有权限去修改员工。
-
-对于存取器有下面几点需要注意的：
-
 首先，存取器要求你将编译器设置为输出 ECMAScript 5 或更高。 不支持降级到 ECMAScript 3。 其次，只带有`get`不带有`set`的存取器自动被推断为`readonly`。
+
+### static
+
+```typescript
+class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+```
+
+### abstract
+
+抽象类做为其它派生类的基类使用
+
+定义内部成员
+
+不能被实例
+
+```typescript
+abstract class Department {
+
+    constructor(public name: string) {
+    }
+
+    printName(): void {
+        console.log('Department name: ' + this.name);
+    }
+
+    abstract printMeeting(): void; // 必须在派生类中实现
+}
+
+class AccountingDepartment extends Department {
+
+    constructor() {
+        super('Accounting and Auditing'); // 在派生类的构造函数中必须调用 super()
+    }
+
+    printMeeting(): void {
+        console.log('The Accounting Department meets each Monday at 10am.');
+    }
+
+    generateReports(): void {
+        console.log('Generating accounting reports...');
+    }
+}
+
+let department: Department; // 允许创建一个对抽象类型的引用
+department = new Department(); // 错误: 不能创建一个抽象类的实例
+department = new AccountingDepartment(); // 允许对一个抽象子类进行实例化和赋值
+department.printName();
+department.printMeeting();
+department.generateReports(); // 错误: 方法在声明的抽象类中不存在
+```
+
+
 
 ##  接口
 
-### 介绍
-
-TypeScript 的核心原则之一是对值所具有的*结构*进行类型检查。 它有时被称做“鸭式辨型法”或“结构性子类型化”。 在 TypeScript 里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。
-
-### 接口初探
-
-下面通过一个简单示例来观察接口是如何工作的：
-
-```ts
-function printLabel(labelledObj: { label: string }) {
-  console.log(labelledObj.label);
-}
-
-let myObj = { size: 10, label: "Size 10 Object" };
-printLabel(myObj);
-```
-
-类型检查器会查看`printLabel`的调用。 `printLabel`有一个参数，并要求这个对象参数有一个名为`label`类型为`string`的属性。 需要注意的是，我们传入的对象参数实际上会包含很多属性，但是编译器只会检查那些必需的属性是否存在，并且其类型是否匹配。 然而，有些时候 TypeScript 却并不会这么宽松，我们下面会稍做讲解。
-
-下面我们重写上面的例子，这次使用接口来描述：必须包含一个`label`属性且类型为`string`：
+作用：定义契约
 
 ```ts
 interface LabelledValue {
@@ -654,64 +666,16 @@ let myObj = { size: 10, label: "Size 10 Object" };
 printLabel(myObj);
 ```
 
-`LabelledValue`接口就好比一个名字，用来描述上面例子里的要求。 它代表了有一个`label`属性且类型为`string`的对象。 需要注意的是，我们在这里并不能像在其它语言里一样，说传给`printLabel`的对象实现了这个接口。我们只会去关注值的外形。 只要传入的对象满足上面提到的必要条件，那么它就是被允许的。
-
-还有一点值得提的是，类型检查器不会去检查属性的顺序，只要相应的属性存在并且类型也是对的就可以。
-
 ### 可选属性
 
-接口里的属性不全都是必需的。 有些是只在某些条件下存在，或者根本不存在。 可选属性在应用“option bags”模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。
-
-下面是应用了“option bags”的例子：
-
 ```ts
 interface SquareConfig {
   color?: string;
   width?: number;
 }
-
-function createSquare(config: SquareConfig): { color: string; area: number } {
-  let newSquare = { color: "white", area: 100 };
-  if (config.color) {
-    newSquare.color = config.color;
-  }
-  if (config.width) {
-    newSquare.area = config.width * config.width;
-  }
-  return newSquare;
-}
-
-let mySquare = createSquare({ color: "black" });
-```
-
-带有可选属性的接口与普通的接口定义差不多，只是在可选属性名字定义的后面加一个`?`符号。
-
-可选属性的好处之一是可以对可能存在的属性进行预定义，好处之二是可以捕获引用了不存在的属性时的错误。 比如，我们故意将`createSquare`里的`color`属性名拼错，就会得到一个错误提示：
-
-```ts
-interface SquareConfig {
-  color?: string;
-  width?: number;
-}
-
-function createSquare(config: SquareConfig): { color: string; area: number } {
-  let newSquare = { color: "white", area: 100 };
-  if (config.clor) {
-    // Error: Property 'clor' does not exist on type 'SquareConfig'
-    newSquare.color = config.clor;
-  }
-  if (config.width) {
-    newSquare.area = config.width * config.width;
-  }
-  return newSquare;
-}
-
-let mySquare = createSquare({ color: "black" });
 ```
 
 ### 只读属性
-
-一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用`readonly`来指定只读属性:
 
 ```ts
 interface Point {
@@ -729,10 +693,6 @@ p1.x = 5; // error!
 
 ### 额外的属性检查
 
-我们在第一个例子里使用了接口，TypeScript 让我们传入`{ size: number; label: string; }`到仅期望得到`{ label: string; }`的函数里。 我们已经学过了可选属性，并且知道他们在“option bags”模式里很有用。
-
-然而，天真地将这两者结合的话就会像在 JavaScript 里那样搬起石头砸自己的脚。 比如，拿`createSquare`例子来说：
-
 ```ts
 interface SquareConfig {
   color?: string;
@@ -742,28 +702,19 @@ interface SquareConfig {
 function createSquare(config: SquareConfig): { color: string; area: number } {
   // ...
 }
-
-let mySquare = createSquare({ colour: "red", width: 100 });
-```
-
-注意传入`createSquare`的参数拼写为`colour`而不是`color`。 在 JavaScript 里，这会默默地失败。
-
-你可能会争辩这个程序已经正确地类型化了，因为`width`属性是兼容的，不存在`color`属性，而且额外的`colour`属性是无意义的。
-
-然而，TypeScript 会认为这段代码可能存在 bug。 对象字面量会被特殊对待而且会经过*额外属性检查*，当将它们赋值给变量或作为参数传递的时候。 如果一个对象字面量存在任何“目标类型”不包含的属性时，你会得到一个错误。
-
-```ts
 // error: 'colour' not expected in type 'SquareConfig'
 let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 
-绕开这些检查非常简单。 最简便的方法是使用类型断言：
+绕开额外的属性检查。 最简便的方法是使用类型断言：
 
 ```ts
 let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-然而，最佳的方式是能够添加一个字符串索引签名，前提是你能够确定这个对象可能具有某些做为特殊用途使用的额外属性。 如果`SquareConfig`带有上面定义的类型的`color`和`width`属性，并且*还会*带有任意数量的其它属性，那么我们可以这样定义它：
+### 字符串索引签名
+
+可以有任意数量的属性
 
 ```ts
 interface SquareConfig {
@@ -773,8 +724,6 @@ interface SquareConfig {
 }
 ```
 
-我们稍后会讲到索引签名，但在这我们要表示的是`SquareConfig`可以有任意数量的属性，并且只要它们不是`color`和`width`，那么就无所谓它们的类型是什么。
-
 还有最后一种跳过这些检查的方式，这可能会让你感到惊讶，它就是将这个对象赋值给一个另一个变量： 因为`squareOptions`不会经过额外属性检查，所以编译器不会报错。
 
 ```ts
@@ -782,7 +731,7 @@ let squareOptions = { colour: "red", width: 100 };
 let mySquare = createSquare(squareOptions);
 ```
 
-要留意，在像上面一样的简单代码里，你可能不应该去绕开这些检查。 对于包含方法和内部状态的复杂对象字面量来讲，你可能需要使用这些技巧，但是大部额外属性检查错误是真正的 bug。 就是说你遇到了额外类型检查出的错误，比如“option bags”，你应该去审查一下你的类型声明。 在这里，如果支持传入`color`或`colour`属性到`createSquare`，你应该修改`SquareConfig`定义来体现出这一点。
+要留意，在像上面一样的简单代码里，你可能不应该去绕开这些检查。
 
 ###  函数类型
 
@@ -942,6 +891,9 @@ class Location {}
 let myAdd = function(x: number, y: number): number { 
 					return x + y; 
 			};
+
+let myAdd: (baseValue: number, increment: number) => number 
+  				= function(x, y) { return x + y; };
 ```
 
 可选参数
