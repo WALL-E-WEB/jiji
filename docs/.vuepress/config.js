@@ -8,6 +8,9 @@ const rootpath = path.dirname(__dirname);
 var studyNav = [];
 var resourcesNav = [];
 var projectNav = [];
+var moneyNav = [];
+var bookNav = [];
+var tomorrowNav = [];
 
 
 
@@ -98,6 +101,9 @@ function logATag(data) {
 
 getFileName(resourcesNav, 'resources');
 getFileName(projectNav, 'project');
+getFileName(moneyNav, 'money');
+getFileName(bookNav, 'book');
+getFileName(tomorrowNav, 'tomorrow');
 
 module.exports = {
     title: 'Walle 记记',
@@ -145,9 +151,10 @@ module.exports = {
             { text: '首页', link: '/' },
             { text: '学习记', children: studyNav },
             { text: '项目记', children: projectNav },
-            { text: '读书记', link: '/book' },
+            { text: '读书记', link: '/book' ,children:bookNav},
             { text: '资源记', link: '/resource', children: resourcesNav },
-            { text: '另辟蹊径记', link: '/money' },
+            { text: '明天记', link: '/tomorrow', children: tomorrowNav },
+            { text: '另辟蹊径记', link: '/money',children: moneyNav},
         ],
     },
     markdown: {
