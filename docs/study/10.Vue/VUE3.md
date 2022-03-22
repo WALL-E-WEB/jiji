@@ -55,5 +55,108 @@ https://v3.cn.vuejs.org/api/refs-api.html#torefs
 
 
 
+## watch
 
+```typescript
+watch(ref, () => {
+    console.log(state, '改变')
+})
+
+watch(
+  ()=>reactive.name, 
+  () => {
+    console.log(state, '改变');
+	}
+)
+
+watch(
+  () => props.total,
+  (count, prevCount) => {
+  	/// ...
+  }
+);
+```
+
+
+
+## script setup
+
+https://v3.cn.vuejs.org/api/sfc-script-setup.html#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95
+
+```typescript
+<script setup lang="ts">
+
+</script>
+```
+
+
+
+### props
+
+```typescript
+const props = defineProps({
+  pageIndex: {
+    type: Number,
+    required: true
+  },
+  pageSize:Number
+});
+```
+
+**watch props**
+
+```typescript
+import {  watch } from 'vue'
+watch(
+  () => props.total,
+  (count, prevCount) => {
+    if (count != prevCount) {
+      total.value = count ? count : 0;
+    }
+  }
+);
+
+```
+
+### emit
+
+```typescript
+const emit = defineEmits([
+  "update:pageIndex", // 声明自定义 model
+  "update:pageSize", // 声明自定义 model
+  "page-change"
+]);
+
+  emit("update:pageSize", val);
+  emit("page-change", pageIndex.value, val);
+
+
+```
+
+**自定义v-model** 使用
+
+```typescript
+<TableWrap
+      v-model:pageIndex="params.pageIndex"
+      v-model:pageSize="params.pageSize"
+      @page-change="onPageChange"
+      :total="totalCountRef"
+    > 
+    ///....
+```
+
+
+
+## 数组声明
+
+```typescript
+<script setup lang="ts">
+let tableDataRef = ref([]);
+let tableDataRef2 = reactive([]);
+		
+		let  newArr = [1,2,3];
+		tableDataRef.value = newArr;
+		tableDataRef2.push(...newArr);
+</script>
+```
 
