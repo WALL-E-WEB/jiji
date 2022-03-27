@@ -603,13 +603,15 @@ console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
 
-### abstract
+### abstract 抽象类
 
-抽象类做为其它派生类的基类使用
+抽象类做为其它派生类的基类使用：约束子类的定义；
 
-定义内部成员
+定义内部成员；
 
-不能被实例
+不能被实例；
+
+
 
 ```typescript
 abstract class Department {
@@ -896,7 +898,7 @@ let myAdd: (baseValue: number, increment: number) => number
   				= function(x, y) { return x + y; };
 ```
 
-可选参数
+### 可选参数
 
 ```js
 function buildName(firstName: string, lastName?: string) {
@@ -907,7 +909,7 @@ function buildName(firstName: string, lastName?: string) {
 }
 ```
 
-默认参数
+### 默认参数
 
 ```js
 function buildName(firstName = "Will", lastName: string) {
@@ -917,7 +919,7 @@ let result3 = buildName("Bob", "Adams");         // okay and returns "Bob Adams"
 let result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams"
 ```
 
-剩余参数
+### 剩余参数
 
 ```js
 function buildName(firstName: string, ...restOfName: string[]) {
@@ -928,7 +930,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
 buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
-函数重载
+### 函数重载
 
 ```js
 概念:
@@ -942,6 +944,30 @@ function  add(age: any, name: any): any {
 	return age + name
 };
 ```
+
+### 内部构造函数声明
+
+```typescript
+type SomeCst<T> = {
+  new (num: number) : T ;
+}
+
+function fn<T>(cst:SomeCst<T>,n: number){
+  return new cst(n);
+}
+
+const arr = fn<Array<String>>(Array,100);
+```
+
+### 函数泛型
+
+```typescript
+function fn<T>(arr:T[]):T {
+ return arr[0];
+}
+```
+
+
 
 ## 泛型
 
@@ -959,9 +985,59 @@ let output = identity<string>("myString");
 let output = identity("myString");
 ```
 
+# 工具类型 
 
+https://www.cnblogs.com/cxyqts/p/14742210.html
 
-# Vue-TS
+https://zhuanlan.zhihu.com/p/103846208
+
+1、Partial<T>： 快速把某个接口类型中定义的属性变成可选
+
+```ts
+interface Person {
+    name: string;
+    age: number;
+    sex?: string;
+}
+/**
+* type PersonOptions = {
+*   name?: string;
+*   age?: number;
+*   sex?: string;
+* }
+*/
+type PersonOptions = Partial<Person>;
+
+// 实现原理
+type Partial<T> = {
+    [P in keyof T]?: T[P]
+}
+```
+
+2、Required<T>：把所有可选属性变成必选属性
+
+```ts
+interface Person {
+    name: string;
+    age: number;
+    sex?: string;
+}
+/**
+* type PersonOptions = {
+*   name: string;
+*   age: number;
+*   sex: string;
+* }
+*/
+type PersonRequired = Required<Person>;
+
+// 实现原理
+type Required<T> = {
+    [P in keyof T]-?: T[P]
+}
+```
+
+# Vue2-TS
 
 ```js
 <script lang="ts">
