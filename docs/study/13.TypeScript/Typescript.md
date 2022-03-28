@@ -6,6 +6,8 @@ protected 受保护的
 
 ## TypeScript 数据类型
 
+http://ts.xcatliu.com/advanced/string-literal-types.html
+
 ### 介绍
 
 为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。 TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用。
@@ -34,6 +36,18 @@ let octalLiteral: number = 0o744;
 ```ts
 let name: string = "bob";
 name = "smith";
+```
+
+```ts
+type EventNames = 'click' | 'scroll' | 'mousemove';
+function handleEvent(ele: Element, event: EventNames) {
+    // do something
+}
+
+handleEvent(document.getElementById('hello'), 'scroll');  // 没问题
+handleEvent(document.getElementById('world'), 'dblclick'); // 报错，event 不能为 'dblclick'
+
+使用 type 定了一个字符串字面量类型 EventNames，它只能取三种字符串中的一种。
 ```
 
 ### 数组
@@ -262,6 +276,28 @@ function getLength(something: string | number) :number {
         return something.toString().length;
 }
 }
+```
+
+### 联合类型
+
+表示取值可以为多种类型中的一种。
+
+```ts
+let myFavoriteNumber: string | number;
+myFavoriteNumber = 'seven';
+myFavoriteNumber = 7;
+
+function getString(something: string | number): string {
+    return something.toString();
+}
+```
+
+
+
+### 内置对象
+
+```
+http://ts.xcatliu.com/basics/built-in-objects.html
 ```
 
 
@@ -651,7 +687,7 @@ department.generateReports(); // 错误: 方法在声明的抽象类中不存在
 
 
 
-##  接口
+##  interface-接口
 
 作用：定义契约
 
@@ -714,7 +750,7 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-### 字符串索引签名
+### 任意属性
 
 可以有任意数量的属性
 
@@ -967,6 +1003,43 @@ function fn<T>(arr:T[]):T {
 }
 ```
 
+### 函数接口
+
+```typescript
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+    return source.search(subString) !== -1;
+}
+```
+
+## 断言
+
+as
+
+```typescript
+interface Animal {
+    name: string;
+}
+interface Cat {
+    name: string;
+    run(): void;
+}
+
+function testAnimal(animal: Animal) {
+    return (animal as Cat);
+}
+function testCat(cat: Cat) {
+    return (cat as Animal);
+}
+
+总之，若 A 兼容 B，那么 A 能够被断言为 B，B 也能被断言为 A。
+同理，若 B 兼容 A，那么 A 能够被断言为 B，B 也能被断言为 A。
+```
+
 
 
 ## 泛型
@@ -985,7 +1058,7 @@ let output = identity<string>("myString");
 let output = identity("myString");
 ```
 
-# 工具类型 
+## 工具类型 
 
 https://www.cnblogs.com/cxyqts/p/14742210.html
 
@@ -1036,6 +1109,60 @@ type Required<T> = {
     [P in keyof T]-?: T[P]
 }
 ```
+
+
+
+## 声明文件
+
+### 新语法索引[§](http://ts.xcatliu.com/basics/declaration-files.html#新语法索引)
+
+由于本章涉及大量新语法，故在本章开头列出新语法的索引，方便大家在使用这些新语法时能快速查找到对应的讲解：
+
+- [`declare var`](http://ts.xcatliu.com/basics/declaration-files.html#declare-var) 声明全局变量
+- [`declare function`](http://ts.xcatliu.com/basics/declaration-files.html#declare-function) 声明全局方法
+- [`declare class`](http://ts.xcatliu.com/basics/declaration-files.html#declare-class) 声明全局类
+- [`declare enum`](http://ts.xcatliu.com/basics/declaration-files.html#declare-enum) 声明全局枚举类型
+- [`declare namespace`](http://ts.xcatliu.com/basics/declaration-files.html#declare-namespace) 声明（含有子属性的）全局对象
+- [`interface` 和 `type`](http://ts.xcatliu.com/basics/declaration-files.html#interface-和-type) 声明全局类型
+- [`export`](http://ts.xcatliu.com/basics/declaration-files.html#export) 导出变量
+- [`export namespace`](http://ts.xcatliu.com/basics/declaration-files.html#export-namespace) 导出（含有子属性的）对象
+- [`export default`](http://ts.xcatliu.com/basics/declaration-files.html#export-default) ES6 默认导出
+- [`export =`](http://ts.xcatliu.com/basics/declaration-files.html#export-1) commonjs 导出模块
+- [`export as namespace`](http://ts.xcatliu.com/basics/declaration-files.html#export-as-namespace) UMD 库声明全局变量
+- [`declare global`](http://ts.xcatliu.com/basics/declaration-files.html#declare-global) 扩展全局变量
+- [`declare module`](http://ts.xcatliu.com/basics/declaration-files.html#declare-module) 扩展模块
+- [`/// `](http://ts.xcatliu.com/basics/declaration-files.html#san-xie-xian-zhi-ling) 三斜线指令
+
+### .d.ts
+
+声明文件必需以 `.d.ts` 为后缀。
+
+```ts
+declare var jQuery: (selector: string) => any;
+
+jQuery('#foo');
+
+declare function jQuery(selector: string): any;
+
+declare class Animal {
+    name: string;
+    constructor(name: string);
+    sayHi(): string;
+}
+
+declare enum Directions {
+    Up,
+    Down,
+    Left,
+    Right
+}
+```
+
+
+
+
+
+
 
 # Vue2-TS
 
