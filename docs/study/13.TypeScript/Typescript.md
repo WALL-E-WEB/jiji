@@ -923,6 +923,98 @@ class Location {}
 
 在`Control`类内部，是允许通过`SelectableControl`的实例来访问私有成员`state`的。 实际上，`SelectableControl`就像`Control`一样，并拥有一个`select`方法。 `Button`和`TextBox`类是`SelectableControl`的子类（因为它们都继承自`Control`并有`select`方法），但`Image`和`Location`类并不是这样的。
 
+### implements
+
+```ts
+interface Alarm {
+    alert(): void;
+}
+
+class Door {
+}
+
+class SecurityDoor extends Door implements Alarm {
+    alert() {
+        console.log('SecurityDoor alert');
+    }
+}
+
+class Car implements Alarm {
+    alert() {
+        console.log('Car alert');
+    }
+}
+```
+
+### 接口继承
+
+```ts
+interface Alarm {
+    alert(): void;
+}
+
+interface LightableAlarm extends Alarm {
+    lightOn(): void;
+    lightOff(): void;
+}
+```
+
+### 接口继承类
+
+```ts
+class Point {
+    x: number;
+    y: number;
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+```
+
+```ts
+class Point {
+    /** 静态属性，坐标系原点 */
+    static origin = new Point(0, 0);
+    /** 静态方法，计算与原点距离 */
+    static distanceToOrigin(p: Point) {
+        return Math.sqrt(p.x * p.x + p.y * p.y);
+    }
+    /** 实例属性，x 轴的值 */
+    x: number;
+    /** 实例属性，y 轴的值 */
+    y: number;
+    /** 构造函数 */
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
+    /** 实例方法，打印此点 */
+    printPoint() {
+        console.log(this.x, this.y);
+    }
+}
+
+interface PointInstanceType {
+    x: number;
+    y: number;
+    printPoint(): void;
+}
+
+let p1: Point;
+let p2: PointInstanceType;
+
+上例中最后的类型 Point 和类型 PointInstanceType 是等价的。
+```
+
+
+
 ## 函数
 
 ```js
@@ -1057,6 +1149,21 @@ let output = identity<string>("myString");
 //编译器自动识别
 let output = identity("myString");
 ```
+
+### 泛型约束
+
+```ts
+interface Lengthwise {
+    length: number;
+}
+
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+    console.log(arg.length);
+    return arg;
+}
+```
+
+
 
 ## 工具类型 
 
