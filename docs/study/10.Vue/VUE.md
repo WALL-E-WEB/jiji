@@ -769,7 +769,7 @@ deep:true//深侦听
 
  ![Vue](../../.vuepress/public/images/vue/lifecycle-1571713470849.png) 
 
-![微信图片_20191113224515](../../.vuepress/public/images/vue//%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191113224515.png)
+![微信图片_20191113224515](../../.vuepress/public/images/vue/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20191113224515.png)
 
 ```js
 beforeCreate 	组件实例刚被创建，组件属性计算之前，如data属性等
@@ -891,9 +891,9 @@ updated() {
   }
 ```
 
-![image-20191230170209052](C:%5CUsers%5CAdministrator%5CDesktop%5C%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0%5C%E7%AC%94%E8%AE%B0%5C-notes-%5C%E5%85%AB%E3%80%81VUE%5Cimage-20191230170209052.png)
+![image-20191230170209052](../../.vuepress/public/images/vue/image-20191230170209052.png)
 
-# 自定义指令-directives
+## 自定义指令-directives
 
 ```js
 局部指令:
@@ -938,9 +938,9 @@ try{
 
 
 
-# vue-ES6
+## vue-ES6
 
-## ES6导入导出
+### ES6导入导出
 
 ```js
 所有方式的导入,都会执行被导入文件.
@@ -973,7 +973,7 @@ import name from "./one.js" // abc
 import {name} from "./one.js" // jack
 ```
 
-## async await
+### async await
 
 ```js
 // async 是用来修饰函数（方法）的
@@ -1035,58 +1035,54 @@ async created(){
 
 
 
-# 动画
+## 动画
 
-- ### 过渡的类名
+### 过渡的类名
 
-    ```css
-    .fade-leave-active,
-    .fade-enter-active {
-      		transition: all .3s ease;
-    	}
-    
-    .fade-enter,
-    .fade-leave-to{
-      	transform: translateX(10px);
-      	opacity: 0;
-      }
-    
-     <transition name="fade">
-        <p v-if="show">hello</p>
-      </transition>
-    ```
+```css
+.fade-leave-active,
+.fade-enter-active {
+  		transition: all .3s ease;
+	}
 
+.fade-enter,
+.fade-leave-to{
+  	transform: translateX(10px);
+  	opacity: 0;
+  }
 
+ <transition name="fade">
+    <p v-if="show">hello</p>
+  </transition>
+```
 
 ------
 
-- ### css动画
+### css动画
 
-    ```css
-    .bounce-enter-active {
-      animation: bounce-in .5s;
-    }
-    .bounce-leave-active {
-      animation: bounce-in .5s reverse;
-    }
-    @keyframes bounce-in {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1.5);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    
-    <transition name="bounce">
-        <p v-if="show">Lorem</p>
-    </transition>
-    ```
+```css
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
-    
+<transition name="bounce">
+    <p v-if="show">Lorem</p>
+</transition>
+```
 
 ### 过渡动画
 
@@ -1117,11 +1113,10 @@ transition-delay': index*100+'ms'
     <li :key='index'>
 ```
 
-## <audio\>
+## audio
 
 ```js
 https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events
-
 
 ```
 
@@ -1129,11 +1124,9 @@ https://developer.mozilla.org/zh-CN/docs/Web/Guide/Events/Media_events
 
 
 
+## 插件
 
-
-# 插件
-
-## iScroll插件
+### iScroll插件
 
 ```js
 http://caibaojian.com/iscroll-5/
@@ -1167,7 +1160,7 @@ myScroll.destroy();//销毁iscroll
 myScroll = null;//清空引用
 ```
 
-## NProgress插件
+### NProgress插件
 
 ```js
 npm i --save nprogress
@@ -1179,7 +1172,7 @@ NProgress.start() 开启一个进度条
 nprogress.done() 关闭一个进度条
 ```
 
-## 富文本插件
+### 富文本插件
 
 ```js
 https://github.com/surmon-china/vue-quill-editor
@@ -1202,13 +1195,13 @@ export default {
 <channelModel></channelModel>
 ```
 
-## DayJs
+### DayJs
 
 ```js
 
 ```
 
-## moment-Js
+### moment-Js
 
 ```js
 npm install moment --save  
@@ -1240,7 +1233,7 @@ com_date:function(){
 | `X`        | `1410715640.579` | Unix timestamp                                         |
 | `x`        | `1410715640579`  | Unix ms timestamp                                      |
 
-## bigint
+### bigint
 
 ```js
 安装:npm i json-bigint
@@ -1250,7 +1243,7 @@ import JSONbig from 'json-bigint'
 
 ```
 
-## 移动端自适应
+### 移动端自适应
 
 ```js
 npm install lib-flexible --save-dev
@@ -1279,7 +1272,7 @@ module.exports = {
 }
 ```
 
-## stylus安装
+### stylus安装
 
 ```js
 npm install stylus stylus-loader --save-dev
@@ -1296,7 +1289,7 @@ import './common/stylus/index.styl'
  @import "assets/base.styl";
 ```
 
-## vue.ls
+### vue.ls
 
 ```
 npm install vue-ls --save
@@ -1341,7 +1334,7 @@ Global:Vue.ls
 Context:this.$ls
 ```
 
-## 获取图片主题色
+### 获取图片主题色
 
 ```js
 olorthief.js
@@ -1357,11 +1350,11 @@ img.src = newsrc;
 
 
 
-# vue渲染render()
+## vue渲染render()
 
 https://www.jianshu.com/p/7508d2a114d3
 
-## 	一、vue渲染方式
+### 	一、vue渲染方式
 
 - **独立构建**：包含模板编译器，渲染过程`HTML字符串 → render函数 → VNode → 真实DOM节点`
 - **运行时构建**：不包含模板编译器，渲染过程`render函数 → VNode → 真实DOM节点`
@@ -1370,9 +1363,9 @@ https://www.jianshu.com/p/7508d2a114d3
 
 ![img](https://upload-images.jianshu.io/upload_images/13429147-7f193c6cb2e36da0.png?imageMogr2/auto-orient/strip|imageView2/2/format/webp)
 
-### 1.	自定义`render函数`
+#### 1.	自定义`render函数`
 
-#### 	非单页写法：
+##### 	非单页写法：
 
 ```js
 Vue.component('anchored-heading', {
@@ -1391,7 +1384,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-#### 	vue-cli写法：
+##### 	vue-cli写法：
 
 ```vue
 .vue文件
@@ -1445,7 +1438,7 @@ export default {
 }
 ```
 
-#### 	jsx写法：
+##### 	jsx写法：
 
 ```jsx
 export default {
@@ -1464,7 +1457,7 @@ export default {
 
 
 
-### 2.	 `template`写法
+#### 2.	 `template`写法
 
 ```js
 let app = new Vue({
@@ -1477,7 +1470,7 @@ let app = new Vue({
 })
 ```
 
-### 3.	`el`写法
+#### 3.	`el`写法
 
 ```js
 let app = new Vue({
@@ -1490,9 +1483,9 @@ let app = new Vue({
 })
 ```
 
-## 二、Vue.createElement
+### 二、Vue.createElement
 
-### 1.	参数:
+#### 1.	参数:
 
 - #### param-1: `{String | Object | Function}` 元素
 
@@ -1614,7 +1607,7 @@ let app = new Vue({
 })
 ```
 
-### 2.属性
+#### 2.属性
 
 ```js
 {
@@ -1681,7 +1674,7 @@ let app = new Vue({
 
 
 
-## 三、挂载方式
+### 三、挂载方式
 
 ```js
 var MyComponent = Vue.extend({
@@ -1700,7 +1693,7 @@ document.getElementById('app').appendChild(component.$el)
 
 ```
 
-# Vue-extend()
+## Vue-extend()
 
 ​	Vue.extend({ })
 
@@ -1907,7 +1900,7 @@ new myVue({})后会合并预设选项和其他选项中的所有属性选项：
 >
 >
 
-# vue.component
+## vue.component
 
 vue.component用于全局注册组件
 
@@ -1924,7 +1917,7 @@ var MyComponent = Vue.component('my-component')
 
 
 
-# mixin
+## mixin
 
  来分发 Vue 组件中的可复用功能 
 
@@ -2040,7 +2033,7 @@ new Vue({
 });
 ```
 
-# $attrs 和 $listeners
+## $attrs 和 $listeners
 
 ```js
 $attrs 所有组件标签中的行内属性,除class和style
@@ -2065,7 +2058,7 @@ $listeners
     //接收所有父组件写在子组件的事件
 ```
 
-# $options
+## $options
 
 ```js
 this.$options 获取data外得值
@@ -2087,7 +2080,7 @@ export default {
 
 
 
-# SPA单页面
+## SPA单页面
 
 ```js
 预留:什么是SSR服务端渲染
@@ -2202,7 +2195,7 @@ vue Router
 </script>
 ```
 
-## 编程式导航
+### 编程式导航
 
 ```
 声明式导航
@@ -2246,7 +2239,7 @@ this.$router.params.key
   }
 ```
 
-## 实现原理
+### 实现原理
 
 >1.History API
 >
@@ -2266,7 +2259,7 @@ this.$router.params.key
 
 
 
-# VUE-Component 组件
+## VUE-Component 组件
 
 组件化与模块化的不同：
 
@@ -2327,9 +2320,9 @@ const app =new Vue({
 
 ```
 
-## 1.组件的创建方式
+### 1.组件的创建方式
 
-### 	1.vue.component
+#### 	1.vue.component
 
 ```jsx
 Vue.component('my-component', {
@@ -2343,7 +2336,7 @@ var vm = new Vue({
 })
 ```
 
-### 	2.vue.component - 2
+#### 	2.vue.component - 2
 
 `Vue.component` 返回的结果是一个 `function`！它返回的并不是 组件实例，而是一个构造函数。
 
@@ -2384,7 +2377,7 @@ new Vue({
 
 
 
-### 	3.vue.extend({ })
+#### 	3.vue.extend({ })
 
 通过传入一个包含 `Component options` 的对象， `Vue.extend` 帮助我们创建一个 继承了 `Vue constructor` 的子类，也就是我们需要的构造函数。 
 
@@ -2419,7 +2412,7 @@ new Profile().$mount('#mount-point')
 
 
 
-### 	4.vm.$mount
+#### 	4.vm.$mount
 
 ```js
 var MyComponent = Vue.extend({
@@ -2440,7 +2433,7 @@ document.getElementById('app').appendChild(component.$el)
 
 
 
-### 	5.template
+#### 	5.template
 
 ```js
 <div id="app1">
@@ -2461,7 +2454,7 @@ Vue.component('my-love', {
 
 
 
-### 	6.使用script定义 
+#### 	6.使用script定义 
 
 ```js
 <div id="app1">
@@ -2483,7 +2476,7 @@ Vue.component('my-love', {
 
 
 
-### 	7.vue-cli组件挂载方式
+#### 	7.vue-cli组件挂载方式
 
 通过传入一个包含 `Component options` 的对象， `Vue.extend` 帮助我们创建一个 继承了 `Vue constructor` 的子类，也就是我们之前需要的构造函数。 （传入一个组件，获取构造函数）
 
@@ -2529,13 +2522,13 @@ $mount为构造实例的方法。
 
 
 
-## 2.组件传值
+### 2.组件传值
 
 ```js
 在组件中的使用props中设置 自定义属性名 、html调用组件中 设置同名自定义属性名,绑定v-bind后,可调用父data里的数据
 ```
 
-### 子向父传
+#### 子向父传
 
 ```js
 <div id="sonapp">
@@ -2572,7 +2565,7 @@ const app = new Vue({
 	</div>
 ```
 
-### 子父,父子相互传
+#### 子父,父子相互传
 
 ```js
 子:
@@ -2647,9 +2640,9 @@ export default {
 
 ```
 
-## 3.组件传参方式
+### 3.组件传参方式
 
-### 1.prop
+##### 1.prop
 
 ```js
 1.父组件中定义值;
@@ -2704,7 +2697,7 @@ export default {
 >
 > 
 
-### 2.$ref
+##### 2.$ref
 
 ```js
 父:
@@ -2721,7 +2714,7 @@ export default {
      }
 ```
 
-###  3.**$emit**  子 => 父
+#####  3.**$emit**  子 => 父
 
 ```js
 子:
@@ -2739,7 +2732,7 @@ methods:{
  }
 ```
 
-### 4.bus
+##### 4.bus
 
 ```js
 //bus.js
@@ -2761,7 +2754,7 @@ import Bus from './bus.js'
    })
 ```
 
-### 5.问题
+##### 5.问题
 
 1.子组件props获取不到父组件异步数据
 
@@ -2781,7 +2774,7 @@ this.$forceUpdate()
 
 
 
-## 4.Vue子组件调用父组件的方法
+### 4.Vue子组件调用父组件的方法
 
  https://www.cnblogs.com/jin-zhe/p/9523782.html 
 
@@ -2804,7 +2797,7 @@ this.$emit('fatherMethod');
 
 
 
-## 5.组件缓存方法
+### 5.组件缓存方法
 
 ```js
 使用keep-alive 钩子执行顺序
@@ -3110,13 +3103,13 @@ this.$router.go(-1);
 
 
 
-## 6.动态组件
+### 6.动态组件
 
 ```js
 <components is="组件名"> </components> //所有的组件,is指定组件,:is判断显示
 ```
 
-## 7.异步组件
+### 7.异步组件
 
 ```js
 通过导入方式来生实现
@@ -3150,7 +3143,7 @@ fn(function(item){
   },   
 ```
 
-## 8.边界情况
+### 8.边界情况
 
 ```js
 - $root ：    找到vue根实例
@@ -3158,7 +3151,7 @@ fn(function(item){
 - $children：只是找到儿子们
 ```
 
-## 9.递归组件
+### 9.递归组件
 
 ```js
 <template>
@@ -3205,2271 +3198,7 @@ fn(function(item){
 
 
 
-# VUE-CLI 脚手架
-
-```js
-运行nodejs:node -v
-安装:npm install -g @vue/cli
-创建项目: vue create 文件名
-运行:npm run serve
-
-查看webpack配置：
-npx vue-cli-service serve [options] [entry]
-
-//查看production配置，并输出到webpack.config.production.js 文件
-//加入module.exports ={ }包住，index后加“：”格式化即可无报错。
-npx vue-cli-service inspect --mode production >> webpack.config.production.js
-npx vue-cli-service inspect --mode development //查看development环境下cli的webpack配置
-npx vue-cli-service help serve  //帮助
-```
-
-## build
-
-### 1.分析：
-
-```json
-"build": "cross-env FILE_NAME=ui vue-cli-service build --report",
-
-packagejson中设置命令行 添加 --report
-
-dist生成report,html打开即可。
-```
-
-### 2.打包优化
-
-```json
-productionSourceMap: false， //取消生成map文件
-productionGzip：true， //开启gzip压缩
-```
-
-
-
-# VUE-Router 路由
-
-官方地址:https://router.vuejs.org/zh/guide/#html
-
-安装:npm install --save vue-router
-
-```js
-总结:
-this.$router.push({path:'/login'}) //进行编程式路由跳转
-<router-link to="/login"> //中的to属性进行路由切换
-<router-view />  用于展示
-this.$route.params 获取路由传递参数
-this.$route.query	获取路由传递参数
-5.params和query都是传递参数区别在于params不会再url上显示出现，
-query则是我们通常看到的url后面跟上的？后跟的显示参数
-```
-
-```js
-// 路由重复点击异常处理
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
-```
-
-
-
-#### vue-router路由
-
-```js
-Vue-Router 是vue官方的路由管理器。
-通过路由地址的变换展现不同的页面;
-路由导航有两种:
-	声明式导航:router-link
-    编程式导航:router.push(path:'url')
-
-通过:router-view标签作为 页面展示区;
-
-```
-
-
-
-### 1.组件导航创建 
-
-
-
-```html
-<div id="app">
-  <h1>Hello App!</h1>
-  <p>
-    <!-- 使用 router-link 组件来导航. -->
-    <!-- 通过传入 `to` 属性指定链接. -->
-    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-    <router-link to="/foo">Go to Foo</router-link>
-    <router-link to="/bar">Go to Bar</router-link>
-  </p>
-  <!-- 路由出口 -->
-  <!-- 路由匹配到的组件将渲染在这里 -->
-  <router-view></router-view>
-</div>
-```
-
-```js
-// 1. 定义 (路由) 组件。
-// 可以从其他文件 import 进来
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-
-// 2. 定义路由
-const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
-]
-
-// 3. 创建 router 实例，然后传 `routes` 配置
-// 你还可以传别的配置参数, 不过先这么简单着吧。
-const router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
-})
-
-// 4. 创建和挂载根实例。
-// 记得要通过 router 配置参数注入路由，
-// 从而让整个应用都有路由功能
-const app = new Vue({
-  router
-})
-
-// 带/则会当做根路径  不带/则会一直嵌套路径
-```
-
-独文件写法
-
-```js
-`router/index.js`
-
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
-const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
-]
-
-const router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
-})
-
-router.beforeEach(to,from,next){ }
-
-exprot defalute router
-```
-
-```js
-`main.js`
-
-import router from  './router/index.js'
-
-new Vue({
-    render: h => h(App),
-    router,
-    store
-}).$mount('#app')
-```
-
-
-
-### 2.传参方式
-
-```js
-一、
-this.$router.push({ path: '/news', query: { userId: 123 }});
-接收方式:{{this.$route.query.userId}}
-
-二、
-this.$router.push({ name: 'news', params: { userId: 123 }});
-接受方式:{{this.$route.params.userId}}
-
-三、 
-	传参:
-router.push({path: '/foo/' + 'aaaa'})
-const routes = [{path: '/foo/:id',component: Foo}]
-const routes = [{path: '/foo/:id/:name',component: Foo}] //多个参数
-	接收: console.log(this.$route.params.id) //输出aaaa
-	接受：this.$router.params
-
-四、prop解耦传参;
-    routes:[
-        {
-        path:'login/:id',
-        props:true,
-        component:login
-        },{
-        path:'login/:id',
-        props:{
-        	id:5,
-            age:6
-        },
-        component:login 
-        }
-    ]
-	接收方式:
-    export default {
-        name:'login',
-        props:['id','age'],
-        mounted(){
-            console.log(this.id)
-            console.log(this.age)
-        }
-    }
-五、指定固定参数
-	{
-        path:'login/:id',
-        props:(route)=>({
-            id:route.query.a,
-            age:route.query.b
-        })
-        component:login
-     }
-地址:localhost:8080/home/?a=1&b=2
- export default {
-        name:'login',
-        props:['a','b'],
-        mounted(){
-            console.log(this.a)
-            console.log(this.b)
-        }
-    }
-
-```
-
->总结
->
->```js
->总结：
->1.params传递参数，需要使用name进行路由跳转，否则无法传递。
->2.params传递参数刷新会丢失数据，/router/:id方式上的id除外
->3.query显示拼接在url上，刷新不丢失，不是必须有，router/:id方式则必须有id参数，否则无法正确进入视图。
->4.props也可以传递参数，但传递的只能是静态参数。
->```
->
->
-
-### 3.children-子路由
-
-```js
-子路由
-routes:[{
-	path:'/index',
-	component:template1,
-	name:'templatel',
-	children:[
-        {
-          	path:'son',
-			component:'son'
-        }，
-        {
-        	path："/son",
-        	component:'xxx'
-        }
-	]
-}]
-
-子路由带‘/’与不带‘/’区别：
-带‘/’：路由会解析为 baseUrl/son；
-不带’/‘：路由会解析为：baseUrl/index/son
-```
-
-### 4.导航守卫
-
-```js
-导航守卫主要用来通过跳转或取消的方式守卫导航
-全局的, 单个路由独享的, 或者组件级的。
-
-全局路由:
-router.beforeEach((to, from, next) => {
-  // ...去到每个路由之前执行
-    next()//放行
-    
-})
-
-router.afterEach( (to,from) => {
-    当进到某个路由后触发的
-} )
-
-
-组件内的导航  
-beforeRouteLeave(to,from,next){
-    
-}
-```
-
-全局守卫
-
-```js
-全局前置守卫
-router.beforeEach((to, from, next) => {
-  // ...
-})
-
-全局解析守卫
-router.beforeResolve
-
-全局后置钩子
-router.afterEach((to, from) => {
-  // ...
-})
-```
-
-路由独享守卫
-
-```js
-const router = new VueRouter({
-  routes: [
-    {
-      path: '/foo',
-      component: Foo,
-      beforeEnter: (to, from, next) => {
-        // ...
-      }
-    }
-  ]
-})
-```
-
-组件内守卫
-
-```js
-const Foo = {
-  template: `...`,
-  beforeRouteEnter (to, from, next) {
-    // 在渲染该组件的对应路由被 confirm 前调用
-    // 不！能！获取组件实例 `this`
-    // 因为当守卫执行前，组件实例还没被创建
-       next(vm => {
-    // 通过 `vm` 访问组件实例
-  })
-  },
-    
-    
-  beforeRouteUpdate (to, from, next) {
-    // 在当前路由改变，但是该组件被复用时调用
-    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-    // 可以访问组件实例 `this`
-  },
-    
-    
-`这个离开守卫通常用来禁止用户在还未保存修改前突然离开。该导航可以通过 next(false) 来取消。`
-    
-  beforeRouteLeave (to, from, next) {
-    // 导航离开该组件的对应路由时调用
-    // 可以访问组件实例 `this`
-  }
-}
-```
-
-#### 	路由解析流程?
-
-```js
-1、导航被触发
-2、在失活的组件里调用离开守卫 beforeRouterleave
-3、调用全局的 beforeEach 守卫
-4、在重用的组件里调用 beforeRouteUpdate 守卫
-5、在路由配置里调用 beforEnter //路由独享
-6、解析异步路由组件
-7、在被激活的组件里调用 beforeRouteEnter
-8、调用全局的 beforeResolve 守卫
-9、导航被确认
-10、调用全局的 afterEach 钩子
-11、触发 DOM 更新
-12、在创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数
-
-
-```
-
- ![img](../../.vuepress/public/images/vue//20190616165857285-1574860714128.png) 
-
-1. 全局守卫
-
-    - router.beforeEach   全局前置守卫 
-
-        ```js
-        const router = new VueRouter({ ... })
-          router.beforeEach((to, from, next) => {
-          // ...
-        })
-        ```
-
-        `to: Route:`即将要进入的目标 路由对象
-
-        `from: Route:` 当前导航正要离开的路由
-
-        next: Function:`一定要调用该方法来`resolve`这个钩子。执行效果`依赖 next 方法的调用参数。
-
-    - router.beforeResolve 全局解析守卫
-
-        ```js
-        在导航被确认之前，同时在所有组件内守卫和异步路由组件被解析之后，解析守卫就被调用。
-        ```
-
-
-    -  router. afterEach 全局后置钩子
-    
-    ```js
-    不会接受 next 函数也不会改变导航本身：
-    router.afterEach((to, from) => {
-      // ...
-    })
-    ```
-
-
-​    
-
-3. 路由独享守卫
-
-    -  beforeEnter  
-
-    ```js
-    const router = new VueRouter({
-      routes: [
-        {
-          path: '/foo',
-          component: Foo,
-          beforeEnter: (to, from, next) => {
-            // ...
-          }
-        }
-      ]
-    })
-    ```
-
-    
-
-4. 组件内守卫
-
-    -  beforeRouteEnter  不能获取组件实例this;next(vm=>{可获取实例})
-    -  beforeRouteUpdate  
-    -  beforeRouteLeave 
-
-```js
-const Foo = {
-  template: `...`,
-  beforeRouteEnter (to, from, next) {
-    // 在渲染该组件的对应路由被 confirm 前调用
-    // 不！能！获取组件实例 `this`
-    // 因为当守卫执行前，组件实例还没被创建
-  },
-  //不过，你可以通过传一个回调给 next来访问组件实例。
-  //在导航被确认的时候执行回调，并且把组件实例作为回调方法的参数。
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      // 通过 `vm` 访问组件实例
-    })
-  },
-  beforeRouteUpdate (to, from, next) {
-    // 在当前路由改变，但是该组件被复用时调用
-    // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
-    // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
-    // 可以访问组件实例 `this`
-  },
-    
-    //  该组件离开跳转到另外的组件时触发该钩子,常应用于用户表单，当用户填了一部分内容，需要提醒用户是否离开页面
- beforeRouteLeave(to, from, next){
-  beforeRouteLeave (to, from, next) {
-    // 导航离开该组件的对应路由时调用
-    // 可以访问组件实例 `this`
-  }
-}
-```
-
-#### vue-router是如何响应 路由参数变化的:
-
-```js
-https://blog.csdn.net/weixin_41639609/article/details/88721627 
-watch: {
-    '$route' (to, from) {
-      // 对路由变化作出响应...
-    }
-  }
-```
-
-```js
- beforeRouteUpdate (to, from, next) {
-    // react to route changes...
-    // don't forget to call next()
-  }
-```
-
-#### $route和$router的区别
-
-```
-答：$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。而$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。
-```
-
-### 5.路由的原理
-
-#### abstract模式:
-
-```js
-服务器端和Node.js. 如果没有浏览器API，路由器将自动强制进入此模式
-```
-
-#### hash模式
-
-```html
-1.就是指 url 尾巴后的 # 号以及后面的字符, 
-	请求的时候不会被包含在 http 请求中 只会携带#之前的，
-	所以每次改变hash不会重新请求加载页面
-2.hash 改变会触发 hashchange 事件
-3.hash变化会被浏览器记录，浏览器的前进和后退都能用。
-3.能兼容到ie8
-
-监听事件:hashchange事件
-
-https://developer.mozilla.org/zh-CN/docs/Web/API/Location
-```
-
-##### 实现:
-
-```js
-class Router {
-  constructor() {
-    this.routes = {};
-    this.currentUrl = '';
-  }
-  route(path, callback) {
-    this.routes[path] = callback || function() {};
-  }
-  updateView() {
-    this.currentUrl = location.hash.slice(1) || '/';
-    this.routes[this.currentUrl] && this.routes[this.currentUrl]();
-  }
-  init() {
-    window.addEventListener('load', this.updateView.bind(this), false);
-    window.addEventListener('hashchange', this.updateView.bind(this), false);
-  }
-}
-```
-
-```html
-<div id="app">
-  <ul>
-    <li>
-      <a href="#/">home</a>
-    </li>
-    <li>
-      <a href="#/about">about</a>
-    </li>
-    <li>
-      <a href="#/topics">topics</a>
-    </li>
-  </ul>
-  <div id="content"></div>
-</div>
-<script src="js/router.js"></script>
-<script>
-  const router = new Router();
-  router.init();
-  router.route('/', function () {
-    document.getElementById('content').innerHTML = 'Home';
-  });
-  router.route('/about', function () {
-    document.getElementById('content').innerHTML = 'About';
-  });
-  router.route('/topics', function () {
-    document.getElementById('content').innerHTML = 'Topics';
-  });
-</script>
-```
-
-
-
-#### history模式
-
-```js
-1.页面请求时会带上整个链接，所以后台需要做相对处理，不然返回404
-2.不带#号,请求时是整个链接,所以需要服务器的支持把所有路由都重定向到根页面
-3.怕刷新,刷新请求,需要服务端配合;
-
-以下会触发popstate:
-1.点击浏览器的前进或后退按钮
-2.点击 a 标签
-3.在 JS 代码中触发 history.push(replace)State 函数
-
-
-监听事件:popstate
-
-history.pushState({},null,url); 
-	1.pushState url变化,页面不会刷新;只有back,forward,go会;
-	2.遵守同源策略;
-history.replaceState()
-history.back()
-history.forward()
-history.go()
-```
-
-##### 实现:
-
-```js
-class Router {
-  constructor() {
-    this.routes = {};
-    this.currentUrl = '';
-  }
-  route(path, callback) {
-    this.routes[path] = callback || function() {};
-  }
-  updateView(url) {
-    this.currentUrl = url;
-    this.routes[this.currentUrl] && this.routes[this.currentUrl]();
-  }
-  bindLink() {
-    const allLink = document.querySelectorAll('a[data-href]');
-    for (let i = 0, len = allLink.length; i < len; i++) {
-      const current = allLink[i];
-      current.addEventListener(
-        'click',
-        e => {
-          e.preventDefault();
-          const url = current.getAttribute('data-href');
-          history.pushState({}, null, url);
-          this.updateView(url);
-        },
-        false
-      );
-    }
-  }
-  init() {
-    this.bindLink();
-    window.addEventListener('popstate', e => {
-      this.updateView(window.location.pathname);
-    });
-    window.addEventListener('load', () => this.updateView('/'), false);
-  }
-}
-```
-
-```html
-<div id="app">
-  <ul>
-    <li><a data-href="/" href="#">home</a></li>
-    <li><a data-href="/about" href="#">about</a></li>
-    <li><a data-href="/topics" href="#">topics</a></li>
-  </ul>
-  <div id="content"></div>
-</div>
-<script src="js/router.js"></script>
-<script>
-  const router = new Router();
-  router.init();
-  router.route('/', function() {
-    document.getElementById('content').innerHTML = 'Home';
-  });
-  router.route('/about', function() {
-    document.getElementById('content').innerHTML = 'About';
-  });
-  router.route('/topics', function() {
-    document.getElementById('content').innerHTML = 'Topics';
-  });
-</script>
-```
-
-
-
-### 6.-属性
-
-#### router
-
-- route为当前路由对象
-- router为VueRouter的实例
-
-```js
-1.$router.path   //当前路由的路径
-2.$router.replace() //
-3.$router.go(Number) //
-4.$router.back()  //
-5.$router.resolve('/login',this.$route,append=true/false)
-{
-  location: Location;
-  route: Route;
-  href: string;
-} = router.resolve(loction,current?,append?)
-```
-
-```js
-解决$router.push()不能打开新页面
-let routeData = this.$router.resolve({ path: '/reportpreview', query: { id: id } });
-
-window.open(routeData.href, '_blank');
-```
-
-
-
-#### route
-
-```js
-1.$route.params  //参数对象 动态片段和全匹配片段的键值对
-2.$route.query   //路由中参数的键值对
-3.$route.matched //当前匹配的路径中所包含的所有片段所对应的配置参数对象
-4.$route.name    //路径的名字，如果没有使用具名路径
-```
-
-### 7.router-link的props属性
-
-#### 1.to
-
-```js
-<router-link :to="‘home‘">Home</router-link>
-
-<router-link :to="{ path: ‘home‘ }">Home</router-link>
-
-//命名路由
-<router-link :to="{ name: ‘user‘, params: {userId: 123} }">Home</router-link>
-
-//带查询参数，下面的结果为/register?plan=private-->
-<router-link :to="{ path: ‘register‘, query: {plan: ‘private‘}}">Register</router-link>
-```
-
-#### 2.replace
-
-```js
-<router-link :to="{path: ‘/abc‘}" replace>ABC</router-link>
-
-会调用roter.replace()
-```
-
-#### 3. append 
-
-```js
-<router-link to="b" append>Home</router-link>
-
-设置append属性后，则在当前路径前添加基路径；
-如：当前路由为/index；则如上为/index/b
-```
-
-#### 4. tag 
-
-```js
-<router-link to="/foo" tag="li">FOO</router-link>
-// 渲染结果 
-<li>FOO</li>
-
-指定<router-link>渲染成某标签；
-```
-
-#### 5.active-class
-
-```js
-export default New Router({
-   linkActiveClass: ‘active‘ 
-})
-
-设置链接激活时使用的css类名。默认值可以通过路由的构造选项linkActiveClass来全局配置, 默认值为 ‘router-link-active‘
-```
-
-#### 6.exact
-
-```js
-"是否激活"，默认是false 。举个粟子，如果当前的路径是/a 开头的，那么<router-link to="/a"> 也会被设置css类名
-
-　　按照这个规则，<router-link to="/"> 将会点亮各个路由！想要链接使用"exact匹配模式"，则使用exact属性：
-  
-// 这个链接只会在地址为 / 的时候被激活 
-<router-link to="/" exact>Home</router-link>
-
-<router-link to="/user">USER</router-link>
-
-<router-link to="/user/userinfo">USER-info</router-link>
-
-// 如果不设置exact，则当路由到了/user/userinfo 页面时，USER也是被设置了router-link-active样式的！
-```
-
-#### 7.events
-
-　　声明可以用来触发导航的事件（默认是‘click‘）。可以是一个字符串或者是一个包含字符串的数组
-
-#### 8、将"激活时的css类名"应用在外层元素
-
-　　有时候我们要让"激活的css类名"应用在外层元素，而不是<a\>标签本身，那么可以用<router-link\>渲染外层元素，包裹着内层的原生<a\>标签
-
-```js
-<router-link tag="li" to="/foo">
-    <a\>/foo</a\>
-</router-link>
-//在这种情况下，<a\>将作为真实的链接（能获取到正确的href的），而"激活时的css类名"则设置到外层的<li\>
-```
-
-
-
-### 8.写法
-
-```js
-正常写法:
-
-import login from '@/views/login'
-{
-    path:'/login',
-    component:login
-   	name:login
-};
-
-写法二:
-const login = ()=> import('./login')  //异步加载
-{
-    path:'/login',
-    component:login
-   	name:login
-};
-
-写法三:
-{
-    path:'/login',
-    component:()=>import('@/views/login'), //异步加载
-   	name:login
-};
-
-
-```
-
-### 9.路由登陆判断
-
-```js
-routes:
-[
-   {
-      path: '/cinema',
-      redirect: '/page/cinema',
-      component: BlankLayout,
-      meta: { title: '影院' , requiresAuth: true}
-      children: [
-        {
-          path: '/cinema/plan',
-          name: 'cinemaPlan',
-          component: () => import('./views/cinema/Plan'),
-          meta: { title: '影院排期' }
-        },
-        {
-          path: '/cinema/cinemaDetail',
-          name: 'cinemaDetail',
-          component: () => import('./views/cinema/CinemaDetail'),
-          meta: { title: '影院详情' }
-        }
-       ]
-    }
-]
-```
-
-```
-引入
-import Vue from  'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-
-const router  = new VueRouter({ routes })
-
-export router
-```
-
-```js
-to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title}`))
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if (!store.getters.token) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else {
-      if (to.query.siteCode) {
-        next()
-        return
-      }
-      if (from.query.siteCode) {
-        const query = JSON.parse(JSON.stringify(to.query))
-        query.siteCode = from.query.siteCode
-        next({
-          path: to.path,
-          query: query
-        })
-      } else {
-        next() // 确保一定要调用 next()
-      }
-    }
-　}
-2.主要说明下为什么要使用遍历to.matched数组判断meta的requiresAuth字段，而不直接使用to.meta.requiresAuth来判断，首先例子当中给的是cinema,也即是1级路由设置了requiresAuth.而cinemaPlan没有设置。假设两种情况：
-
-　前提：vue路由匹配时会同时匹配满足情况的所有路由，即如果路由是‘/cinema/plan’的话，‘/cinema’也会触发。另外如果较高等级的路由需要登录控制的话，它所有的嵌套路由都是基本需要登录控制的。
-
-（1）cinema具有登录控制，而cinemaPlan 没有。如果用户正常点击路由跳转的话，它必然是先进一级路由，再去二级路由，一级路由实现登录控制，利用to.meta是能够满足的，注意这里是用户正常点击，但是假如有用户直接改变url地址的话去访问cinemaPlan的话，则需要给cinemaPlan路由添加requiresAuth字段，同理也需要给cinemaDetail添加字段，如果路由比较多的话，就会很麻烦。
-
-（2）cinema没有登录控制，而cinemaPlan有。这种情况确实不怕用户直接改变url访问二级路由了，但是同样如果过多二级路由，也是需要设置许多requiresAuth。
-
-   所以，为了方便，直接遍历to.matched数组，该数组中保存着匹配到的所有路由信息。就该例而言，访问cinema时，matched数组长度为1，访问cinemaPlan时，matched数组长度为2，即保存着‘/cinema’以及‘/cinema/plan’。其实啰嗦了这么多，直接使用to.meta判断字段也可以，就是需要给所有需要控制的路由添加requiresAuth。而to.matched则只需要给较高一级的路由添加requiresAuth即可，其下的所有子路由不必添加。
-
-
-
-```
-
->some()
->
->```js
->to.matched.some(record => record.meta.requiresAuth)
->some() 方法用于检测数组中的元素是否满足指定条件（函数提供）
->some() 方法会依次执行数组的每个元素
->
->some( ) 不会对空数组进行检测。
->some( ) 不会改变原始数组。
->```
->
->
-
-### 10.路由跳转打开新页面方法
-
-```js
-方法1
-<router-link target="_blank" :to="{path:'/home',query:{id:'1'}}">新页面打开home页</router-link>
-
-方法2:
- let routeUrl = this.$router.resolve({
-     path: "/share",
-     query: {id:96}
-   });
-   window.open(routeUrl.href, '_blank');
-
-```
-
-
-
-# VUE-Vuex 状态管理
-
-```js
-安装:npm install vuex --save
-
-https://router.vuejs.org/zh/api/#路由对象
-```
-
-```
-页面通过mapAction异步提交事件到action。action通过commit把对应参数同步提交到mutation。 mutation会修改state中对应的值。 最后通过getter把对应值跑出去，在页面的计算属性中通过mapGetter来动态获取state中的值;
-```
-
-vuex持久化
-
-```js
- localStorage.getItem("store") && this.$store.replaceState(Object.assign(this.$store.state, JSON.parse(localStorage.getItem("store"))));
-
-    localStorage.clear()
-
-    //在页面刷新时将vuex里的信息保存到localStorage里
-    window.addEventListener("beforeunload", () => {
-      localStorage.setItem("store", JSON.stringify(this.$store.state))
-    })
-```
-
-
-
-### 1.创建:
-
-```js
-src文件下创建 store文件夹
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-Vue.use(Vuex);
-
-const store = new Vuex.Store({
-    state: {	//状态
-        userInfo: {
-            name: '',
-            photo:''
-        }
-    },    
-    
-    mutations: { //方法,
-        utationA(state,user) {
-            state.userInfo.name = user.name
-            state.userInfo.photo = user.photo
-        }
-    },
-    
-    actions:{ //放异步方法
-        actionevent(context){
-          //context上下文 为store对象 
-          // context.commit, context.state, context.getters, context,.dispatch
-        }
-        //或
-        actionevent({commit}){ // 解构写法
-    		commit('utationA')
-		}
-    },
-    
-    computed:{ //解决引用繁长,调用直接用计算属性{{name}}
-        name(){
-            return this.$store.state.userInfo.name
-        },
-        
-        // 需引入:import { mapGetters } from 'vuex'
-        ...mapGetters([
-            'namelen' //调用{{namelen}},调用getters中的namelen计算方法
-        ]),
-        // 对象写法,改变名称
-        ...mapGetters({
-            newName:'namelen' //调用{{namelen}},调用getters中的namelen计算方法
-        })
-    },
-    // 
-    getters:{ //调用:$store.getters.namelen
-        namelen(state){
-            return ...
-        }
-    },
-    
-	
-});
-
-export default store;
-```
-
-#### 组件分发方式
-
-```js
-this.$store.commit('xxx')	// 分发mutations
-this.$store.dispatch('xxx') // 分发action
-
-map分发:
-import { mapState, mapActions,mapMutations } from 'vuex'
- computed: {
-        ...mapState({ //将state映射 为 计算属性
-            lang: state => state.lang,
-            theme: state => state.theme
-            homemodule: state=> state.Home.homemodule
-            //命名空间写法 
-            //模块中写入 namespaced: true,
-        })
-    },
-    methods: {
-        ...mapActions(['increment','increment2'])
-        ...mapActions({
-            login: 'auth/loginByEmail',
-            loadLang: 'loadLang'
-       }),
-    }
-//调用用 this.login
-```
-
-
-
-### 2.main.js
-
-```js
-import store from './store'
-new Vue({
-    render: h => h(App),
-    router,
-    store  //挂载
-}).$mount('#app')
-```
-
-### 3.其他文件引用
-
-```js
-js调用:
-this.$store.state.name='jack' //不建议,因无记录
-如但文件导入则只需store
-this.$store.commit("userChange",this.form) 
-
-html引用:
-{{$store.state.userInfo.name}}
-{{name}} //计算属性引用
-```
-
->这个状态自管理应用包含以下几个部分：
->
->- **state**，驱动应用的数据源；
->- **view**，以声明方式将 **state** 映射到视图；
->- **actions**，响应在 **view** 上的用户输入导致的状态变化。
->
->以下是一个表示“单向数据流”理念的简单示意：
-
-![1569118000473](../../.vuepress/public/images/vue//1569118000473.png
-
-<!-- ![vuex](../../.vuepress/public/images/vue//vuex.png) -->
-
-### 4.模块化结构-项目结构
-
-```
-└── store
-    ├── index.js          # 我们组装模块并导出 store 的地方
-    ├──	state.js		  # 根级别的 mutation
-    ├── mutations.js      # 根级别的 mutation 同步事件
-    ├── actions.js        # 根级别的 action   异步事件
-    └── modules
-        ├── cart       	  # 购物车模块文件夹
-        ├── products   	  # 产品模块文件夹
-        └── index.js
-```
-
->├──index.js
->
->>```js
->>import Vue from 'vue'
->>import Vuex from 'vuex'
->>import vuexModules from './modules'
->
->>import state from './state'
->>import mutations from './mutations'
->>import actions from './actions'
->
->>Vue.use(Vuex)
->
->>export default new Vuex.Store({
->>state,
->>mutations,
->>actions,
->>modules: vuexModules
->>})
->>
->>```
->
->├──	state.js
->
->>```js
->>export default {
->>    lang: '',
->>}
->>```
->
->├── mutations.js
->
->```js
->export default {
->   setLang(state, data){
->
->   },
->}
->```
-
->├── actions.js
->
->```js
->
->export default {
->    loadLang({dispatch, commit, state}, lang) {
->                commit('addLangPack', lang) //commit触发mutations
->                dispatch('loadLang', i18n.fallbackLocale)  //dispatch触发 actions
->    loadLang(context, lang) {
->		context.commit('addLangPack', lang) //commit触发mutations
->		context.dispatch('loadLang', i18n.fallbackLocale)  //dispatch触发 actions
->}
->```
-
->└── modules
->
->>├──m1文件夹
->
->>>├──m1.js
->
->>>```js
->>>const state = {
->>>    cachePage: false,
->>>}
->
->>>const mutations = {
->>>    addTagNav(state, data){
->>>    }
->>>}
->
->>>export default {
->>>namespaced: true,
->>>state,
->>>mutations
->>>}
->>>
->>>```
->
->>index.js
->
->>```js
->>import user from './m1.js'
->>import tagNav from './tagNav'
->
->>export default {
->>user: user,
->>tagNav: tagNav
->>}
->>
->>```
-
-
-### 5.命名空间
-
-默认情况下，模块内部的 action、mutation 和 getter 是注册在**全局命名空间**的。
-
-注意：SET_A_name 命名不可用。
-
-```js
-未命名写法: 
-...mapState({
-      homename: "homename",
-      homemodule: state=> state.Home.homemodule
-    })
-...mapMutations({
-      SET_homeName: "SET_homeName",
-      SET_homemodule: "SET_homemodule" //直接使用
-    }),
-```
-
-当模块被注册后，它的所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名。
-
-#### 命名空间写法
-
-1. 写法-1-
-
-```js
-modules: {
-    moduleA: {
-      namespaced: true, //指定为命名空间
-      state:{}
-    }
-
-...mapState({
-      homename: "homename",
-      homemodule: state=> state.Home.homemodule
-    })
-...mapMutations({
-      SET_homeName: "SET_homeName",
-      SET_homemodule: "moduleA/SET_homemodule"
-    }),
-    
- -写法-2-
-
-```
-
-2. 写法-2	
-
-```js
-computed: {
-  ...mapState('moduleA', {
-    a: state => state.a,
-    b: state => state.b
-  })
-},
-methods: {
-  ...mapActions('moduleA', [
-    'foo', // -> this.foo()
-    'bar' // -> this.bar()
-  ])
-}
-```
-
-3. 写法-3
-
-```js
-import { createNamespacedHelpers } from 'vuex'
-
-const { mapState, mapActions } = createNamespacedHelpers('some/nested/module')
-
-export default {
-  computed: {
-    // 在 `some/nested/module` 中查找
-    ...mapState({
-      a: state => state.a,
-      b: state => state.b
-    })
-  },
-  methods: {
-    // 在 `some/nested/module` 中查找
-    ...mapActions([
-      'foo',
-      'bar'
-    ])
-  }
-}
-```
-
-
-
-#### 在带命名空间的模块内访问全局内容
-
-1. 希望使用全局 state 和 getter，`rootState` 和 `rootGetters` 会作为第三和第四参数传入 getter，也会通过 `context` 对象的属性传入 action。
-2. 若需要在全局命名空间内分发 action 或提交 mutation，将 `{ root: true }` 作为第三参数传给 `dispatch` 或 `commit` 即可。
-
-```js
-modules: {
-  foo: {
-    namespaced: true,
-
-    getters: {
-      // 在这个模块的 getter 中，`getters` 被局部化了
-      // 你可以使用 getter 的第四个参数来调用 `rootGetters`
-      someGetter (state, getters, rootState, rootGetters) {
-        getters.someOtherGetter // -> 'foo/someOtherGetter'
-        rootGetters.someOtherGetter // -> 'someOtherGetter'
-      },
-      someOtherGetter: state => { ... }
-    },
-
-    actions: {
-      // 在这个模块中， dispatch 和 commit 也被局部化了
-      // 他们可以接受 `root` 属性以访问根 dispatch 或 commit
-      someAction ({ dispatch, commit, getters, rootGetters }) {
-        getters.someGetter // -> 'foo/someGetter'
-        rootGetters.someGetter // -> 'someGetter'
-
-        dispatch('someOtherAction') // -> 'foo/someOtherAction'
-        dispatch('someOtherAction', null, { root: true }) // -> 'someOtherAction'
-
-        commit('someMutation') // -> 'foo/someMutation'
-        commit('someMutation', null, { root: true }) // -> 'someMutation'
-      },
-      someOtherAction (ctx, payload) { ... }
-    }
-  }
-}
-```
-
-#### 在带命名空间的模块注册全局 action
-
-1. 若需要在带命名空间的模块注册全局 action，你可添加 `root: true`，并将这个 action 的定义放在函数 `handler` 中。例如：
-
-```js
-{
-  actions: {
-    someOtherAction ({dispatch}) {
-      dispatch('someAction')
-    }
-  },
-  modules: {
-    foo: {
-      namespaced: true,
-      actions: {
-        someAction: {
-          root: true,
-          handler (namespacedContext, payload) { ... } // -> 'someAction'
-        }
-      }
-    }
-  }
-}
-```
-
-#### 模块自动注册
-
-```js
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex);
-
-const context = require.context('./modules', false, /\.js$/);
-const moduleStores = {};
-context.keys().forEach(key => {
-    const fileName = key.slice(2, -3);
-    const fileModule = context(key).default;
-    moduleStores[fileName] = {
-        ...fileModule,
-    };
-});
-
-const store = new Vuex.Store({
-    modules: {
-        ...moduleStores,
-    },
-    state: {
-        curcity: {
-            province: '广东省',
-            provinceId: 440000,
-            city: '深圳',
-            cityId: 440300,
-            cityshortnamepinyin: 'sz'
-        },
-        sessionCallBack: ''
-    },
-    mutations: {},
-    actions: {}
-})
-export default store
-```
-
-
-
-### 6.刷新事件beforunload解决持久化
-
-持久化插件:
-
-```js
-https://github.com/robinvdvleuten/vuex-persistedstate
-npm install --save vuex-persistedstate
-
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from "vuex-persistedstate"
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  state: {
-    name:'walle',
-    routeInfo:'',
-    age:'18888888888888'
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
-  plugins: [createPersistedState({
-    storage: window.localStorage,
-    key:'store',
-    reducer(state) { //指定需要持久化state
-      return {
-      // 只储存state中的assessmentData
-      assessmentData: state.age
-     }
-     }
-  })]
-})
-```
-
-刷新
-
-```js
-created(){
-    window.localStorage.getItem('store') && this.$store.replaceState(Object.assign({},this.$store.state,JSON.parse(localStorage.getItem('store'))))
-
-    //window.localStorage.clear() 防止用户看到 或 加密
-    
-    // window.addEventListener('beforeunload',()=>{
-    window.addEventListener('pagehide',()=>{ //移动端beforeunload不生效 代替方案
-      localStorage.setItem('store',JSON.stringify(this.$store.state))
-    })
-  }
->>>>>>> d540ae3776f88c5ffa8e51fafca101a17f31a2b7
-```
-
-
-
-# VUE-Axios
-
-> 官方网址: http://www.axios-js.com/zh-cn/docs/
->
-> 安装: npm install --save axios vue-axios
->
-> vue专注于网路请求的一个轻量库,没有dom的功能操作
-> 需要导包
-> 使用箭头函数,this指向vue
->
-> https://www.cnblogs.com/chaoyuehedy/p/9931146.html
-
-### axios与ajax
-
-```js
-axios 对原生XHR的封装,是一个基于 Promise 的http请求库，可以用在浏览器和node.js中.
-1.从 node.js 创建 http 请求
-2.支持 Promise API
-3.自动转换 JSON 数据
-3.客户端支持防止CSRF
-4.提供了一些并发请求的接口
-
-这个支持防止CSRF其实挺好玩的，是怎么做到的呢，就是让你的每个请求都带一个从cookie中拿到的key, 根据浏览器同源策略，假冒的网站是拿不到你cookie中得key的，这样，后台就可以轻松辨别出这个请求是否是用户在假冒网站上的误导输入，从而采取正确的策略。
-
-Axios既提供了并发的封装，也没有下文会提到的fetch的各种问题，而且体积也较小，当之无愧现在最应该选用的请求的方式。
-
-ajax：
-本身是针对MVC的编程,不符合现在前端MVVM的浪潮
-基于原生的XHR开发，XHR本身的架构不清晰，已经有了fetch的替代方案
-JQuery整个项目太大，单纯使用ajax却要引入整个JQuery非常的不合理（采取个性化打包的方案又不能享受CDN服务
-
-axios：
-从 node.js 创建 http 请求
-支持 Promise API
-客户端支持防止CSRF
-提供了一些并发请求的接口（重要，方便了很多的操作）
-```
-
-
-
-```js
-
-axios.get('url',{
-    headers:{ //设置请求头
-        `Bearer $(res.token)`
-    },
-    params:{//geturl不传参,可在此写参
-         page:page,
-    }
-}).then((backdata)=>{
-	
-   
-}).catch((err)=>{
-
-})
-
-axios.post('url',{
-	key:'',//post请求参数
-	info:''//post请求参数
-}).then((backdata)=>{
-
-}).catch((err)=>{
-
-})
-    
-修改axios获取的返回数据
-axios.defaults.transformResponse=[
-    function(data){
-        try{
-           return JSONbig.parse(data);
-        }catch(error){
-            return data;
-        }finally{
-            不管有没有错都会执行这个  
-        }
-    }
-]
-    
-多并发:
-    
-function getUserAccount() {
-  return axios.get('/user/12345');
-}
- 
-function getUserPermissions() {
-  return axios.get('/user/12345/permissions');
-}
-axios.all([getUserAccount(), getUserPermissions()])
-  .then(axios.spread(function (acct, perms) {
-    // 两个请求现在都执行完成
-  }));
-```
-
-### axiso引用方式
-
-#### 	1.绑定原型方式:
-
-```js
-axios是一个库，并不是vue中的第三方插件，使用时不能通过Vue.use()安装插件，需要在原型上进行绑定：
-安装:npm install --save axios
-
-mian.js文件中:
-
-import Vue from 'vue'
-import axios from ‘axios’
-Vue.prototype.$http = axios //用法:axios
-//或 Vue.prototype.$axios = axios//用法:this.$axios
-
-用法:
-axios.get('url?id=123456').then(response=>{
-
-}).catch(error=>{
-
-});
-axios.get('url',{
-	parms:{
-		id:123456
-	}
-}).then(response=>{
-
-}).catch(error=>{
-
-});
-```
-
-#### 2.插件方法
-
-```js
-vue-axios是将axios集成到Vue.js的小包装器，可以像插件一样进行安装
-安装:npm install --save axios vue-axios  
-
-import Vue from 'vue'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-
-Vue.use(VueAxios, axios)
-
-用法:
-Vue.axios.get('url').then((response)=>{});
-this.axios.get('url').then((response)=>{});
-this.$http.get('url').then((respose)=>{});
-```
-
-#### 3.接口封装方式
-
-```js
-import axios from 'axios'
-export const http = axios.create({
-    baseURL:'http://ttapi.research.itcast.cn'
-})
-
-1.接口方式:
-export const login = (data)=>{
-    return http.post('/app/v1_0/authorizations',data)
-}
-
-2.接口类型方式:
-export const postRequests = (url, params) => {
-      return service({
-            method: 'post',
-            url: url,
-            data: params,
-            headers: {
-                  'Authorization': getStore("Authorization") || '',
-                  'schoolCode': getStore('schoolCode')
-            }
-      });
-};
-
-	引入:
-import {postRequests} from './api'
-export const postFind = (params) => {
-   return postRequests('/travelPlanWeb', params)
-}
->>>>>>>>>>>>>>>>>>^^^^
-```
-
-```js
-import axios from 'axios'
-var baseUrl = ''
-// var version = '1.0.1'
-// 环境判断
-if (process.env.NODE_ENV === 'development') {
-  // baseUrl = 'http://192.168.8.32:8082/'
-} else if (process.env.NODE_ENV === 'test') {
-  baseUrl = 'test'
-} else if (process.env.NODE_ENV === 'production') {
-  baseUrl = 'prodction'
-}
-
-// http://localhost:9010/department/querySubDepar
-let axi = axios.create({
-  baseUrl: baseUrl,
-  timeOut: 8000,
-  headers: {
-    'Content-Type': 'application/json; charset=UTF-8'
-  }
-})
-var getData = (params) => {
-  return axi.get(params.url).then(response => {
-    params.success && params.success(response.data)
-  }).catch((error) => {
-    params.fail && params.fail(error)
-  })
-}
-let postData = (refs) => {
-  // 判断是否有数据 转换为表单数据
-  var formData = new FormData()
-  if (refs.data) {
-    for (var key in refs.data) {
-      formData.append(key, refs.data[key])
-    }
-    refs.data = formData
-  }
-  return axi({
-    method: 'post',
-    url: refs.url,
-    data: refs.data,
-    headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        }
-  }).then(res => {
-    refs.success && refs.success(res.data)
-  }).catch(error => {
-    refs.fail && refs.fail(error)
-  })
-}
-export {postData, getData}
-```
-
-
-
-#### 4.多基地址
-
-```js
-import axios from 'axios'
-
-let http = axios.create({
-    baseURL:'基地址'
-})
-
-
-export const axiosA = axios.create({
-	baseURL:"http://www.a.cn"
-})
-export const axiosb = axios.create({
-	baseURL:"http://www.b.cn"
-})
-
-
-
-调用:按名导入
-import { axiosA } from "地址"
-```
-
-```js
-创一个文件:utils>http>index.js
-`js`
-import axios from 'axios'
-export const http = axios.create({
-    baseURL:'http://ttapi.research.itcast.cn'
-})
-
-接口方式:
-export const login = (data)=>{
-    return http.post('/app/v1_0/authorizations',data)
-}
-
-`vue`
-import { login } from 'diz'
-async loging(){
-    let res = await login(data);
-    console.log(res);
-}
-
-```
-
-
-
-### axios全局配置
-
-```js
-axios.defaults.timeout = 15000;  //超时响应
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'; // 配置请求头（推荐）
-// axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8'; // 配置请求头
-axios.defaults.baseURL = $core.use('http'); //确认协议和地址
-axios.defaults.withCredentials = true;   // axios 默认不发送cookie，需要全局设置true发送cooki
-axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-```
-
-### axios传参方式
-
-#### 1.get请求
-
-```js
-axios.get('/user?id=12345&name=user')
-.then(function (res) {
-    console.log(res);
-}).catch(function (err) {
-    console.log(err);
-});
---------------------
-axios.get('/user', {  //params参数必写 , 如果没有参数传{}也可以
-    params: {  
-       id: 12345，
-       name: user
-    }
-})
-.then(function (res) {
-    console.log(res);
-})
-.catch(function (err) {
-    console.log(err);
-});
--------------
-如有需写路径参数 url/:target     //用 `url${}`,url拼接
-body: 需对象传,get需params;post只需{};
---------------------------
-
-this.$axios.get(url.{
-	params:{
-		参数
-	},
-    headers:{请求头}
-})
-
-
-
-
-```
-
-#### 2.post请求
-
-```js
-post/put/patch请求
-传参格式为 formData 
- （全局请求头:'Content-Type'= 'application/x-www-form-urlencoded'）
-
-（request的Header:'Content-Type'= 'multipart/form-data'）
-ar formData=new FormData();
-formData.append('user',123456);
-formData.append('pass',12345678);
- 
-axios.post("/notice",formData)
-     .then((res) => {return res})
-     .catch((err) => {return err}
-
-this.$axios.post(url,{
-	参数
-},{
-    headers:{请求头}
-})
-```
-
-####  3. query 形式
-
-```js
-传参格式为 query 形式
-（全局请求头:'Content-Type'= 'application/x-www-form-urlencoded'）
-
-（request的Header:'Content-Type'= 'application/x-www-form-urlencoded'）
-
-
-import Qs from 'qs'   //引入方式
-Vue.prototype.$qs = Qs  //全局加载
-this.$qs.stringify(data);  //使用方式
-this.$qs.parse(data);  //使用方式
- 
-var readyData=this.$qs.stringify({
-    id:1234,
-    name:user
-});
-axios.post("/notice",readyData)
-     .then((res) => {return res})
-     .catch((err) => {return err})
-————————————————
-使用URLSearchParams
-var params = new URLSearchParams();
-params.append('param1', 'value1');
-params.append('param2', 'value2');
-axios.post('/foo', params);
-```
-
-#### 4. JSON格式
-
-```js
-传参格式为 raw (JSON格式)
-（全局请求头:'Content-Type'= 'application/x-www-form-urlencoded'）
-
-（request的Header:'Content-Type'= 'application/json;charset=UTF-8'）
----
-var readyData={
-    id:1234,
-    name:user
-};
-axios.post("/notice",readyData)
-     .then((res) => {return res})
-     .catch((err) => {return err})
-     -------------
-var readyData=JSON.stringify({
-    id:1234,
-    name:user
-});
-axios.post("/notice",readyData)
-     .then((res) => {return res})
-     .catch((err) => {return err})
-————————————————
-
-```
-
-#### 5.对象写法
-
-```js
-axios({
-	url:'',
-	method:'get',
-	params:{ num=3 }
-}).then()
-
-
-axios({
-	url:'',
-	method:'post',
-	data:{ num=3 }
-}).then()
-```
-
-
-
-### axios拦截器
-
-#### 1.请求拦截
-
-```js
-config保存请求时的所有数据,查看请求报文
-
-axios.interceptors.request.use(function(config){
-	//发送请求头
-    let user = JSON.parse(window.localStorage.getItem('userInfo'))
-    config.headers.Authorization= `Bearer ${user.token}`
-    return config
-},function(error){
-    return Promise.reject(error)
-})
-
-```
-
-![1568688836118](../../.vuepress/public/images/vue//1568688836118.png)
-
-#### 2.响应拦截
-
-```js
-// 添加响应拦截器
-axios.interceptors.response.use(function (response) {
-    // 对响应数据做点什么
-    return response;
-  }, function (error) {
-    
-    //执行上一个报错的请求
-     return http(error.config)
-    
-    // 对响应错误做点什么
-    return Promise.reject(error);
-  });
-
-自定义响应体
-响应设置bigint
-
-axios.defaults.transformResponse = [function(data){
- try{
-     return JSONbig.parse(data)
- }catch{
-     return data
- }   
-}]
-
-```
-
-### create方法
-
-```js
-const instance = axios.create({
-  baseURL: 'https://some-domain.com/api/',
-  timeout: 1000, //超时响应时间
-  headers: {'X-Custom-Header': 'foobar'}
-});
-```
-
-### post请求方式
-
-```js
-data 与 pramas 区别
-data:请求体;
-pramas:拼接到请求地址
-
-
-文件上传:
-export const uploadFileRequest = (url, params) => {
-  return axios({
-    method: 'post',
-    url: `${base}${url}`,
-    data: params,
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
-}
-
-
-// 转换
-export const postRequest = (url, params) => {
-  return axios({
-    method: 'post',
-    url: `${base}${url}`,
-    data: params,
-    transformRequest: [function (data) {
-      let ret = ''
-      for (let it in data) {
-        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-      }
-      return ret
-    }],
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-}
-```
-
-#### multipart/form-data
-
-```js
-'multipart/form-data' 
-		let formData = new FormData();
-      formData.append("multipartFile", Blob); //Blob为 文件内容
-      GETVoiceToSrc(formData).then(res => {
-        console.log(res);
-      });
-```
-
-
-
-### get
-
-```js
-const qs = require('qs');
-
-axios.get(url, {
-    params:{
-        arr: [1,2,3]
-    },
-    paramsSerializer: function(params) {
-        return qs.stringify(params, {arrayFormat: 'repeat'})
-    }
-})
-```
-
-### 请求转换
-
-```js
-import axios from 'axios'
-import qs from 'qs'
-
-//get传递数组
-axios.get(url, {
-    params: {
-     id: [1,2,3],
-     type: 1
-    },
-    paramsSerializer: params => {
-      return qs.stringify(params, { indices: false })
-}})
-
-//url?id=1&id=2&id=3
-```
-
-```js
-axios.post(url, qs.stringify(
-    params: { // 请求地址方式
-     id: [1,2,3],
-     type: 1
-}, { indices: false }))
-```
-
-### qs
-
-```js
-qs.stringify({id: [1, 2, 3]}, { indices: false })
- //形式： id=1&id=2&id=3
-qs.stringify({id: [1, 2, 3]}, {arrayFormat: ‘indices‘})
- //形式： ids[0]=1&ids[1]=2&ids[2]=3
-qs.stringify({id: [1, 2, 3]}, {arrayFormat: ‘brackets‘})
- //形式：id[]=1&id[]=2&id[]=3
-qs.stringify({ids: [1, 2, 3]}, {arrayFormat: ‘repeat‘}) 
-//形式： id=1&id=2&id=3
-```
-
-
-
-### 拦截处理
-
-```js
-/**
- * 封装
- * 请求拦截、响应拦截、错误统一处理
- */
-import axios from 'axios'
-import router from '../router/index'
-import store from '../store/index'
-import { Message } from 'element-ui'
-
-/**
- * 跳转登录页
- * 携带当前页面路由，以期在登录页面完成登录后返回当前页面
- */
-let toLogin = () => {
-    localStorage.removeItem('token')
-    router.push({
-        path: '/login',
-        query: {
-            redirect: router.currentRoute.fullPath
-        }
-    })
-}
-
-
-// 创建axios实例
-let instance = axios.create({
-    timeout: 30000//请求超时时间
-})
-
-/**
- * 请求拦截器
- * 每次请求前，如果存在token则在请求头中携带token
- */
-instance.interceptors.request.use(
-    config => {
-        // 登录流程控制中，根据本地是否存在token判断用户的登录情况
-        // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
-        // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
-        // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
-        //设置统一请求头
-
-        //token
-        let phSessionToken = ''
-        if (localStorage.getItem('token')) {
-            phSessionToken = localStorage.token
-        } else {
-            phSessionToken = ''
-        }
-        //设置请求头
-        config.headers = {
-            'Content-Type': 'application/json',
-            'phSessionToken': phSessionToken
-        }
-        return config
-    },
-    error => Promise.error(error)
-)
-
-/**
- * 请求失败后的错误统一处理
- * param {Number} status 请求失败的状态码
- */
-
-//后台沟通状态码规范
-let errorHandle = (status, other) => {
-    //状态码判断
-    switch (status) {
-        //400: 客户端请求的语法错误，服务器无法理解
-        case 400:
-            console.log('400客户端请求的语法错误，服务器无法理解')
-            break
-        case 401:
-            Message({ message: '登录过期，请重新登录', type: 'error' })
-            setTimeout(() => {
-                toLogin()//跳转到登录
-            }, 3000)
-            break
-        //404请求不存在
-        case 404:
-            Message({ message: '请求的资源不存在', type: 'error' })
-            break
-        case 408:
-            Message({ message: '网络延时，请稍后', type: 'error' })
-            setTimeout(() => {
-                toLogin()//跳转到登录
-            }, 30000)
-            break
-        //500
-        case 500:
-            Message({ message: '网络异常，请重新登录', type: 'error' })
-            setTimeout(() => {
-                toLogin()//跳转到登录
-            }, 30000)
-            break
-        default:
-            console.log(other)
-    }
-}
-
-//响应拦截器
-instance.interceptors.response.use(
-    //请求成功
-    res => {
-        if (res.status === 200) {
-            //Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。
-            return Promise.resolve(res)
-        } else {
-            console.log("响应拦截器失败")
-            //Promise.reject(reason)方法返回一个带有拒绝原因reason参数的Promise对象。
-            return Promise.reject(res)
-        }
-    },
-    //请求失败
-    error => {
-        //return Promise.reject(error)
-        const { response } = error
-        if (response) {
-            //请求已发出，但是不在2xx的范围    ------错误处理、token过期等
-            errorHandle(response.status, response.data.message)
-            return Promise.reject(response)
-        } else {
-            Message({
-                message: '网络异常，即将前往登录页',
-                type: 'error'
-            })
-            setTimeout(() => {
-                //跳转到登录
-                toLogin()
-            }, 5000)
-            // 处理断网的情况
-            // eg:请求超时或断网时，更新state的network状态
-            // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
-            // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
-            //store.commit('changeNetwork', false)
-        }
-    }
-)
-
-export default instance
-```
-
-
-
-# 路由 生命周期 动画钩子 顺序
-
-```js
-进入首页的钩子们
-
-    1 路由钩子 路由跳转前beforeEach
-
-    2 路由钩子 home组件内部：守卫执行前beforeRouteEnter
-
-    3.路由钩子 路由跳转后afterEach
-
-    4 生命周期 home beforeCreate 创建前状态
-
-    5 生命周期 home created 创建完毕状态
-
-    6 生命周期 home beforeMount 挂载前状态
-
-    7 动画钩子 beforeEnter
-
-    8 生命周期 home mounted 挂载结束状态
-
-    9 动画钩子 enter
-
-    10 动画钩子 afterEnter
-
-
-离开首页，进入别的页面 other
-
-    1 路由钩子 home 导航离开该组件beforeRouteLeave
-
-    2 路由钩子 路由跳转前beforeEach
-
-    3 路由钩子 other组件内部：守卫执行前beforeRouteEnter
-
-    4.路由钩子 路由跳转后afterEach
-
-    5 生命周期 other beforeCreate 创建前状态
-
-    6 生命周期 other created 创建完毕状态
-
-    7 生命周期 other beforeMount 挂载前状态
-
-    8 动画钩子 beforeEnter 
-    9 动画钩子 beforeLeave
-
-    10 动画钩子 leave
-
-    11 动画钩子 afterLeave
-
-    12 生命周期 home beforeDestroy 销毁前状态
-
-    13 生命周期 home destroyed 销毁完成状态
-
-    14 生命周期 other mounted 挂载结束状态
-
-    15 动画钩子 enter
-
-    16 动画钩子 afterEnter
-```
-
-
-
-# 拓展内容
-
-```js
-[Vue.delete](https://cn.vuejs.org/v2/api/#Vue-directive)
-[vue原理剖析](https://juejin.im/user/59ee29a36fb9a0451c3990e5/posts)
-[es6,7,8,9,10新特性一览](https://juejin.im/post/5ca2e1935188254416288eb2)
-[iView-基于Vue的ui框架](https://www.iviewui.com/)
-[Cube-ui-移动端Vue组件库](https://didi.github.io/cube-ui/#/zh-CN/example)
-[Mint-ui -饿了么团队开发的移动端Vue组件库](http://mint-ui.github.io/#!/zh-cn)
-[Vux-未适配vue-cli3.x的移动端ui库](https://doc.vux.li/zh-CN/)
-[mui  HBuilder团队开发的移动端框架](http://dev.dcloud.net.cn/mui/)
-[D2-admin 现成的后台管理界面](https://d2admin.fairyever.com)
-[iView-admin 基于iView搭建的后台管理页面](http://admin.iviewui.com/login)
-[Element - admin 基于Elementui实现的后台管理页面](https://panjiachen.github.io/vue-element-admin-site/zh/)
-[vue-resource（早期结合Vue的网络请求库）](https://github.com/pagekit/vue-resource)
-[为什么不在推荐vue-resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4#.2rkai1shx)
-
-[vue-i18n国际化](https://github.com/kazupon/vue-i18n)
-              
-
-```
-
-# 本地存储
+## 本地存储
 
 ```js
 - localStorage
@@ -5522,7 +3251,7 @@ export default instance
 >
 
 
-# install
+## install
 
 ```js
 MyPlugin.install = function (Vue, options) {
@@ -5580,7 +3309,7 @@ new Vue({
 
 
 
-## 插件
+### 插件
 
 ```js
 export const bdLoading = {
@@ -5613,9 +3342,9 @@ this.$bdLoading({
 
 
 
-## 插件封装
+### 插件封装
 
-## 	html引入:
+#### 	html引入:
 ```js
 -loading.vue
 
@@ -5677,8 +3406,7 @@ src
 			|_loading.vue
 ```
 
-js引入:
-=======
+### js引入:
 ```js
 import ToastComponent from './toast.vue'
 
@@ -5796,7 +3524,7 @@ export default bdxhDialog
 
 
 
-# socket.io
+## socket.io
 
 ```js
 https://socket.io/
@@ -5900,7 +3628,7 @@ let socket = io('ws://192.168.14.189:3000')
 
 
 
-# 双向绑定原理
+## 双向绑定原理
 
 ```js
 观察者模式
@@ -5928,7 +3656,7 @@ vue3.0用的是
 proxy对象
 ```
 
-# bus模式传值
+## bus模式传值
 
 ```js
 -bus.js-
@@ -5984,17 +3712,17 @@ created(){
 
 
 
-# MVC模式MVVM模式
+## MVC模式MVVM模式
 
 ```js
 - M：model
 - V： view
 - C： controller
 
-> m负责承载数据，V负责界面展示，C负责逻辑和负责调用数据方法再找到对应的界面元素赋值给它
+m负责承载数据，V负责界面展示，C负责逻辑和负责调用数据方法再找到对应的界面元素赋值给它
 
-- 缺点：程序要写一些无聊的代码：找到DOM元素，给它的value或者给其他属性赋值 例： dom.value = data.msg
-- 监听界面的事件，根据最新变化赋值给model 例=： data.msg = dom.value
+缺点：程序要写一些无聊的代码：找到DOM元素，给它的value或者给其他属性赋值 例： dom.value = data.msg
+监听界面的事件，根据最新变化赋值给model 例=： data.msg = dom.value
 
 
 
@@ -6004,13 +3732,13 @@ created(){
 
 
 
-# VUE-SSR
+## VUE-SSR
 
 ```js
 同构 = 服务器+spa
 ```
 
-## nuxt
+### nuxt
 
 ```js
 npm i save nuxt
@@ -6036,13 +3764,9 @@ beforeCreate 在服务端也会调用,两次调用
 在mounted 里 获取操作后再 发请求
 ```
 
-# jsonp
 
-```
 
-```
-
-# touch事件
+## touch事件
 
 ```js
 touchstart事件：当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发。
@@ -6118,7 +3842,7 @@ var TouchMixin = _vue.default.extend({
   }
 ```
 
-# 本地模拟服务器http-server
+## 本地模拟服务器http-server
 
 ```
 npm i http-server -g
@@ -6149,7 +3873,7 @@ http-server -o
 | -K 或者 --key    | `ssl`密匙文件路径                                            |
 | -h 或者 --help   | 显示帮助                                                     |
 
-# 时间封装mixin
+## 时间封装mixin
 
 ```js
 mixin.js
@@ -6318,264 +4042,13 @@ html中{{countTimeDown(参数)}}
 
 
 
-# vue开发环境与生产环境 跨域
-
-```
-https://segmentfault.com/a/1190000017905030?utm_source=tag-newest
-https://github.com/chimurai/http-proxy-middleware#proxycontext-config
-```
-
-  /config /index.js
-
-```js
-//自行复制黏贴
-proxyTable: {
-  '/apis':{
-    target: 'http://10.1.63.26:19080/',  // 后台api
-    changeOrigin: true,  //是否跨域
-    // secure: true,
-    pathRewrite: {
-      '^/apis': ''   //需要rewrite的,
-    }
-  }
-}
-```
-
-/config /api.config.js 
-
-```js
-//判断是否是生产环境
-var isPro = process.env.NODE_ENV === 'production' //process.env.NODE_ENV用于区分是生产环境还是开发环境
-//根据环境不同导出不同的baseURL
-module.exports = {
-    baseURL: isPro ? 'http://sbsb.com:8888/' : '/apis'
-}
-```
-
-main.js
-
-```js
-import Vue from 'vue'
-import axios from 'axios'
-import apiConfig from '../config/api.config.js'
-axios.defaults.baseURL=apiConfig.baseURL
-```
-
- encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。 
-
-## vue-cli3.0+
-
-```js
-根目录中创建vue.config.js文件:
-module.exports = {
-devServer : {
-        proxy : {
-            '/index' : {
-                target : 'http://localhost/index',
-                // ws : true,
-                changeOrigin : true,
-                pathRewrite : {
-                    '^/index' : ''
-                }
-            }
-        }
-    }
-}
-
-axios.defaults.baseURL = '/index'
-链接：https://juejin.im/post/5d1cc073f265da1bcb4f486d
-
-build后 基地在为运行时的地址
-
-
-```
-
-```js
-import axios from 'axios'
-var baseUrl = ''
-
-// 环境判断
-if (process.env.NODE_ENV === 'development') {
-   baseUrl = '/index'
-} else if (process.env.NODE_ENV === 'test') {
-  baseUrl = 'test'
-} else if (process.env.NODE_ENV === 'production') {
-  baseUrl = 'www.prodction.com'
-}
-
-axios.defaults.baseURL = baseUrl
-
-build后 基地址为 production 的地址
-	如:www.prodction.com/user
-
-```
-
-
-
-```js
-第二种:无需配置axios.defaults.baseURL
-module.exports = {
-devServer : {
-      proxy: "http://localhost:3000",
-      port: 8080
-}
-    
-build后 基地在为运行时的地址;
-    如:生产环境地址为www.baidu.com
-    	请求接口地址为:www.baidu.com/user;
-    	而不是http://localhost:3000/user
-```
-
-## vue-cli3.0+ 配置文件+命令行跨域解决方案
-
-1. 在package.json同级目录下创建 环境配置文件 .env.xxx (xxx一般为:dev / pro /test )
-2. package.json配置 命令行
-3. 配置axios.defaults.baseURL
-4. vue.config.js配置跨域
-
->1.在package.json同级目录下创建 环境配置文件
->
->![image-20200305161012418](D:\walle笔记\-notes-\8、VUE\VUE.assets\image-20200305161012418-1583633264842.png)
->
->```js
->文件内容格式如下:按需
->NODE_ENV="development"                            //环境名
->VUE_APP_BASE_URL="http://xxx.xxx.xxx"             //服务器地址
->VUE_APP_BASE_API="http://xxx.xxx.xxx:port"        //接口地址
->VUE_APP_DIR_NAME="xxx"                            //打包名
->
->注意:
->	1.必须以VUE_APP开头
->    2.上面地址引号后不可有空格
->    3.设置跨域后VUE_APP_BASE_API接上vue.config.js文件中proxy设置的'/api'
->	如:VUE_APP_BASE_API="http://xxx.xxx.xxx:port/api"
->```
->
->2.package.json配置 命令行
->
->```json
->{
->  "name": "qywx",
->  "version": "0.1.0",
->  "private": true,
->  "scripts": {
->    "serve": "vue-cli-service serve",
->    "build": "vue-cli-service build",
->      //'development'为.env.xxx文件中NODE_ENV对应
->      // --mode 后制定执行的文件
->    "serve:dev": "vue-cli-service serve --mode development",
->    "build:pro": "vue-cli-service build --mode production"
->  },
->} 
->
->命令窗口运行:npm run serve:dev 开发模式
->命令窗口运行:npm run build:pro 打包生产模式
->```
->
->3.配置axios.defaults.baseURL
->
->```js
->import axios from 'axios'
->axios.defaults.baseURL = process.env.VUE_APP_BASE_API
->```
->
->4.vue.config.js中devserver配置跨域;
->
->```js
->let env = process.env.NODE_ENV;
->// npm i compression-webpack-plugin -D
->const CompressionWebpackPlugin = require("compression-webpack-plugin");
->module.exports = {
->    // 如果是hash模式
->    publicPath: env === 'production' ? './' : '/',
->
->    // 如果是history模式
->    // publicPath: env === 'production' ? '/' : '/',
->    outputDir: 'dist/c',
->    filenameHashing: false,
->    productionSourceMap: false,
->
->    // 输出文件目录默认'dist
->    outputDir: "dist",
->
->    runtimeCompiler: false,
->
->    // 静态资源目录 (js, css, img, fonts)
->
->    assetsDir: "assets",
->    //设置打包之后是否打包.map文件
->    productionSourceMap: env !== "development" ? false : true,
->
->    // 所有 webpack-dev-server 的选项都支持
->    devServer: {
->        port: 8083,
->        host: "0.0.0.0",
->        hot: true,
->        open: false,
->        disableHostCheck: true,
->        proxy: {
->            // axios.defaults.baseURL = '/api'
->            //或axios.defaults.baseURL = 'http://xxxxx/api'
->            '/api': {
->                target: "http://localhost:3000",
->                // ws: true,
->                changeOrigin: true,
->                pathRewrite: {
->                    '^/api': ''
->                }
->            },
->        }
->        // proxy: "http://localhost:3000",
->
->    },
->    configureWebpack: config => {
->        if (env !== "development") {
->            // 配置打包 压缩js
->            config.plugins.push(
->                new CompressionWebpackPlugin({
->                    algorithm: "gzip",
->                    test: /\.js$|\.html$|.\css/, //匹配文件名
->                    threshold: 10240, //对超过10k的数据压缩
->                    deleteOriginalAssets: false, //不删除源文件
->                    minRatio: 0.8
->                })
->            );
->        }
->    }
->}
->```
->
->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```js
-1
-```
-
-
-
-# 登陆判断
+## 登陆判断
 
 ```js
 登陆请求> 获取token且存入vuex和cookie,进入一个值设置为登陆状态 > 刷新先判断登录状态>有>是否有token无则重新请求获取token;
 ```
 
-# 权限管理
+## 权限管理
 
 ```js
 固定路由表：
@@ -6590,7 +4063,7 @@ build后 基地在为运行时的地址;
 
 ```
 
-Date格式化
+## Date格式化
 
 ```js
 Date.prototype.format = function (fmt) {
@@ -6659,7 +4132,7 @@ merge
 
 ```
 
-# 无感刷新token
+## 无感刷新token
 
 ```js
 https://segmentfault.com/a/1190000020210980
@@ -6740,7 +4213,7 @@ export default instance
 
 
 
-# git项目
+## git项目
 
 ```js
 https://github.com/nieyangyang712/vuecli4.0-admin
@@ -6771,7 +4244,7 @@ fastclick 解决移动端300毫秒
 
 
 
-# vue-cli Eslint + prettier\- Code formatter
+## vue-cli Eslint + prettier\- Code formatter
 
 https://www.jianshu.com/p/65462d2dd51e
 
@@ -6873,7 +4346,7 @@ dateFormat:function(time) {
 使用dateFormat(2020-04-30T01:00:000+000Z) //2020-04-30 01:00:00
 ```
 
-# 瀑布流实现
+## 瀑布流实现
 
 ```js
 <template>
@@ -7041,7 +4514,7 @@ export default {
 
 
 
-# vue-quill-editor
+## vue-quill-editor
 
 ```html
  <quill-editor v-model="content"
@@ -7135,7 +4608,7 @@ methods:{
  </div>
 ```
 
-# 元素滚动置顶-节流
+## 元素滚动置顶-节流
 
 ```js
 mounted() {
@@ -7169,7 +4642,7 @@ const Throttle = function(fn, gapTime) {
 };
 ```
 
-# 按钮节流方法
+## 按钮节流方法
 
 ```js
 变了判断方法:

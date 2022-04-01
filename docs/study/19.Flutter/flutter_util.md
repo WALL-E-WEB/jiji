@@ -264,11 +264,7 @@ WidgetsBinding.instance.addPersistentFrameCallback((_){
 
 
 
-
-
 ## InheritedWidget 
-
-## InheritedWidget
 
 ```dart
 https://blog.csdn.net/gpf1320253667/article/details/112598506?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-0.control&spm=1001.2101.3001.4242

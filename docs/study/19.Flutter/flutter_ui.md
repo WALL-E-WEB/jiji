@@ -3840,7 +3840,7 @@ Future.delayed(Duration(seconds:1),()=>print('1'))
 
 ## FutuerBuilder
 
-```
+```dart
 FutuerBuilder(
 	futuer:
 	initialData:'初始值' // snapshot.data的初始值
@@ -3857,6 +3857,8 @@ FutuerBuilder(
 	}
 )
 ```
+
+
 
 ```
 FutuerBuilder(
@@ -3910,7 +3912,26 @@ Streambulder(
 )
 ```
 
+## Completer
 
+实现Promise
+
+```dart
+Future openImagePicker () {
+    Complete completer = new Completer();
+    ImagePicker.singlePicker(
+       context, 
+       singleCallback: (data) {
+         completer.complete(data);
+       },
+       failCallback:(err) {
+         completer.catchError(err); 
+       }
+    );
+     
+    return completer.future;
+}
+```
 
 # 导入导出
 
