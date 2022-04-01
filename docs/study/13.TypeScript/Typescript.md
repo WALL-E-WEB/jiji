@@ -1171,7 +1171,7 @@ https://www.cnblogs.com/cxyqts/p/14742210.html
 
 https://zhuanlan.zhihu.com/p/103846208
 
-1、Partial<T>： 快速把某个接口类型中定义的属性变成可选
+1、Partial\<T\>： 快速把某个接口类型中定义的属性变成可选
 
 ```ts
 interface Person {
@@ -1194,7 +1194,7 @@ type Partial<T> = {
 }
 ```
 
-2、Required<T>：把所有可选属性变成必选属性
+2、Required\<T\>：把所有可选属性变成必选属性
 
 ```ts
 interface Person {

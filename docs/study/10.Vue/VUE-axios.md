@@ -444,7 +444,7 @@ axios.interceptors.request.use(function(config){
 
 ```
 
-![1568688836118](.vuepress/public/images/vue/1568688836118.png)
+![1568688836118](../../.vuepress/public/images/vue/1568688836118.png)
 
 #### 2.响应拦截
 

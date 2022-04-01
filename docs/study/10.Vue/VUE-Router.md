@@ -333,7 +333,7 @@ const Foo = {
 
 ```
 
- ![img](.vuepress/public/images/vue/20190616165857285-1574860714128.png) 
+ ![img](../../.vuepress/public/images/vue/20190616165857285-1574860714128.png) 
 
 #### 全局守卫
 
