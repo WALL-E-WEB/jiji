@@ -1,6 +1,88 @@
-# JS
+# JavaScript
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
+
+
+
+## script 标签
+
+### 属性：
+
+1. **加载方式：**
+
+   - null（默认）：在浏览器继续解析页面之前，立即读取并执行脚本；
+   - defer：脚本将在页面完成解析后执行；
+   - async：脚本相对于页面的其余部分异步地执行，加载完成立即执行；可能会阻塞；
+
+   | script 标签 |           js 执行顺序            | 是否阻塞html |
+   | :---------: | :------------------------------: | :----------: |
+   |    null     |           按html中顺序           |     阻塞     |
+   |    defer    |           按html中顺序           |    不阻塞    |
+   |    async    | 按html中顺序，网络下载完成后执行 |  可能会阻塞  |
+
+   ```html
+   <script src='xxx'></script>
+   <script src='xxx' async></script>
+   <script src='xxx' defer></script>
+   ```
+
+   **使用建议：**
+
+   - 如果脚本是模块化的并且不依赖任何脚本，那么使用`async`.
+   - 如果脚本依赖或被另一个脚本依赖，则使用`defer`.
+   - 如果脚本很小并且依赖于`async`脚本，则使用不`script`带任何属性放置在脚本*上方的内联。*`async`；
+
+   参考：[参考](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html)
+
+2. **crossorigin：**开启cors（跨域）校验；[官方地址](https://developer.mozilla.org/zh-CN/docs/web/html/attributes/crossorigin)
+
+   - `anonymous`(默认)：代表同域会带上cookie，跨域则不带上cookie；相当于 fecth请求的`credentials: 'same-origin'`。
+   - `use-credentials`：跨域也会带上cookie；相当于fetch请求的 `credentials: 'include'`，这种情况下跨域的response header 需要设置`'Access-Control-Allow-Credentials' = true`，否则cors失败。
+
+3. **integrity：**
+
+4. **type：**
+
+   - text/javascript：
+
+     ```html
+      <script type="text/javascript">
+         console.log(1);
+     </script>
+     ```
+
+   - application/json：
+
+     ```html
+     <script id="jsTagId" type="application/json">
+         {
+         	"key":1
+         }
+     </script>
+     <!-- 获取 jsTagId 中的数据 -->
+     const jsonStr = document.getElementById('jsTagId').innerText;
+     const json = JSON.parse(jsonStr);
+     ```
+
+     
+
+   - module:
+
+   ```html
+   <script type="module">
+       import { fn } from './fn.js';
+       fn();
+   </script>
+   
+   // fn.js
+   export const fn = () => {
+     console.log('fn');
+   };
+   ```
+
+5. dd 
+
+
 
 
 
