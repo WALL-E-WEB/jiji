@@ -108,6 +108,10 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
 
 7. **nomodule：**支持module的浏览器将不会加载带有nomodule属性的script。
 
+8. **Referrer-Policy：**设置请求头referer字段的内容；[官方](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy)
+
+9. 等等
+
 ### 按需引入：
 
 ```javascript
