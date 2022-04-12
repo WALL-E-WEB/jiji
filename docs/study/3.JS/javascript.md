@@ -6,6 +6,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
 
 ## script 标签
 
+[MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script)
+
 ### 属性：
 
 1. **加载方式：**
@@ -34,12 +36,32 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
 
    参考：[参考](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html)
 
+   **js获取是否为异步模式：**[官](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/currentScript)
+
+   ```javascript
+   if (document.currentScript.async) {
+     console.log("Executing asynchronously");
+   } else {
+     console.log("Executing synchronously");
+   }
+   ```
+
+   
+
 2. **crossorigin：**开启cors（跨域）校验；[官方地址](https://developer.mozilla.org/zh-CN/docs/web/html/attributes/crossorigin)
 
    - `anonymous`(默认)：代表同域会带上cookie，跨域则不带上cookie；相当于 fecth请求的`credentials: 'same-origin'`。
    - `use-credentials`：跨域也会带上cookie；相当于fetch请求的 `credentials: 'include'`，这种情况下跨域的response header 需要设置`'Access-Control-Allow-Credentials' = true`，否则cors失败。
 
-3. **integrity：**
+3. **integrity：**integrity属性设置引入js文件的hash值，浏览器在下载js文件时候，会对js文件进行hash计算，如果一致则正常加载，否则拒绝加载运行。
+
+   ```html
+   <script
+   	integrity="hash-ddd"
+   	src="https://cdn.xxx.xx/js/index.js"></script>
+   ```
+
+   [生成hash工具](https://www.srihash.org/)
 
 4. **type：**
 
@@ -80,9 +102,42 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide
    };
    ```
 
-5. dd 
+5. **src：**
 
+6. **text：**
 
+7. **nomodule：**支持module的浏览器将不会加载带有nomodule属性的script。
+
+### 按需引入：
+
+```javascript
+// 加载js
+function loadJS(url, callback) {
+  	let isHas = document.querySelector("script[src='" + url + "']");
+    if (isHas) return;
+  
+    var script = document.createElement('script'),
+        fn = callback || function () { };
+    script.type = 'text/javascript';
+    //IE
+    if (script.readyState) {
+        script.onreadystatechange = function () {
+            if (script.readyState == 'loaded' || script.readyState == 'complete') {
+                script.onreadystatechange = null;
+                fn();
+            }
+        };
+ 
+    } else {
+        //其他浏览器
+        script.onload = function () {
+            fn();
+        };
+    }
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+```
 
 
 
