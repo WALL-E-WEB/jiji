@@ -194,11 +194,9 @@ function loadJS(url, callback) {
     
     debugger
     ```
-```
-    
-    ```javascript
-    document.write()
-     将数据 写到 body 中
+```javascript
+document.write()
+将数据 写到 body 中
 ```
 
 ​    
