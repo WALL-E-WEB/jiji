@@ -198,11 +198,41 @@ git  config  --global   --unset  user.name
 ### git branch
 
 ```js
+列出远程分支：git branch -r
+列出远程与本地分支：git branch -a
+拷贝当前分支：git branch -c 新分支名
+查看本地分支与远程分支映射：git branch -vv
+
+重命名分支名称：
+		git branch -M old new
+		git branch -m old new
+    git branch -M new_name // 当前分支名 改为 new_name
+
+
 新建分支: git branch 分支名
+新建并切换到分支：git checkout -b 本地名称
+
 切换分支: git checkout 分支名
-合并分支: git merge 分支名 //回到主分支合并
+合并分支: git merge 分支名 //将【分支名】合并到当前所属分支；
+
+
 删除分支: git branch -d 分支名
+强制删除分支: git branch -D 分支名
+删除远程分支: git branch -d -r branchname
+
+
+
 ```
+
+### Git 本地同步线上库
+
+```js
+git remote add origin https://
+git branch -M main
+git push -u origin main
+```
+
+
 
 ## git stash -u 存档
 
