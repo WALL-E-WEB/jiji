@@ -200,6 +200,7 @@ git  config  --global   --unset  user.name
 ```js
 列出远程分支：git branch -r
 列出远程与本地分支：git branch -a
+
 拷贝当前分支：git branch -c 新分支名
 查看本地分支与远程分支映射：git branch -vv
 
@@ -223,6 +224,16 @@ git  config  --global   --unset  user.name
 
 
 ```
+
+### git push
+
+```js
+本地分支-推送至-远程分支：git push origin 本地分支名:远程分支名
+
+本地推送-（-u）且本地分支绑定远程分支：git push -u origin main
+```
+
+
 
 ### Git 本地同步线上库
 
