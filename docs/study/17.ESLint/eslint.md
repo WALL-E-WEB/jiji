@@ -993,3 +993,68 @@ eslint-plugin-vue
 https://www.cnblogs.com/dreamsqin/p/10906951.html
 ```
 
+```js
+module.exports = {
+  extends: [
+    // add more generic rulesets here, such as:
+    // 'eslint:recommended',
+    //   'plugin:vue/vue3-recommended',
+    "plugin:vue/vue3-strongly-recommended"
+    // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
+  ],
+  rules: {
+    // override/add rules settings here, such as:
+    // 'vue/no-unused-vars': 'error'
+    "vue/html-closing-bracket-newline": ["error", {
+      "singleline": "never",
+      "multiline": "never"
+    }],
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": {
+        "max": 3
+      },
+      "multiline": {
+        "max": 3
+      }
+    }],
+    "vue/first-attribute-linebreak": ["error", {
+      "singleline": "ignore",
+      "multiline": "beside"
+    }],
+    "vue/multi-word-component-names": ["error", {
+      "ignores": []
+    }],
+    "vue/multi-word-component-names": ["off", {
+      "ignores": []
+    }],
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": {
+        "max": 3
+      },
+      "multiline": {
+        "max": 1
+      }
+    }],
+    "vue/multiline-html-element-content-newline": ["error", {
+      "ignoreWhenEmpty": true,
+      "ignores": [ "text"],
+      "allowEmptyLines": false
+    }],
+    "vue/singleline-html-element-content-newline": ["error", {
+      "ignoreWhenNoAttributes": true,
+      "ignoreWhenEmpty": true,
+      "ignores": ["text",]
+    }],
+    "vue/html-indent": ["error", type, {
+      "attribute": 1,
+      "baseIndent": 1,
+      "closeBracket": 0,
+      "alignAttributesVertically": true,
+      "ignores": []
+    }]
+   
+  }
+}
+  
+```
+
