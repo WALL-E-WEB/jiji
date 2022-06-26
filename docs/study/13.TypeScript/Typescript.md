@@ -1,3 +1,5 @@
+# TypeScript
+
 public 公共的
 
 private 私有的
@@ -1163,6 +1165,146 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
 }
 ```
 
+## 类型操作符
+
+### typeof
+
+用于检查变量类型的
+
+```typescript
+const str = "s";
+
+const obj = { name: "s" };
+
+const nullVar = null;
+const undefinedVar = undefined;
+
+const func = (input: string) => {
+  return input.length > 10;
+}
+
+type Str = typeof str; // "s"
+type Obj = typeof obj; // { name: string; }
+type Null = typeof nullVar; // null
+type Undefined = typeof undefined; // undefined
+type Func = typeof func; // (input: string) => boolean
+```
+
+类型标注中使用 typeof
+
+```typescript
+const func = (input: string) => {
+  return input.length > 10;
+}
+
+const func2: typeof func = (name: string) => {
+  return name === 'linbudu'
+}
+```
+
+### ReturnType
+
+```typescript
+const func = (input: string) => {
+  return input.length > 10;
+}
+
+// boolean
+type FuncReturnType = ReturnType<typeof func>
+```
+
+
+
+### is
+
+```typescript
+function isString(input: unknown): input is number {
+  return typeof input === "string";
+}
+
+function foo(input: string | number) {
+  if (isString(input)) {
+    // 报错，在这里变成了 number 类型
+    (input).replace("linbudu", "linbudu599")
+  }
+  if (typeof input === 'number') { }
+  // ...
+}
+```
+
+```typescript
+export type Falsy = false | "" | 0 | null | undefined;
+
+export const isFalsy = (val: unknown): val is Falsy => !val;
+
+// 不包括不常用的 symbol 和 bigint
+export type Primitive = string | number | boolean | undefined
+
+export const isPrimitive = (val: unknown): val is Primitive => ['string', 'number', 'boolean' , 'undefined'].includes(typeof val);
+```
+
+### in
+
+```typescript
+interface Foo {
+  foo: string;
+  fooOnly: boolean;
+  shared: number;
+}
+
+interface Bar {
+  bar: string;
+  barOnly: boolean;
+  shared: number;
+}
+
+function handle(input: Foo | Bar) {
+/// 判断'foo' 是否属于input 的key
+  if ('foo' in input) {
+    input.fooOnly;
+  } else {
+    input.barOnly;
+  }
+}
+```
+
+### instanceof
+
+```typescript
+class FooBase {}
+
+class BarBase {}
+
+class Foo extends FooBase {
+  fooOnly() {}
+}
+class Bar extends BarBase {
+  barOnly() {}
+}
+
+function handle(input: Foo | Bar) {
+  if (input instanceof FooBase) {
+    input.fooOnly();
+  } else {
+    input.barOnly();
+  }
+}
+```
+
+### assert
+
+```typescript
+import assert from 'assert';
+
+let name: any = 'linbudu';
+
+/// 不为ture则报错；该句以下则不执行
+assert(typeof name === 'number');
+
+// number 类型
+name.toFixed();
+```
+
 
 
 ## 工具类型 
@@ -1170,6 +1312,169 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
 https://www.cnblogs.com/cxyqts/p/14742210.html
 
 https://zhuanlan.zhihu.com/p/103846208
+
+### 范型type
+
+```typescript
+type Factory<T> = T | number | string;
+/// 默认参数
+type Factory<T = boolean> = T | number | string;
+
+type ResStatus<ResCode extends number> = ResCode extends 10000 | 10001 | 10002
+  ? 'success'
+  : 'failure';
+type ResStatus<ResCode extends number = 10000> = ResCode extends 10000 | 10001 | 10002
+  ? 'success'
+  : 'failure';
+
+// "success"
+type Res4 = ResStatus;
+
+const foo: Factory<boolean> = true;
+
+ype MaybeArray<T> = T | T[];
+
+function ensureArray<T>(input: MaybeArray<T>): T[] {
+  return Array.isArray(input) ? input : [input];
+}
+```
+
+多泛型关联
+
+```typescript
+type Conditional<Type, Condition, TruthyResult, FalsyResult> =
+  Type extends Condition ? TruthyResult : FalsyResult;
+
+//  "passed!"
+type Result1 = Conditional<'linbudu', string, 'passed!', 'rejected!'>;
+
+// "rejected!"
+type Result2 = Conditional<'linbudu', boolean, 'passed!', 'rejected!'>;
+```
+
+对象类型中的泛型
+
+```typescript
+interface IRes<TData = unknown> {
+  code: number;
+  error?: string;
+  data: TData;
+}
+```
+
+函数泛型
+
+```typescript
+function handle<T>(input: T): T {}
+const handle = <T>(input: T): T => {}
+```
+
+class 泛型
+
+```typescript
+
+```
+
+
+
+### 联合类型｜与交叉类型 &
+
+联合类型的符号是`|`：如`A | B`，只需要实现 A 或 B 即可；
+
+交叉类型`&`:A & B，**需要同时满足 A 与 B 两个类型**才行；
+
+```typescript
+interface NameStruct {
+  name: string;
+}
+
+interface AgeStruct {
+  age: number;
+}
+
+type ProfileStruct = NameStruct & AgeStruct;
+
+const profile: ProfileStruct = {
+  name: "linbudu",
+  age: 18
+}
+
+type StrAndNum = string & number; // never
+```
+
+### 索引类型 keyof
+
+**索引签名类型**
+
+```typescript
+interface AllStringTypes {
+  [key: string]: string;
+}
+```
+
+**keyof 索引类型查询**
+
+```typescript
+interface Foo {
+  a: 1,
+  b: 2
+}
+/// FooKeys = "a" | "b"
+type FooKeys = keyof Foo; // "b" | "a"
+```
+
+**索引类型访问**
+
+```typescript
+// 通过 类型访问 获取 类型
+interface Foo {
+  propA: number;
+  propB: boolean;
+}
+
+type PropAType = Foo['propA']; // number
+type PropBType = Foo['propB']; // boolean
+```
+
+### 映射类型 in keyof
+
+从一个联合类型依次映射到其内部的每一个类型
+
+```typescript
+type Stringify<T> = {
+  [K in keyof T]: string;
+};
+
+type Clone<T> = {
+  [K in keyof T]: T[K];
+};
+
+
+```
+
+```typescript
+// 案例
+interface Foo {
+  prop1: string;
+  prop2: number;
+  prop3: boolean;
+  prop4: () => void;
+}
+
+type StringifiedFoo = Stringify<Foo>;
+
+// 等价于
+interface StringifiedFoo {
+  prop1: string;
+  prop2: string;
+  prop3: string;
+  prop4: string;
+}
+```
+
+## 内置工具类型
+
+### Partial
 
 1、Partial\<T\>： 快速把某个接口类型中定义的属性变成可选
 
@@ -1194,6 +1499,8 @@ type Partial<T> = {
 }
 ```
 
+### Required
+
 2、Required\<T\>：把所有可选属性变成必选属性
 
 ```ts
@@ -1215,6 +1522,16 @@ type PersonRequired = Required<Person>;
 type Required<T> = {
     [P in keyof T]-?: T[P]
 }
+```
+
+### IsEqual
+
+```typescript
+type IsEqual<T> = T extends true ? 1 : 2;
+
+type A = IsEqual<true>; // 1
+type B = IsEqual<false>; // 2
+type C = IsEqual<'linbudu'>; // 2
 ```
 
 
@@ -1267,255 +1584,260 @@ declare enum Directions {
 
 
 
+# tsconfig
+
+[官网配置]( https://www.typescriptlang.org/tsconfig)
+
+[参考文章](https://juejin.cn/post/7039583726375796749)
+
+### include
+
+​	指定要包含在程序中的文件名
+
+### exclude
+
+`include`并`exclude`支持通配符来制作 glob 模式：
+
+- `*`匹配零个或多个字符（不包括目录分隔符）
+- `?`匹配任何一个字符（不包括目录分隔符）
+- `**/`匹配任何嵌套到任何级别的目录
 
 
 
+###  baseUrl & paths
 
-# Vue2-TS
-
-```js
-<script lang="ts">
-import { Component, Emit, Inject, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
-import draggable from "vuedraggable";
-@Component({
-    components: { draggable }
-})
-export default class HelloWorld extends Vue {
-  @Prop() private msg!:string;
-  @Prop(Number) msg2!: string;
-  @Prop({type:Number,default:1}) msg3!: number;
-  mesage: number = 1;
-  private created() {
-    console.log(222);
-  }
-  btn(): void {
-    this.mesage++;
-  }
-  // changemsg():void{
-  //   console.log('bbb')
-  // };
-  get computedMSG() {
-    return this.mesage + "123344";
-  }
-  @Watch("mesage")
-  changemsg() {
-    console.log("bbb");
-  }
-  @Watch("msg2")
-  changemsg2() {
-    console.log("ccc");
-  }
-}
-</script>
-```
-
-
-
-```js
-<script lang="ts">
-import {
-    Prop, 
-    PropSync, 
-    Model, 
-    Watch, 
-    Provide, 
-    Inject,
-    ProvideReactive, 
-    InjectReactive, 
-    Emit, 
-    Ref,   
-    Component, 
-    Mixins, 
-    State
-    Vue} from "vue-property-decorator";
-<script>
-```
-
-@Prop
-
-```js
-@Component
-export default class YourComponent extends Vue {
-  @Prop(Number) readonly propA: number | undefined
-  @Prop({ default: 'default value' }) readonly propB!: string
-  @Prop([String, Boolean]) readonly propC: string | boolean | undefined
-}
- 	@Prop() age!: number
-```
-
-@PropSync
-
-```js
-<HelloWorld :name.sync="name" /> //父组件
-```
-
-```js
-<template>
-	<input type="text" v-model="syncedName" />
-    <div>{{name}}</div>    
-</template>
-
-<script lang="ts">
-import { Component, Prop, Vue, Watch, PropSync } from "vue-property-decorator";
-export default class HelloWorld extends Vue {
-    @PropSync("name", { type: String }) syncedName!: string;
-}
-</script>
-```
-
-@Model
-
-子父双向绑定
-
-```js
-<HelloWorld @change="onchange" v-model="checked" />
-    <div>{{checked}}</div>
-
-onchange(e) {
-   console.log(e);
- }
-```
-
-```js
- <input type="checkbox"
-      @change="changed"
-      :checked="checked">
-      
-@Model("change", { type: Boolean }) checked!: boolean;
-
-changed(ev: any) {
-    console.log(ev);
-    this.$emit("change", ev.target.checked);
-  }
-```
-
-### @Watch
-
-```js
-@Watch('child')
-  onChildChanged(val: string, oldVal: string) {}
-
-  @Watch('person', { immediate: true, deep: true })
-  onPersonChanged1(val: Person, oldVal: Person) {}
-
-  @Watch('person')
-  onPersonChanged2(val: Person, oldVal: Person) {}
-```
-
-### @Provide
-
-```js
-@Provide() foo = 'foo'
-@Provide('bar') baz = 'bar'
-```
-
-@Inject
-
-```js
-@Inject() readonly foo!: string
-@Inject('bar') readonly bar!: string
-@Inject({ from: 'optional', default: 'default' }) readonly optional!: string
-@Inject(symbol) readonly baz!: string
-```
-
-### @ProvideReactive
-
-```js
-父级变化 子也会变化
-const key = Symbol()
-@Component
-class ParentComponent extends Vue {
-  @ProvideReactive() one = 'value'
-  @ProvideReactive(key) two = 'value'
-}
-
-@Component@Component
-class ChildComponent extends Vue {
-  @InjectReactive() one!: string
-  @InjectReactive(key) two!: string
-}
-
-```
-
-@Emit
-
-```js
-  @Emit()
-  addToCount(n: number) {
-    this.count += n
-  }
-
-  @Emit('reset')
-  resetCount() {
-    this.count = 0
-  }
-
-  @Emit()
-  returnValue() {
-    return 10
-  }
-
-  @Emit()
-  onInputChange(e) {
-    return e.target.value
-  }
-    @Emit()
-  promise() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(20)
-      }, 0)
-    })
-  }
-```
-
-```js
-methods: {
-    addToCount(n) {
-      this.count += n
-      this.$emit('add-to-count', n)
-    },
-    resetCount() {
-      this.count = 0
-      this.$emit('reset')
-    },
-    returnValue() {
-      this.$emit('return-value', 10)
-    },
-    onInputChange(e) {
-      this.$emit('on-input-change', e.target.value, e)
-    },
-    promise() {
-      const promise = new Promise(resolve => {
-        setTimeout(() => {
-          resolve(20)
-        }, 0)
-      })
-
-      promise.then(value => {
-        this.$emit('promise', value)
-      })
+```json
+{
+  "compilerOptions": {
+    // 注意：baseUrl 必选，与 paths 成对出现，以 tsconfig.json 文件所在目录开始
+    "baseUrl": ".", 
+    "paths": {
+      // 映射列表
+      "@/*": [
+        "src/*"
+      ],
+      "moduleA": [
+        "src/libs/moduleA"
+      ]
     }
   }
+}
+
+// 代码里这么写
+import Toast from '@/components/Toast.ts' // 模块实际位置: src/components/Toast.ts
+import TestModule from 'moduleA/index.js' // 模块实际位置: src/libs/moduleA/index.js
 ```
 
-@Ref
+### compilerOptions
 
-```js
-<div ref="getdom">two:{{two}}</div>
+```json
+{
+  "compilerOptions": {
+    /* 基本选项 */
+    "target": "es6", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "module": "commonjs", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+    "lib": [], // 指定要包含在编译中的库文件
+    "allowJs": true, // 允许编译 javascript 文件
+    "checkJs": true, // 报告 javascript 文件中的错误
+    "jsx": "preserve", // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "declaration": true, // 生成相应的 '.d.ts' 文件
+    "declarationDir": "./dist/types", // 生成的 '.d.ts' 文件保存文件夹
+    "sourceMap": true, // 生成相应的 '.map' 文件
+    "outFile": "./", // 将输出文件合并为一个文件
+    "outDir": "./dist", // 指定输出目录
+    "rootDir": "./", // 用来控制输出目录结构 --outDir.
+    "removeComments": true, // 删除编译后的所有的注释
+    "noEmit": true, // 不生成输出文件
+    "importHelpers": true, // 从 tslib 导入辅助工具函数
+    "isolatedModules": true, // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
+
+    /* 严格的类型检查选项 */
+    "strict": true, // 启用所有严格类型检查选项
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true, // 启用严格的 null 检查
+    "noImplicitThis": true, // 当 this 表达式值为 any 类型的时候，生成一个错误
+    "alwaysStrict": true, // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
+
+    /* 额外的检查 */
+    "noUnusedLocals": true, // 有未使用的变量时，抛出错误
+    "noUnusedParameters": true, // 有未使用的参数时，抛出错误
+    "noImplicitReturns": true, // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noFallthroughCasesInSwitch": true, // 报告switch语句的fallthrough错误。（即，不允许switch的case语句贯穿）
+
+    /* 模块解析选项 */
+    "moduleResolution": "node", // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "baseUrl": "./", // 用于解析非相对模块名称的基础目录
+    "paths": {}, // 模块名到基于 baseUrl 的路径映射的列表
+    "rootDirs": [], // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    "typeRoots": [], // 包含类型声明的文件列表
+    "types": [], // 需要包含的类型声明文件名列表
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入。
+    "esModuleInterop": true, // 支持合成模块的默认导入
   
-@Ref("getdom") readonly button: any;
-   
-     mounted() {
-     console.log("button", this.button);
-     }
+    /* Source Map Options */
+    "sourceRoot": "./", // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    "mapRoot": "./", // 指定调试器应该找到映射文件而不是生成文件的位置
+    "inlineSourceMap": true, // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    "inlineSources": true, // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
+
+    /* 其他选项 */
+    "experimentalDecorators": true, // 启用装饰器
+    "emitDecoratorMetadata": true // 为装饰器提供元数据的支持
+  },
+  /* 指定编译文件或排除指定编译文件 */
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "files": ["index.ts", "test.ts"],
+  // 从另一个配置文件里继承配置
+  "extends": "@tsconfig/recommended",
+  // 让 IDE 在保存文件的时候根据 tsconfig.json 重新生成文件
+  "compileOnSave": true // 支持这个特性需要Visual Studio 2015， TypeScript 1.8.4 以上并且安装 atom-typescript 插件
+}
 ```
 
-vue  @State
 
-```js
-@State (state=> state.storekey) stateKey!:number
+
+### json
+
+```json
+{
+  "files": ["main.ts", "supplemental.ts"],
+  "include": ["src/**/*", "tests/**/*"],
+  "extends": "./configs/base",
+  
+  
+}
 ```
 
+```json
+{
+   // 指定需要编译文件 否则默认当前目录下除了exclude之外的所有.ts, .d.ts,.tsx 文件
+   "include": ["./test.ts"],
+   // 指定需要编译文件 否则默认当前目录下除了exclude之外的所有.ts, .d.ts,.tsx 文件
+   "files": ["./src/**/*"],
+   // 不编译某些文件
+   "exclude": ["test.ts"],
+   "compilerOptions": {
+       // 只编译修改过的文件,这个时候会生成tsconfig.tsbuildinfo,下次编译的时候会进行对比只编译修改过的文件 
+       "incremental": true,
+       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+       "target": "es5",
+       // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+       "module": "commonjs",
+       /* 注意：如果未指定--lib，则会注入默认的librares列表。注入的默认库为：
+       对于 --target ES5: DOM,ES5,ScriptHost
+       对于 --target ES6: DOM,ES6,DOM.Iterable,ScriptHost
+       TS 绝不会在您的代码中注入polyfill,所以需要你自己制定编译lib */
+       "lib": ["es5", "dom", "ScriptHost", "es2015.promise"],
+       // 允许编译JS
+       "allowJs": true,
+       /* 是否检测JS的语法,例如下面的语法编辑器会报错
+       let name = 'paul';
+       console.log(name.a.b) */
+       "checkJs": true,
+       // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+       "jsx": preserve,
+       /* 如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件,
+       declaration和allowJs不能同时设为true */
+       "declaration": true
+       // 值为true或false，指定是否为声明文件.d.ts生成map文件
+       "declarationMap": true
+       // 用来指定编译时是否生成.map文件
+       "sourceMap": true,
+       // 当module设置为 'amd' and 'system'的时候可以使用此命令,这样可以将ts文件打包到一个目录下
+       "outFile":"./",
+       //  outDir 编译后的文件存到到哪个目录下,默认是每一个ts文件的当前目录,,下面的配置就是把ts编译到build目录下
+       "outDir": './build',
+       // 下面单独介绍
+       "rootDir": "./src",
+       // 是否编译构建引用项目,很复杂后面介绍
+       "composite": true,
+       // 指定文件用来存储增量编译信息,默认是tsconfig.tsbuildinfo
+       "tsBuildInfoFile": "./",
+       // 编译的时候删除注释
+       "removeComments": true,
+       // 不生成编译文件，这个一般比较少用,这个build目录下将没有任何文件,但是会进行编译,有错误会抛出
+       "noEmit": true,
+       // 是否引入npm包tslib中的辅助函数,__extends等 
+       "importHelpers": true,
+       // 当target为'ES5' or 'ES3'时，为'for-of', spread, and destructuring'中的迭代器提供完全支持
+       "downlevelIteration": true,
+       // isolatedModules的值为true或false，指定是否将每个文件作为单独的模块，默认为true，它不可以和declaration同时设定
+       // 不是很理解,将每一个文件作为单独模块
+       "isolatedModules": true,
+       /* Strict Type-Checking Options */
+       // 严格模式将会打开下面的几个选项
+       "strict": false, 
+       /* 不允许变量或函数参数具有隐式any类型,例如
+       function(name) {
+           return name;
+       } */
+       "noImplicitAny": true,
+       // null类型检测,const teacher: string = null;会报错
+       "strictNullChecks": true,
+       // 对函数参数进行严格逆变比较
+       "strictFunctionTypes": true,
+       // 严格检查bind call apply
+       "strictBindCallApply": true,
+       // 此规则将验证构造函数内部初始化前后已定义的属性。
+       "strictPropertyInitialization": true,
+       // 检测this是否隐式指定
+       "noImplicitThis": true,
+       // 使用js的严格模式,在每一个文件上部声明 use strict
+       "alwaysStrict": true,
+       /* Additional Checks */
+       // 默认false,是否检测定义了但是没使用的变量
+       "noUnusedLocals": true,
+       // 用于检查是否有在函数体中没有使用的参数
+       "noUnusedParameters": true,
+       // 用于检查函数是否有返回值，设为true后，如果函数没有返回值则会提示
+       "noImplicitReturns": true,
+       // 用于检查switch中是否有case没有使用break跳出switch
+       "noFallthroughCasesInSwitch": true,
+       /* Module Resolution Options */
+       // 用于选择模块解析策略，有'node'和'classic'两种类型
+       "moduleResolution": "node",
+       // 复杂的很 下面单独介绍这三个模块
+       "baseUrl": './'
+       "paths": {},                   
+       "rootDirs": [],
+       /* typeRoots用来指定声明文件或文件夹的路径列表，如果指定了此项，则只有在这里列出的声明文件才会被加载 */
+       typeRoots: [],
+       // types用来指定需要包含的模块，只有在这里列出的模块的声明文件才会被加载进来
+       types:[],
+       // 用来指定允许从没有默认导出的模块中默认导入 
+       "allowSyntheticDefaultImports": true, 
+       // 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
+       "esModuleInterop": true ,
+       // 不把符号链接解析为真实路径，具体可以了解下webpack和node.js的symlink相关知识
+       "preserveSymlinks": true,
+       "allowUmdGlobalAccess": true,
+       
+       // sourceRoot用于指定调试器应该找到TypeScript文件而不是源文件的位置，这个值会被写进.map文件里
+       "sourceRoot": '',
+       // mapRoot用于指定调试器找到映射文件而非生成文件的位置，指定map文件的根路径，该选项会影响.map文件中的sources属性
+       "mapRoot",
+       // inlineSourceMap指定是否将map文件内容和js文件编译在一个同一个js文件中，如果设为true,则map的内容会以//#soureMappingURL=开头，然后接base64字符串的形式插入在js文件底部
+       "inlineSourceMap": true,
+       // inlineSources用于指定是否进一步将ts文件的内容也包含到输出文件中
+       "inlineSources": true,
+       
+       // experimentalDecorators用于指定是否启用实验性的装饰器特性
+       "experimentalDecorators": true,
+       
+       // emitDecoratorMetadata用于指定是否为装上去提供元数据支持，关于元数据，也是ES6的新标准，可以通过Reflect提供的静态方法获取元数据，如果需要使用Reflect的一些方法，需要引用ES2015.Reflect这个库
+       "emitDecoratorMetadata": true,
+       // compileOnSave的值是true或false，如果设为true，在我们编辑了项目中的文件保存的时候，编辑器会根据tsconfig.json中的配置重新生成文件，不过这个要编辑器支持
+       "compileOnSave": true,
+       // 很复杂 下面介绍
+       "references":[]",
+   }
+}
+```
 
+### babel 编译 typescript 
+
+```json
+https://mp.weixin.qq.com/s/N5xVhQzBDy-Dj2ccFVru6Q
+```
 

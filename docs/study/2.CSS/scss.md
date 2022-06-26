@@ -89,7 +89,7 @@ p {
 
 ### @each
 
-@each $key,$value in  <list or map>
+@each $key,$value in  \<list or map\>
 
 ```scss
 $colors : (
