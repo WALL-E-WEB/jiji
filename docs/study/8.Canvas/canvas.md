@@ -1,4 +1,6 @@
 ## Canvas
+MDN：https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API
+https://www.twle.cn/l/yufei/canvas/canvas-basic-export-data-url.html
 
 ```js
 canvas Echarts 可视化
