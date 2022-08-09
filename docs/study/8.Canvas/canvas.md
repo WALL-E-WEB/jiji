@@ -14,6 +14,26 @@ canvas 文档:
 https://www.runoob.com/tags/ref-canvas.html
 ```
 
+## HTMLCanvasElement
+```js
+var canvas = document.getElementById('circleCanvasId');
+Properties:
+    canvas.height = 150;
+    canvas.width = 300;
+
+Methods:
+    
+```
+
+## 动态设置宽高
+```js
+    var canvas = document.getElementById('circleCanvasId');
+    let w = canvas.offsetWidth;
+    let h = canvas.offsetHeight;
+    var ctx = canvas.getContext('2d');
+    canvas.width = w;
+    canvas.height = h;
+```
 
 
 ## 创建
