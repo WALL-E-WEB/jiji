@@ -459,6 +459,8 @@ Stream<int> naturalsStreamDownFrom(int n) async* {
 
 ## 类
 
+顺序：自身方法 with extends implements
+
 封装 继承 多态
 
 ```dart
