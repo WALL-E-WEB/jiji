@@ -634,7 +634,7 @@ mixin MixinName{
 }
 ```
 
-
+执行顺序：自身类方法 》with 后面会覆盖前面 > extends 》 implements
 
 ### 单例
 
