@@ -334,11 +334,13 @@ function example() {
 let { foo, bar } = example();
 ```
 
+
+
 ## 第四章 字符串的拓展
 
-## 字符串新增方法
+### 字符串新增方法
 
-### 方法
+#### 方法
 
 - includes：
 - startsWith：
@@ -356,7 +358,7 @@ s.endsWith('world',0); // true 第二个参数表示搜索 结束位置
 s.repeat(2)// 'hello worldhello world'
 ```
 
-## 标签模版
+### 标签模版
 
 ```javascript
 function tag(s,v1,v2){
@@ -373,5 +375,39 @@ tag `Hello ${10} world ${20}`;
 // ""
 // 10
 // 20
+```
+
+
+
+## 第五章 正则的拓展
+
+### RegExp第二个参数
+
+```javascript
+let regex = new RegExp(/xyz/g,'i'); // 第二个参数会覆盖修饰符 
+```
+
+### 方法：
+
+```javascript
+match：
+replace：
+search：
+split：
+```
+
+### y修饰符
+
+
+
+
+
+### 具名匹配
+
+```javascript
+const re =  /(\d{4})-(\d{2})-(\d{2})/;
+
+const match = re('2022-01-02'); // [2022,01,02];
+
 ```
 
