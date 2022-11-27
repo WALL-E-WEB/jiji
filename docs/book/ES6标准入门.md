@@ -221,8 +221,134 @@ let { baz } = { foo: 'aaa', bar: 'bbb' };
 baz // undefined
 
 /// 解构并重新赋值
+/// 此时 foo 是模式；baz 才是变量
 let { foo: baz } = { foo: 'aaa', bar: 'bbb' };
 baz // "aaa"
 foo // error: foo is not defined
+```
+
+```javascript
+let obj = {
+  p: [
+    'Hello',
+    { y: 'World' }
+  ]
+};
+
+let { p, p: [x, { y }] } = obj;
+x // "Hello"
+y // "World"
+p // ["Hello", {y: "World"}]
+```
+
+#### 默认值：
+
+```javascript
+var {x = 3} = {};
+x // 3
+
+var {x: y = 3} = {x: 5};
+y // 5
+```
+
+已声明变量解构：
+
+```javascript
+// 错误的写法
+let x;
+{x} = {x: 1};
+// SyntaxError: syntax error
+
+
+// 正确的写法
+let x;
+({x} = {x: 1});
+```
+
+数组对象解构：
+
+```javascript
+let arr = [1, 2, 3];
+let {0 : first, [arr.length - 1] : last} = arr;
+first // 1
+last // 3
+```
+
+### 字符串解构
+
+```javascript
+const [a, b, c, d, e] = 'hello';
+a // "h"
+b // "e"
+c // "l"
+d // "l"
+e // "o"
+
+let {length : len} = 'hello';
+len // 5
+```
+
+### 函数参数解构
+
+```javascript
+function add([x, y]){
+  return x + y;
+}
+
+add([1, 2]); // 3
+
+function move({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+```
+
+**案例：**
+
+交换变量的值：
+
+```javascript
+let x = 1;
+let y = 2;
+
+[x, y] = [y, x];
+```
+
+从函数返回多个值：
+
+```javascript
+// 返回一个数组
+
+function example() {
+  return [1, 2, 3];
+}
+let [a, b, c] = example();
+
+// 返回一个对象
+
+function example() {
+  return {
+    foo: 1,
+    bar: 2
+  };
+}
+let { foo, bar } = example();
+```
+
+### 字符串新增方法
+
+- includes：
+- startsWith：
+- endsWith:
+- repeat：重复原字符 n 次
+
+```javascript
+let s = 'hello world';
+
+s.startsWith('hello', 0); // true 第二个参数表示开始搜索的位置
+s.includes('o'); // true
+
+s.endsWith('world',0); // true 第二个参数表示搜索 结束位置
+
+s.repeat(2)// 'hello worldhello world'
 ```
 
