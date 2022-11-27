@@ -334,7 +334,11 @@ function example() {
 let { foo, bar } = example();
 ```
 
-### 字符串新增方法
+## 第四章 字符串的拓展
+
+## 字符串新增方法
+
+### 方法
 
 - includes：
 - startsWith：
@@ -350,5 +354,24 @@ s.includes('o'); // true
 s.endsWith('world',0); // true 第二个参数表示搜索 结束位置
 
 s.repeat(2)// 'hello worldhello world'
+```
+
+## 标签模版
+
+```javascript
+function tag(s,v1,v2){
+	console.log(s[0]);
+	console.log(s[1]);
+	console.log(s[2]);
+	console.log(v1);
+	console.log(v2);
+}
+
+tag `Hello ${10} world ${20}`;
+// "Hello "
+// " world "
+// ""
+// 10
+// 20
 ```
 
