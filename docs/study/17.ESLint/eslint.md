@@ -1058,3 +1058,127 @@ module.exports = {
   
 ```
 
+vue2配置 2
+
+```javascript
+module.exports = {
+    'env': {
+        'browser': true,
+        'es2021': true,
+        'node': true
+    },
+    'extends': [
+        'eslint:recommended',
+        'plugin:vue/recommended'
+    ],
+    'overrides': [
+    ],
+    'parserOptions': {
+        'ecmaVersion': 'latest',
+        'sourceType': 'module'
+    },
+    'plugins': [
+        'vue',
+        'eslint-plugin-import-helpers'
+    ],
+    'rules': {
+        'indent': ['error', 4],
+        'quotes': ['error', 'single'],
+        'semi': ['error', 'always'],
+        'no-unused-vars': [1, { 'argsIgnorePattern': '^_', 'destructuredArrayIgnorePattern': '^_' }],
+        'func-call-spacing': ['error', 'never'],
+        'keyword-spacing': ['error', { 'before': true, 'after': true, }],
+        'arrow-spacing': ['error', { 'before': true, 'after': true }],
+        'space-in-parens': ['error', 'never'],
+        'space-unary-ops': [
+            2, {
+                'words': true,
+                'nonwords': false,
+                'overrides': {
+                    'new': false,
+                    '++': false
+                }
+            }],
+        'comma-spacing': ['error', { 'before': false, 'after': true }],
+        'object-curly-spacing': ['error', 'always'],
+        'array-bracket-spacing': ['error', 'never'],
+        // 导入顺序 规则
+        'import-helpers/order-imports': [
+            'warn',
+            { // example configuration
+                newlinesBetween: 'always',
+                groups: ['absolute', 'module', 'parent', 'sibling', 'index', 'type'],
+                alphabetize: { order: 'asc', ignoreCase: true },
+            },
+        ],
+        // eslint vue plugin
+        'vue/multi-word-component-names': [
+            'off',
+            {
+                ignores: [],
+            },
+        ],
+        'vue/html-closing-bracket-newline': [
+            'error',
+            {
+                singleline: 'never',
+                multiline: 'never',
+            },
+        ],
+        'vue/max-attributes-per-line': [
+            'error',
+            {
+                singleline: {
+                    max: 4,
+                },
+                multiline: {
+                    max: 1,
+                },
+            },
+        ],
+        'vue/first-attribute-linebreak': [
+            'error',
+            {
+                singleline: 'ignore',
+                multiline: 'beside',
+            },
+        ],
+
+        'vue/multiline-html-element-content-newline': [
+            'error',
+            {
+                ignoreWhenEmpty: true,
+                ignores: ['span', 'p'],
+                allowEmptyLines: false,
+            },
+        ],
+        'vue/singleline-html-element-content-newline': [
+            'error',
+            {
+                ignoreWhenNoAttributes: true,
+                ignoreWhenEmpty: true,
+                ignores: ['span', 'div'],
+            },
+        ],
+        'vue/html-indent': [
+            'error',
+            4,
+            {
+                attribute: 1,
+                baseIndent: 1,
+                closeBracket: 0,
+                alignAttributesVertically: true,
+                ignores: [],
+            },
+        ],
+        'vue/valid-v-show': ['off'],
+        'vue/require-default-prop': ['off'],
+        'vue/no-useless-template-attributes': 0,
+        'vue/html-closing-bracket-spacing': 1,
+        'vue/html-end-tags': 2,
+        'vue/html-quotes': ['error', 'double', { avoidEscape: false }],
+        'vue/valid-model-definition':2,
+    }
+};
+```
+
