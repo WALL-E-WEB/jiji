@@ -398,7 +398,13 @@ split：
 
 ### y修饰符
 
+```javascript
+var s = 'aaa_aa_a';
+var r = /a+_/y;
 
+r.exec(s) // ["aaa_"]
+r.exec(s) // ["aa_"]
+```
 
 
 
@@ -409,5 +415,406 @@ const re =  /(\d{4})-(\d{2})-(\d{2})/;
 
 const match = re('2022-01-02'); // [2022,01,02];
 
+```
+
+### 解构赋值和替换 
+
+```javascript
+let {groups: {one, two}} = /^(?<one>.*):(?<two>.*)$/u.exec('foo:bar');
+one  // foo
+two  // bar
+
+
+let re = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+'2015-01-02'.replace(re, '$<day>/$<month>/$<year>')
+// '02/01/2015'
+```
+
+
+
+## 第六章 数值的拓展
+
+### 二进制和八进制表示法 
+
+```javascript
+0b111110111 === 503 // true
+0o767 === 503 // true
+
+// 转换 10 进制
+Number('0b111')  // 7
+Number('0o10')  // 8
+```
+
+### 数值分隔符
+
+[ES2021](https://github.com/tc39/proposal-numeric-separator)，允许 JavaScript 的数值使用下划线（`_`）作为分隔符。分隔符不影响数值比较；
+
+```javascript
+12345_00 === 123_4500 
+```
+
+数值分隔符有几个使用注意点。
+
+- 不能放在数值的最前面（leading）或最后面（trailing）。
+- 不能两个或两个以上的分隔符连在一起。
+- 小数点的前后不能有分隔符。
+- 科学计数法里面，表示指数的`e`或`E`前后不能有分隔符。
+
+### Math 的拓展
+
+#### trunc
+
+移除一个数的小数部分
+
+```javascript
+Math.trunc(4.1) // 4
+Math.trunc('4.1') // 4
+```
+
+#### sing
+
+`Math.sign`方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值。
+
+它会返回五种值。
+
+- 参数为正数，返回`+1`；
+- 参数为负数，返回`-1`；
+- 参数为 0，返回`0`；
+- 参数为-0，返回`-0`;
+- 其他值，返回`NaN`。
+
+```javascript
+
+```
+
+#### cbrt
+
+`Math.cbrt()`方法用于计算一个数的立方根;
+
+```
+Math.cbrt('8') // 2
+```
+
+#### hypot
+
+`Math.hypot`方法返回所有参数的平方和的平方根
+
+```
+Math.hypot(3, 4); 
+```
+
+#### 双曲函数方法
+
+ES6 新增了 6 个双曲函数方法。
+
+- `Math.sinh(x)` 返回`x`的双曲正弦（hyperbolic sine）
+- `Math.cosh(x)` 返回`x`的双曲余弦（hyperbolic cosine）
+- `Math.tanh(x)` 返回`x`的双曲正切（hyperbolic tangent）
+- `Math.asinh(x)` 返回`x`的反双曲正弦（inverse hyperbolic sine）
+- `Math.acosh(x)` 返回`x`的反双曲余弦（inverse hyperbolic cosine）
+- `Math.atanh(x)` 返回`x`的反双曲正切（inverse hyperbolic tangent）
+
+
+
+## 第七章 函数的拓展
+
+### 函数默认参数
+
+```javascript
+function log(x, y = 'World') {
+  console.log(x, y);
+}
+
+function foo({x, y = 5}) {
+  console.log(x, y);
+}
+```
+
+### 必填参数应用
+
+```javascript
+function throwIfMissing() {
+  throw new Error('Missing parameter');
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+  return mustBeProvided;
+}
+
+foo()
+
+// 可以将参数默认值设为undefined，表明这个参数是可以省略的。
+function foo(optional = undefined) { ··· }
+```
+
+### rest参数
+
+ES6 引入 rest 参数（形式为`...变量名`），用于获取函数的多余参数，这样就不需要使用`arguments`对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+
+```javascript
+function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3) // 10
+```
+
+```javascript
+function push(array, ...items) {
+  items.forEach(function(item) {
+    array.push(item);
+    console.log(item);
+  });
+}
+
+var a = [];
+push(a, 1, 2, 3)
+```
+
+### 箭头函数
+
+**特点：**
+
+（1）箭头函数没有自己的`this`对象（详见下文）。
+
+（2）不可以当作构造函数，也就是说，不可以对箭头函数使用`new`命令，否则会抛出一个错误。
+
+（3）不可以使用`arguments`对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+```javascript
+ar f = v => v;
+
+// 等同于
+var f = function (v) {
+  return v;
+};
+
+// 箭头函数写法
+[1,2,3].map(x => x * x);
+
+// 箭头函数写法
+var result = values.sort((a, b) => a - b);
+```
+
+this 的指向
+
+```javascript
+// ES6
+function foo() {
+  setTimeout(() => {
+    console.log('id:', this.id);
+  }, 100);
+}
+
+// ES5
+function foo() {
+  var _this = this;
+
+  setTimeout(function () {
+    console.log('id:', _this.id);
+  }, 100);
+}
+```
+
+### 尾调用优化
+
+减少调用帧
+
+只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”
+
+```javascript
+// 等同于
+function f() {
+  return g(3);
+}
+f();
+```
+
+### 尾递归
+
+```javascript
+function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
+  if( n <= 1 ) {return ac2};
+
+  return Fibonacci2 (n - 1, ac2, ac1 + ac2);
+}
+```
+
+### catch 命令的参数省略
+
+```javascript
+try {
+  // ...
+} catch (err) {
+  // 处理错误
+}
+
+try {
+  // ...
+} catch {
+  // ...
+}
+```
+
+
+
+## 第八章 数组的扩展
+
+### 拓展运算符
+
+```javascript
+console.log(...[1, 2, 3])
+// 1 2 3
+
+const [first, ...rest] = [1, 2, 3, 4, 5];
+first // 1
+rest  // [2, 3, 4, 5]
+
+```
+
+### Array.from
+
+类对象转为真正的数组
+
+```javascript
+let arrayLike = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    length: 3
+};
+
+// ES5 的写法
+var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']
+
+// ES6 的写法
+let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+
+Array.from('hello')
+// ['h', 'e', 'l', 'l', 'o']
+
+let namesSet = new Set(['a', 'b'])
+Array.from(namesSet) // ['a', 'b']
+```
+
+### Array.of
+
+`Array.of()`方法用于将一组值，转换为数组。
+
+```javascript
+Array.of(3, 11, 8) // [3,11,8]
+Array.of(3) // [3]
+Array.of(3).length // 1
+
+Array() // []
+Array(3) // [, , ,]
+Array(3, 11, 8) // [3, 11, 8]
+
+Array.of() // []
+Array.of(undefined) // [undefined]
+Array.of(1) // [1]
+Array.of(1, 2) // [1, 2]
+```
+
+### find
+
+```javascript
+[1, 4, -5, 10].find((n) => n < 0)
+// -5
+
+[1, 5, 10, 15].findIndex(function(value, index, arr) {
+  return value > 9;
+}) // 2
+
+const array = [
+  { value: 1 },
+  { value: 2 },
+  { value: 3 },
+  { value: 4 }
+];
+
+array.findLast(n => n.value % 2 === 1); // { value: 3 }
+array.findLastIndex(n => n.value % 2 === 1); // 2
+```
+
+### fill
+
+`fill`方法使用给定值，填充一个数组。
+
+```javascript
+['a', 'b', 'c'].fill(7)
+// [7, 7, 7]
+
+new Array(3).fill(7)
+// [7, 7, 7]
+
+
+['a', 'b', 'c'].fill(7, 1, 2)
+// ['a', 7, 'c']
+```
+
+### entries、keys、values
+
+```javascript
+for (let index of ['a', 'b'].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+
+for (let elem of ['a', 'b'].values()) {
+  console.log(elem);
+}
+// 'a'
+// 'b'
+
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+// 0 "a"
+// 1 "b"
+```
+
+### includes
+
+```javascript
+[1, 2, 3].includes(2)     // true
+[1, 2, 3].includes(4)     // false
+
+/// 第二个参数表示搜索的起始位置
+[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+```
+
+### flat
+
+```javascript
+[1, 2, [3, [4, 5]]].flat()
+// [1, 2, 3, [4, 5]]
+
+[1, 2, [3, [4, 5]]].flat(2)
+// [1, 2, 3, 4, 5]
+
+[1, [2, [3]]].flat(Infinity)
+// [1, 2, 3]
+
+
+// 相当于 [[2, 4], [3, 6], [4, 8]].flat()
+[2, 3, 4].flatMap((x) => [x, x * 2])
+// [2, 4, 3, 6, 4, 8]
+```
+
+### at
+
+```javascript
+const arr = [5, 12, 8, 130, 44];
+arr.at(2) // 8
+arr.at(-2) // 130
 ```
 
