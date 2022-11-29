@@ -818,3 +818,381 @@ arr.at(2) // 8
 arr.at(-2) // 130
 ```
 
+
+
+## 第九章 对象的扩展
+
+### 属性的简洁表示法 
+
+```javascript
+const foo = 'bar';
+const baz = {foo};
+baz // {foo: "bar"}
+
+
+let propKey = 'foo';
+
+let obj = {
+  [propKey]: true,
+  ['a' + 'bc']: 123
+};
+```
+
+### 属性
+
+```javascript
+let obj = { foo: 123 };
+Object.getOwnPropertyDescriptor(obj, 'foo')
+//  {
+//    value: 123,
+//    writable: true,
+//    enumerable: true, // 可枚举性
+//    configurable: true
+//  }
+```
+
+### 新增方法
+
+#### Object.is
+
+比较两个值是否相等
+
+```javascript
++0 === -0 //true
+NaN === NaN // false
+
+Object.is(+0, -0) // false
+Object.is(NaN, NaN) // true
+```
+
+#### Object.assign
+
+对象的合并
+
+注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+
+```javascript
+const target = { a: 1 };
+
+const source1 = { b: 2 };
+const source2 = { c: 3 };
+
+Object.assign(target, source1, source2);
+target // {a:1, b:2, c:3}
+```
+
+```javascript
+const source = {
+  get foo() { return 1 }
+};
+const target = {};
+
+Object.assign(target, source)
+// { foo: 1 }
+```
+
+
+
+##### 为对象添加属性
+
+```javascript
+class Point {
+  constructor(x, y) {
+    Object.assign(this, {x, y});
+  }
+}
+```
+
+##### **为对象添加方法**
+
+```javascript
+Object.assign(SomeClass.prototype, {
+  someMethod(arg1, arg2) {
+    ···
+  },
+  anotherMethod() {
+    ···
+  }
+});
+
+// 等同于下面的写法
+SomeClass.prototype.someMethod = function (arg1, arg2) {
+  ···
+};
+SomeClass.prototype.anotherMethod = function () {
+  ···
+};
+```
+
+##### **克隆对象**
+
+```javascript
+function clone(origin) {
+  return Object.assign({}, origin);
+}
+
+/// 保持继承链
+function clone(origin) {
+  let originProto = Object.getPrototypeOf(origin);
+  return Object.assign(Object.create(originProto), origin);
+}
+```
+
+##### **为属性指定默认值**
+
+```javascript
+const DEFAULTS = {
+  logLevel: 0,
+  outputFormat: 'html'
+};
+
+function processContent(options) {
+  options = Object.assign({}, DEFAULTS, options);
+  console.log(options);
+  // ...
+}
+```
+
+### Object.keys values entries
+
+```javascript
+let {keys, values, entries} = Object;
+let obj = { a: 1, b: 2, c: 3 };
+
+for (let key of keys(obj)) {
+  console.log(key); // 'a', 'b', 'c'
+}
+
+for (let value of values(obj)) {
+  console.log(value); // 1, 2, 3
+}
+
+for (let [key, value] of entries(obj)) {
+  console.log([key, value]); // ['a', 1], ['b', 2], ['c', 3]
+}
+```
+
+### fromEntries
+
+用于将一个键值对数组转为对象。
+
+```javascript
+Object.fromEntries([
+  ['foo', 'bar'],
+  ['baz', 42]
+])
+// { foo: "bar", baz: 42 }
+```
+
+```javascript
+Object.fromEntries(new URLSearchParams('foo=bar&baz=qux'))
+// { foo: "bar", baz: "qux" }
+```
+
+### hasOwn
+
+```javascript
+const foo = Object.create({ a: 123 });
+foo.b = 456;
+
+Object.hasOwn(foo, 'a') // false
+Object.hasOwn(foo, 'b') // true
+
+
+const obj = Object.create(null);
+
+obj.hasOwnProperty('foo') // 报错
+Object.hasOwn(obj, 'foo') // false
+```
+
+### 链判断运算符 
+
+```javascript
+const firstName = message?.body?.user?.firstName || 'default';
+
+const fooValue = myForm.querySelector('input[name=foo]')?.value;
+
+iterator.return?.()
+```
+
+## 第十章 Symbol
+
+### 遍历
+
+#### getOwnPropertySymbols
+
+```javascript
+const obj = {};
+let a = Symbol('a');
+let b = Symbol('b');
+
+obj[a] = 'Hello';
+obj[b] = 'World';
+
+const objectSymbols = Object.getOwnPropertySymbols(obj);
+
+objectSymbols
+// [Symbol(a), Symbol(b)]
+```
+
+#### Reflect.ownKeys
+
+```javascript
+let obj = {
+  [Symbol('my_key')]: 1,
+  enum: 2,
+  nonEnum: 3
+};
+
+Reflect.ownKeys(obj)
+//  ["enum", "nonEnum", Symbol(my_key)]
+```
+
+
+
+### Symbol.for()
+
+`Symbol.for()`与`Symbol()`这两种写法，都会生成新的 Symbol。它们的区别是，前者会被登记在全局环境中供搜索，后者不会。`Symbol.for()`不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的`key`是否已经存在，如果不存在才会新建一个值。
+
+```javascript
+Symbol.for("bar") === Symbol.for("bar")
+// true
+
+Symbol("bar") === Symbol("bar")
+// false
+
+```
+
+### Symbol.keyFor()
+
+方法返回一个已登记的 Symbol 类型值的`key`。
+
+```javascript
+let s1 = Symbol.for("foo");
+Symbol.keyFor(s1) // "foo"
+
+let s2 = Symbol("foo");
+Symbol.keyFor(s2) //
+```
+
+### Singleton 模式
+
+```javascript
+const FOO_KEY = Symbol.for('foo');
+const FOO_KEY = Symbol('foo');
+
+function A() {
+  this.foo = 'hello';
+}
+
+if (!global[FOO_KEY]) {
+  global[FOO_KEY] = new A();
+}
+
+module.exports = global[FOO_KEY];
+```
+
+## 第十一章 Set 和 Map 数据结构
+
+WeakSet
+
+### Set
+
+不重复的值的集合
+
+```javascript
+// 例一
+const set = new Set([1, 2, 3, 4, 4]);
+[...set]
+
+// 去除数组的重复成员
+[...new Set(array)]
+```
+
+#### 实例属性
+
+- `Set.prototype.constructor`：构造函数，默认就是`Set`函数。
+- `Set.prototype.size`：返回`Set`实例的成员总数。
+
+Set 实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。
+
+- `Set.prototype.add(value)`：添加某个值，返回 Set 结构本身。
+- `Set.prototype.delete(value)`：删除某个值，返回一个布尔值，表示删除是否成功。
+- `Set.prototype.has(value)`：返回一个布尔值，表示该值是否为`Set`的成员。
+- `Set.prototype.clear()`：清除所有成员，没有返回值。
+
+#### 遍历操作
+
+Set 结构的实例有四个遍历方法，可以用于遍历成员。
+
+- `Set.prototype.keys()`：返回键名的遍历器 与 values 一样
+- `Set.prototype.values()`：返回键值的遍历器
+- `Set.prototype.entries()`：返回键值对的遍历器
+- `Set.prototype.forEach()`：使用回调函数遍历每个成员
+
+```javascript
+let set = new Set(['red', 'green', 'blue']);
+
+for (let item of set.keys()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.values()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.entries()) {
+  console.log(item);
+}
+// ["red", "red"]
+// ["green", "green"]
+// ["blue", "blue"]
+
+let set = new Set([1, 4, 9]);
+set.forEach((value, key) => console.log(key + ' : ' + value))
+// 1 : 1
+// 4 : 4
+// 9 : 9
+```
+
+### Map
+
+本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+
+```javascript
+const map = new Map([
+  ['name', '张三'],
+  ['title', 'Author']
+]);
+
+map.size // 2
+map.has('name') // true
+map.get('name') // "张三"
+map.has('title') // true
+map.get('title') // "Author"
+```
+
+```javascript
+/// 对象转为 Map
+let obj = {"a":1, "b":2};
+let map = new Map(Object.entries(obj));
+
+/// 数组 转为 Map
+new Map([
+  [true, 7],
+  [{foo: 3}, ['abc']]
+]);
+
+/// Map 转为数组
+const myMap = new Map()
+  .set(true, 7)
+  .set({foo: 3}, ['abc']);
+[...myMap]
+```
+

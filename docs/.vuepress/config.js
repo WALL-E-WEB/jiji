@@ -103,6 +103,7 @@ getFileName(resourcesNav, 'resources');
 getFileName(projectNav, 'project');
 getFileName(moneyNav, 'money');
 getFileName(bookNav, 'book');
+console.log('bookNav',bookNav);
 getFileName(tomorrowNav, 'tomorrow');
 
 module.exports = {
