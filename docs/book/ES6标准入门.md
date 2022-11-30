@@ -1239,3 +1239,118 @@ for (let [key, value] of map) {
 
 
 
+## 第十二章 Proxy
+
+```javascript
+var obj = new Proxy({}, {
+  get: function (target, propKey, receiver) {
+    console.log(`getting ${propKey}!`);
+    return Reflect.get(target, propKey, receiver);
+  },
+  set: function (target, propKey, value, receiver) {
+    console.log(`setting ${propKey}!`);
+    return Reflect.set(target, propKey, value, receiver);
+  }
+});
+```
+
+## 第十三章 Reflect
+
+https://es6.ruanyifeng.com/#docs/reflect
+
+## 第十四章 Promise
+
+```javascript
+const promise = new Promise(function(resolve, reject) {
+  // ... some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+```
+
+### Promise.all
+
+`Promise.all()`方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。
+
+```javascript
+const p = Promise.all([p1, p2, p3]);
+p.then(res=>{
+  /// [p1,p2,p3]
+}).catch(e => console.log(e)); /// 如果 p1、、中有自定 catch 则此处捕抓不到
+```
+
+`p`的状态由`p1`、`p2`、`p3`决定，分成两种情况。
+
+（1）只有`p1`、`p2`、`p3`的状态都变成`fulfilled`，`p`的状态才会变成`fulfilled`，此时`p1`、`p2`、`p3`的返回值组成一个数组，传递给`p`的回调函数。
+
+（2）只要`p1`、`p2`、`p3`之中有一个被`rejected`，`p`的状态就变成`rejected`，此时第一个被`reject`的实例的返回值，会传递给`p`的回调函数。
+
+### Promise.allSettled
+
+```
+所有对象都发生状态变更（不管是fulfilled还是rejected），返回的 Promise 对象才会发生状态变更。
+```
+
+
+
+### Promise.race
+
+```javascript
+const p = Promise.race([p1, p2, p3]);
+
+/// 只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变
+```
+
+### Promise.any
+
+```javascript
+/// Promise.any()跟Promise.race()方法很像，只有一点不同，就是Promise.any()不会因为某个 Promise 变成rejected状态而结束，必须等到所有参数 Promise 变成rejected状态才会结束。
+
+/// 其中只要有一个变成fulfilled，Promise.any()返回的 Promise 对象就变成fulfilled。如果所有三个操作都变成rejected，那么await命令就会抛出错误。
+```
+
+
+
+## 第十五章 Iterator 和 for...of 循环
+
+### for in
+
+会遍历原型链
+
+`for...in`循环有几个缺点。
+
+- 数组的键名是数字，但是`for...in`循环是以字符串作为键名“0”、“1”、“2”等等。
+- `for...in`循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。
+- 某些情况下，`for...in`循环会以任意顺序遍历键名。
+
+```javascript
+let obj = {
+    name:1,
+    sex:2,
+}
+
+for (const key in obj) {
+   console.log(key) // name sex
+}
+
+Object.prototype.a = 3;
+
+for (const key in obj) {
+    console.log('-',key) // name sex a
+ }
+```
+
+### for of 遍历对象
+
+- 不同于`forEach`方法，它可以与`break`、`continue`和`return`配合使用。
+
+```javascript
+for (var key of Object.keys(someObject)) {
+  console.log(key + ': ' + someObject[key]);
+}
+```
+
