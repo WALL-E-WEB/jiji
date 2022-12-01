@@ -1354,3 +1354,83 @@ for (var key of Object.keys(someObject)) {
 }
 ```
 
+
+
+## 第十六章 Generator 函数的语法
+
+
+
+```javascript
+function* helloWorldGenerator() {
+  yield 'hello';
+  yield 'world';
+  return 'ending';
+}
+
+var hw = helloWorldGenerator();
+
+hw.next()
+// { value: 'hello', done: false }
+
+hw.next()
+// { value: 'world', done: false }
+
+hw.next()
+// { value: 'ending', done: true }
+
+hw.next()
+// { value: undefined, done: true }
+```
+
+`for...of`循环可以自动遍历 Generator 函数运行时生成的`Iterator`对象，且此时不再需要调用`next`方法。
+
+```javascript
+function* foo() {
+  yield 1;
+  yield 2;
+  yield 3;
+  yield 4;
+  yield 5;
+  return 6;
+}
+
+for (let v of foo()) {
+  console.log(v);
+}
+// 1 2 3 4 5
+
+
+/// 
+function* numbers () {
+  yield 1
+  yield 2
+  return 3
+  yield 4
+}
+
+// 扩展运算符
+[...numbers()] // [1, 2]
+
+// Array.from 方法
+Array.from(numbers()) // [1, 2]
+
+```
+
+### return
+
+```javascript
+function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+var g = gen();
+
+g.next()        // { value: 1, done: false }
+g.return('foo') // { value: "foo", done: true }
+g.next()     
+
+g.return() // { value: undefined, done: true }
+```
+

@@ -1634,7 +1634,7 @@ import TestModule from 'moduleA/index.js' // 模块实际位置: src/libs/module
 {
   "compilerOptions": {
     /* 基本选项 */
-    "target": "es6", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "target": "es6", // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017'，'ES2018', or 'ESNEXT'
     "module": "commonjs", // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
     "lib": [], // 指定要包含在编译中的库文件
     "allowJs": true, // 允许编译 javascript 文件
@@ -1694,8 +1694,6 @@ import TestModule from 'moduleA/index.js' // 模块实际位置: src/libs/module
   "compileOnSave": true // 支持这个特性需要Visual Studio 2015， TypeScript 1.8.4 以上并且安装 atom-typescript 插件
 }
 ```
-
-
 
 ### json
 
