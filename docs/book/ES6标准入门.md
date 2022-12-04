@@ -1418,6 +1418,8 @@ Array.from(numbers()) // [1, 2]
 
 ### return
 
+函数返回的遍历器对象，还有一个`return()`方法，可以返回给定的值，并且终结遍历 Generator 函数。
+
 ```javascript
 function* gen() {
   yield 1;
@@ -1429,8 +1431,156 @@ var g = gen();
 
 g.next()        // { value: 1, done: false }
 g.return('foo') // { value: "foo", done: true }
-g.next()     
+g.next()     // { value: undefined, done: true }
 
 g.return() // { value: undefined, done: true }
 ```
 
+## 第十七章 Generator 函数的异步应用
+
+
+
+## 第十八章 async 函数
+
+是 Generator 函数的语法糖
+
+```javascript
+async function f() {
+  return 'hello world';
+}
+
+f().then(v => console.log(v))
+// "hello world"
+```
+
+
+
+## 第十九章 Class 的基本语法
+
+```javascript
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  /// 私有属性
+  #brand;
+
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+  
+  /// get set
+  get prop() {
+    return 'getter';
+  }
+  set prop(value) {
+    console.log('setter: '+value);
+  }
+  
+  /// 静态方法
+  static a(){}
+}
+let inst = new Point();
+inst.prop = 123;
+// setter: 123
+
+inst.prop
+// 'getter'
+```
+
+
+
+## 第二十章 Class 的继承
+
+写法比 ES5 的原型链继承，要清晰和方便很多
+
+```javascript
+class Point {
+}
+
+class ColorPoint extends Point {
+}
+```
+
+```javascript
+class A {
+  constructor() {
+    console.log(new.target.name);
+  }
+}
+class B extends A {
+  constructor() {
+    super();
+  }
+}
+new A() // A
+new B() // B
+```
+
+
+
+## 第二十一章 修饰器 
+
+
+
+## 第二十二章 Module
+
+### export
+
+```javascript
+// 写法一
+export var m = 1;
+
+// 写法二
+var m = 1;
+export {m};
+
+// 写法三
+var n = 1;
+export {n as m};
+
+// 正确
+export function f() {};
+
+// 正确
+function f() {}
+export {f};
+```
+
+### import
+
+```javascript
+import { firstName, lastName, year } from './profile.js';
+
+/// 重命名
+import { lastName as surname } from './profile.js';
+
+import 'lodash';
+
+/// 整体导出
+import * as circle from './circle';
+
+console.log('圆面积：' + circle.area(4));
+console.log('圆周长：' + circle.circumference(14));
+
+/// 导出整体与多个
+import _, { each, forEach } from 'lodash';
+```
+
+### default
+
+```javascript
+export default function () {
+  console.log('foo');
+}
+
+function foo() {
+  console.log('foo');
+}
+export default foo;
+
+// import-default.js
+import customName from './export-default';
+customName(); // 'foo'
+```
