@@ -60,3 +60,17 @@ http://abc.com:80/home/index.html?a=one&b=two#boom
 
 ## 第二章 简单的 HTTP 协议
 
+
+
+
+
+## 第四章 HTTP 状态码
+
+|      | 类别                          | 原因短语                   |
+| ---- | ----------------------------- | -------------------------- |
+| 1XX  | informational 信息性状态码    | 接收的请求正在处理         |
+| 2XX  | Success 成功状态码            | 请求正常处理完毕3          |
+| 3XX  | Redirection 重定向状态码      | 需要进行附加操作以完成请求 |
+| 4XX  | Client Error 客户端错误状态码 | 服务器无法处理             |
+| 5XX  | Server Error 服务器错误状态码 | 服务器处理请求出错         |
+
