@@ -473,3 +473,107 @@ GLSL（OpenGL Shading Language）是一种专门用于编写着色器程序的�
 10. GLSL库：https://github.com/patriciogonzalezvivo/glslCollection
 ```
 
+## 变量
+
+https://www.cnblogs.com/kekec/p/14065756.html
+
+### attribute
+
+attribute 是一种GLSL ES变量,被用来从外部向顶点着色器内传输数据,只有顶点着色器能使用它
+
+类型：float、vec2、vec3、vec4、mat2、mat3、mat4
+
+```javascript
+attribute vec4 a_Position;
+attribute float a_PointSize;
+void main() {
+    gl_Position = a_Position;
+    gl_PointSize = a_PointSize;
+}
+
+获取：gl.getAttribLocation(gl.program, 'a_Position');
+设置：gl.vertexAttrib3f(a_Position, 0.0, 0.0, 0.0);
+
+gl.vertexAttrib1f
+gl.vertexAttrib2f
+gl.vertexAttrib3f
+gl.vertexAttrib4f
+```
+
+### uniform
+
+全局变量
+
+```javascript
+gl.getUniformLocation(gl.program, ‘u_FragColor’);
+
+gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+```
+
+### varing
+
+在webgl中它在顶点和片元着色器中一起使用，它负责在顶点和片元着色器中进行值传递，将顶点着色器中的计算后结果传到片元着色器中，因此你必须定义一个相同名称的变量。
+
+```
+
+```
+
+## 初始化
+
+```javascript
+const ctx = document.getElementById('canvas')
+const gl = ctx.getContext('webgl')
+
+  // 着色器
+  // 创建着色器源码
+  const VERTEX_SHADER_SOURCE = `
+    // 必须要存在 main 函数
+    void main() {
+      // 要绘制的点的坐标
+      gl_Position = vec4(0.0,0.0,0.0,1.0);
+      // 点的大小
+      gl_PointSize = 30.0;
+    }
+  `; // 顶点着色器
+
+
+  // gl_FragColor vec4(1.0,0.0,0.0,1.0) r, g, b, a
+  const FRAGMENT_SHADER_SOURCE = `
+    void main() {
+      gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+    }
+  `; // 片元着色器
+
+// 创建着色器
+const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+// gl.shaderSource(vertexShader, VERTEX_SHADER_SOURCE) // 指定顶点着色器的源码
+// gl.shaderSource(fragmentShader, FRAGMENT_SHADER_SOURCE) // 指定片元着色器的源码
+
+// 编译着色器
+gl.compileShader(vertexShader)
+gl.compileShader(fragmentShader)
+
+// 创建一个程序对象
+const program = gl.createProgram();
+gl.attachShader(program, vertexShader)
+gl.attachShader(program, fragmentShader)
+
+gl.linkProgram(program)
+gl.useProgram(program)
+
+  // 执行绘制
+  // 要绘制的图形是什么， 从哪个开始，   使用几个顶点
+  gl.drawArrays(gl.POINTS, 0, 1);
+  gl.drawArrays(gl.LINES, 0, 1); // 最少需要有两个点，
+  gl.drawArrays(gl.TRIANGLES, 0, 1); // 3个点
+
+  // 3个顶点
+  // 0.0, 0.0, 0.0
+  // 0.2, 0.0, 0.0
+  // 0.4, 0.0, 0.0
+  gl.drawArrays(gl.POINTS, 0, 1);
+  gl.drawArrays(gl.LINES, 1, 2);
+```
+
