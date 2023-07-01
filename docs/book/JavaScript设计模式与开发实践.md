@@ -1,0 +1,112 @@
+# 《JavaScript设计模式与开发实践》
+
+## 状态模式
+
+```js
+https://github.com/jakesgordon/javascript-state-machine
+
+javascript-state-machine
+```
+
+
+
+```js
+var Light = function() {
+    this.currState = FSM.off;
+    this.button = null;
+}
+
+Light.prototype.init = function() {
+    var button = document.createElement('button');
+    var self = this;
+    button.innerHTML = '已关灯';
+    this.button = docuemnt.body.appendChild(button);
+
+    this.button.onclick = function() {
+        self.currState.buttonWasPressed.call(self);
+    }
+}
+
+var FSM = {
+    off: {
+        buttonWasPressed: function() {
+            console.log('关灯');
+            this.currState = FSM.on;
+        }
+    },
+    on: {
+        buttonWasPressed: function() {
+            console.log('开灯');
+            this.currState = FSM.off;
+        }
+    }
+}
+
+var light = new Light();
+light.init();
+
+```
+
+## 模版方法模式
+
+```js
+// 类似 java 抽象类
+var Parent = function(){};
+	parent.prototype.method1 = function(){
+        throw new Error('必须重写方法method1')
+    };
+	parent.prototype.method2 = function(){
+        throw new Error('必须重写方法method2')
+    };
+	parent.prototype.inti = function(){
+		this.method1();
+        this.method2();
+	};
+
+var Child = function(){};
+	Child.prototype = new Parent();
+	Child.prototype.method1 = function(){}; // 重写
+	Child.prototype.method2 = function(){}; // 重写
+var child = new Child();
+	child.init();
+```
+
+实现方式2
+
+```js
+var Parent = function(params){
+        var	method1 =params.method1 || function(){
+            throw new Error('必须重写方法method1')
+        };
+        var	method2 = params.method2 ||function(){
+            throw new Error('必须重写方法method2')
+        };
+        var F = function(){};
+        F.prototype.init = function(){
+            method1();
+            method2();
+        }
+        return F;
+    };
+
+var Child = new Parent({
+        method1:function(){},
+        method2:function(){},
+	});
+
+Child.init();
+```
+
+## 享元模式
+
+```
+为了解决性能问题
+
+```
+
+## 职责链模式
+
+```
+
+```
+
